@@ -80,7 +80,7 @@ public class FileUtilsCleanDirectoryTestCase {
         assertEquals(0, top.list().length);
     }
 
-    @DisabledOnOs(OS.WINDOWS)
+    @DisabledOnOs(OS.MAC)
     @Test
     public void testThrowsOnNullList() throws Exception {
         // test wont work if we can't restrict permissions on the
