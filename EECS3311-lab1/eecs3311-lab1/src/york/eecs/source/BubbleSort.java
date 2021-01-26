@@ -1,6 +1,8 @@
 package york.eecs.source;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +13,7 @@ import java.util.Map;
  */
 public class BubbleSort implements MapSort<String, Integer>{
     /**
-     * @map to be sorted;
+     * @map to be sorted;	<key, value>
      */
 	public Map<String, Integer> map;
     
@@ -22,6 +24,7 @@ public class BubbleSort implements MapSort<String, Integer>{
 		// TODO Auto-generated method stub
 //		Map<String, Integer> mapV = new HashMap<String, Integer>();
 		this.map = map_to_be_sorted;
+		
 	}
 	
 	public Map<String, Integer> getMap() {
@@ -58,5 +61,23 @@ public class BubbleSort implements MapSort<String, Integer>{
 			
 		}
 	   return lst;
+	}
+	
+	public static void main(String[] args) {
+		BubbleSort bs = new BubbleSort();
+		
+		Map<String, Integer> testMap = new HashMap<String, Integer>();  // keys -> ID, values -> GPA
+		testMap.put("215132411", 4);									
+		testMap.put("210122517", 2);
+		testMap.put("212132101", 1);
+		testMap.put("200132001", 5);
+		testMap.put("223103061", 3);
+		testMap.put("293103081", 6);
+		
+		System.out.println(testMap);
+		System.out.println("----------------");
+		System.out.println("getMap() function:");
+		System.out.println(bs.getMap());
+		
 	}
 }
