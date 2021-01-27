@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * @author song and you
@@ -22,9 +24,8 @@ public class BubbleSort implements MapSort<String, Integer>{
      */
 	public void setMap(Map<String, Integer> map_to_be_sorted) {
 		// TODO Auto-generated method stub
-//		Map<String, Integer> mapV = new HashMap<String, Integer>();
 		this.map = map_to_be_sorted;
-		
+
 	}
 	
 	public Map<String, Integer> getMap() {
@@ -42,8 +43,13 @@ public class BubbleSort implements MapSort<String, Integer>{
 	 *  TODO: Implement sorting the maps by values with bubble sorting algorithm.
 	 *  	  This method returns the corresponding key list.
 	 */
+		// fix this sorting is wrong
+		if (this.getMap().keySet().isEmpty() && this.getMap().values().isEmpty()) {
+			throw new MapContainsNullValueException("Map is Empty");
+		}
 		ArrayList<String> lst = new ArrayList<String>();
 		lst.addAll(this.getMap().keySet());
+//		lst.add(this.getMap().values().toString());
 		
 		String tm;
 		boolean sort = false;
@@ -58,26 +64,29 @@ public class BubbleSort implements MapSort<String, Integer>{
 					sort = false;
 				}
 			}
-			
 		}
-	   return lst;
+		return lst;
 	}
 	
 	public static void main(String[] args) {
 		BubbleSort bs = new BubbleSort();
 		
 		Map<String, Integer> testMap = new HashMap<String, Integer>();  // keys -> ID, values -> GPA
-		testMap.put("215132411", 4);									
-		testMap.put("210122517", 2);
-		testMap.put("212132101", 1);
-		testMap.put("200132001", 5);
-		testMap.put("223103061", 3);
-		testMap.put("293103081", 6);
+		testMap.put("tom", 4);		//215132411								 
+		testMap.put("james", 2);	//210122517
+		testMap.put("bakary", 1);	//212132101
+		testMap.put("tanu", 5);		//200132001
+		testMap.put("kamal", 3);	//223103061
+		testMap.put("amar", 6);		//293103081
 		
 		System.out.println(testMap);
 		System.out.println("----------------");
 		System.out.println("getMap() function:");
+		bs.setMap(testMap);
 		System.out.println(bs.getMap());
+		System.out.println("----------------");
+		System.out.println("sortByValue() function:");
+		System.out.println(bs.sortbyValue());
 		
 	}
 }
