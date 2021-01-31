@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -18,14 +21,27 @@ public class BubbleSort implements MapSort<String, Integer>{
      * @map to be sorted;	<key, value>
      */
 	public Map<String, Integer> map;
+	
+	// ctr
+	public BubbleSort() {
+		this.map = new HashMap<String, Integer>();
+	}
     
 	/**
 	 * TODO: There are missing methods, you can find clues from test cases.
      */
 	public void setMap(Map<String, Integer> map_to_be_sorted) {
 		// TODO Auto-generated method stub
-		this.map = map_to_be_sorted;
-
+		Set<Entry<String, Integer>> st = map_to_be_sorted.entrySet();		// put the map into the set
+		for (Entry<String, Integer> t : st) {
+			if (t.getValue() == null || t.getKey() == null) {
+				throw new MapContainsNullValueException("Map is empty");
+			} else {
+//				t.put()
+//				this.map = map_to_be_sorted;
+				map.put(t.getKey(), t.getValue());
+			}
+		}
 	}
 	
 	public Map<String, Integer> getMap() {
@@ -43,30 +59,47 @@ public class BubbleSort implements MapSort<String, Integer>{
 	 *  TODO: Implement sorting the maps by values with bubble sorting algorithm.
 	 *  	  This method returns the corresponding key list.
 	 */
-		// fix this sorting is wrong
-		if (this.getMap().keySet().isEmpty() && this.getMap().values().isEmpty()) {
-			throw new MapContainsNullValueException("Map is Empty");
+		// create the values in AL and put values in her
+		ArrayList<Integer> lstVal = new ArrayList<>();		
+		for (Integer p : this.map.values()) {
+			lstVal.add(p);						// unsorted values in the list 
 		}
-		ArrayList<String> lst = new ArrayList<String>();
-		lst.addAll(this.getMap().keySet());
-//		lst.add(this.getMap().values().toString());
 		
-		String tm;
-		boolean sort = false;
+		ArrayList<String> lstStr= new ArrayList<>();
+		helperSort(lstVal);
 		
-		while (!sort) {
-			sort = true;
-			for (int i = 0; i < lst.size()-1; i++) {
-				if (lst.get(i).compareTo(lst.get(i+1)) > 0) {
-					tm = lst.get(i);
-					lst.set(i, lst.get(i+1));
-					lst.set(i+1, tm);
-					sort = false;
+		for (String str : this.map.keySet()) {
+			lstStr.add(str);
+		}
+		
+		ArrayList<String> lstf = new ArrayList<>(); 			// arraylist for value
+		Set<Entry<String, Integer>> op = this.map.entrySet();
+		for (int i = 0; i < lstVal.size(); i++) {
+			for (Entry<String, Integer> e : op) {
+				if (e.getValue() == lstVal.get(i)) {
+					lstf.add(e.getKey());
 				}
-			}
+			}	
 		}
-		return lst;
+		return lstf;
 	}
+	
+	// modify the keywords later 
+	public void helperSort(ArrayList<Integer> arraylist) {
+		for (int i = 0; i < arraylist.size(); i++) {
+
+	          for (int j = arraylist.size() - 1; j > i; j--) {
+	              if (arraylist.get(i) > arraylist.get(j)) {
+
+	                  int tmp = arraylist.get(i);
+	                  arraylist.set(i,arraylist.get(j)) ;
+	                  arraylist.set(j,tmp);
+
+	              }
+	          }
+	      }
+	}
+	
 	
 	public static void main(String[] args) {
 		BubbleSort bs = new BubbleSort();
