@@ -33,12 +33,11 @@ public class BubbleSort implements MapSort<String, Integer>{
 	public void setMap(Map<String, Integer> map_to_be_sorted) {
 		// TODO Auto-generated method stub
 		Set<Entry<String, Integer>> st = map_to_be_sorted.entrySet();		// put the map into the set
+		
 		for (Entry<String, Integer> t : st) {
 			if (t.getValue() == null || t.getKey() == null) {
 				throw new MapContainsNullValueException("Map is empty");
 			} else {
-//				t.put()
-//				this.map = map_to_be_sorted;
 				map.put(t.getKey(), t.getValue());
 			}
 		}
@@ -76,7 +75,7 @@ public class BubbleSort implements MapSort<String, Integer>{
 		Set<Entry<String, Integer>> op = this.map.entrySet();
 		for (int i = 0; i < lstVal.size(); i++) {
 			for (Entry<String, Integer> e : op) {
-				if (e.getValue() == lstVal.get(i)) {
+				if (e.getValue() == lstVal.get(i)) {			// get the sorted value and put its key in the AL
 					lstf.add(e.getKey());
 				}
 			}	
@@ -85,16 +84,15 @@ public class BubbleSort implements MapSort<String, Integer>{
 	}
 	
 	// modify the keywords later 
-	public void helperSort(ArrayList<Integer> arraylist) {
-		for (int i = 0; i < arraylist.size(); i++) {
+	public void helperSort(ArrayList<Integer> soc) {
+		for (int i = 0; i < soc.size(); i++) {
 
-	          for (int j = arraylist.size() - 1; j > i; j--) {
-	              if (arraylist.get(i) > arraylist.get(j)) {
+	          for (int j = soc.size() - 1; j > i; j--) {
+	              if (soc.get(i) > soc.get(j)) {
 
-	                  int tmp = arraylist.get(i);
-	                  arraylist.set(i,arraylist.get(j)) ;
-	                  arraylist.set(j,tmp);
-
+	                  int t = soc.get(i);
+	                  soc.set(i,soc.get(j)) ;
+	                  soc.set(j,t);
 	              }
 	          }
 	      }
