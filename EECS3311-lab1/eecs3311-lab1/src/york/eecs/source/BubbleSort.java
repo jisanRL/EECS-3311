@@ -13,7 +13,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 /**
- * @author song and you
+ * @author song and Farhan
  * @description: @BubbleSort uses bubble sorting algorithm to rank a map based on the values.
  */
 public class BubbleSort implements MapSort<String, Integer>{
@@ -33,7 +33,6 @@ public class BubbleSort implements MapSort<String, Integer>{
 	public void setMap(Map<String, Integer> map_to_be_sorted) {
 		// TODO Auto-generated method stub
 		Set<Entry<String, Integer>> st = map_to_be_sorted.entrySet();		// put the map into the set
-		
 		for (Entry<String, Integer> t : st) {
 			if (t.getValue() == null || t.getKey() == null) {
 				throw new MapContainsNullValueException("Map is empty");
@@ -88,7 +87,6 @@ public class BubbleSort implements MapSort<String, Integer>{
 	// sorts the values in the AL
 	public void helperSort(ArrayList<Integer> soc) {
 		for (int i = 0; i < soc.size(); i++) {
-
 	          for (int j = soc.size() - 1; j > i; j--) {
 	              if (soc.get(i) > soc.get(j)) {
 
@@ -104,7 +102,8 @@ public class BubbleSort implements MapSort<String, Integer>{
 	public static void main(String[] args) {
 		BubbleSort bs = new BubbleSort();
 		
-		Map<String, Integer> testMap = new HashMap<String, Integer>();  // keys -> ID, values -> GPA
+		// keys -> ID, values -> GPA
+		Map<String, Integer> testMap = new HashMap<String, Integer>();  
 		testMap.put("tom", 4);		//215132411								 
 		testMap.put("james", 2);	//210122517
 		testMap.put("bakary", 1);	//212132101
@@ -120,6 +119,5 @@ public class BubbleSort implements MapSort<String, Integer>{
 		System.out.println("----------------");
 		System.out.println("sortByValue() function:");
 		System.out.println(bs.sortbyValue());
-		
 	}
 }

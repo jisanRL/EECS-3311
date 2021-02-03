@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 /**
- * @author song and you
+ * @author song and Farhan
  * @description: @HeapSort uses max heap algorithm to rank a map based on the values.
  */
 public class HeapSort implements MapSort<String, Double>{
@@ -31,7 +31,6 @@ public class HeapSort implements MapSort<String, Double>{
 	public void setMap(Map<String, Double> map_to_be_sorted) {
 		// TODO Auto-generated method stub
 		Set<Entry<String, Double>> ts = map_to_be_sorted.entrySet();
-		
 		for (Entry<String, Double> p : ts) {
 			if (p.getValue() == null || p.getKey() == null) {
 				throw new MapContainsNullValueException("Map is empty");
@@ -123,7 +122,8 @@ public class HeapSort implements MapSort<String, Double>{
 	public static void main(String[] args) {
 		HeapSort hp = new HeapSort();
 		
-		Map<String, Double> testMap = new HashMap<String, Double>();  // keys -> ID, values -> GPA
+		// keys -> ID, values -> GPA
+		Map<String, Double> testMap = new HashMap<String, Double>();  
 		testMap.put("tom", 4.1);		//215132411								 
 		testMap.put("james", 2.2);		//210122517
 		testMap.put("bakary", 11.1);	//212132101
