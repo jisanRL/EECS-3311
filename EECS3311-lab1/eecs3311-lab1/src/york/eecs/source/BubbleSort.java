@@ -61,18 +61,20 @@ public class BubbleSort implements MapSort<String, Integer>{
 		// create the values in AL and put values in her
 		ArrayList<Integer> lstVal = new ArrayList<>();		
 		for (Integer p : this.map.values()) {
-			lstVal.add(p);						// unsorted values in the list 
+			lstVal.add(p);										// unsorted values in the list 
 		}
 		
-		ArrayList<String> lstStr= new ArrayList<>();
-		helperSort(lstVal);
+		helperSort(lstVal);										// sort the arraylist of values 
 		
+		ArrayList<String> lstStr= new ArrayList<>();			// arraylist for the key
 		for (String str : this.map.keySet()) {
 			lstStr.add(str);
 		}
 		
-		ArrayList<String> lstf = new ArrayList<>(); 			// arraylist for value
+		ArrayList<String> lstf = new ArrayList<>(); 			// arraylist for value 
 		Set<Entry<String, Integer>> op = this.map.entrySet();
+		
+		// map the key to val and return corresponding key
 		for (int i = 0; i < lstVal.size(); i++) {
 			for (Entry<String, Integer> e : op) {
 				if (e.getValue() == lstVal.get(i)) {			// get the sorted value and put its key in the AL
@@ -83,7 +85,7 @@ public class BubbleSort implements MapSort<String, Integer>{
 		return lstf;
 	}
 	
-	// modify the keywords later 
+	// sorts the values in the AL
 	public void helperSort(ArrayList<Integer> soc) {
 		for (int i = 0; i < soc.size(); i++) {
 
