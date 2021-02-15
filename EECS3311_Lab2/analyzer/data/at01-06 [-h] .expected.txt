@@ -1,0 +1,7 @@
+usage: analyzer [-d] [-g] [-h] [-n] -p <input path>
+Build and analyze the CFG for a python method.
+ -d                show each branch
+ -g                build CFG and print the adjacency matrix
+ -h                show help information
+ -n                show the number of branches
+ -p <input path>   path of the method to be analyzed

@@ -1,0 +1,8 @@
+def method(k):
+    if (k > 0):
+        result = k + method(k - 1)
+        print(result)
+        return result
+    else:
+        result = 0
+    return result
