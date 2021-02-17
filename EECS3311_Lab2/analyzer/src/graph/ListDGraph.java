@@ -1,11 +1,14 @@
 package graph;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
+
+import util.Message;
 
 /**
  * Use LinkedList to implement the directed graph
  * @param <V>
- * @author wangs and you
+ * @author wangs and farhan
  */
 public class ListDGraph<V> implements DGraph<V>{
    
@@ -15,16 +18,29 @@ public class ListDGraph<V> implements DGraph<V>{
     /**
      * constructor
      */
-    public ListDGraph() {
+    public ListDGraph() {      
         vList = new LinkedList<Vertex<V>>();
     }
     
     @Override
-    public int addV(V v) {
+    public int addV(V v) { //  check
       /**
        * TODO: implement the addV function;
        */
-        return -1;
+    	Message msg;
+    	if (vList.contains(v)) {
+    		msg= Message.M2; 
+    		return -1;
+		} else {
+			
+		}
+    	vList.add(new Vertex(v));
+    	int vID = 0;
+    	for (Vertex<V> vertex : vList) { 
+    		vertex = vList.get(vID);
+		}
+    	
+        return vID;
     }
 
     
@@ -33,6 +49,17 @@ public class ListDGraph<V> implements DGraph<V>{
     	/**
         * TODO: implement the addE function;
         */
+    	Message msg;
+    	boolean stv= false;
+    	if (getE(0, vList.size()) != null) {
+			msg = Message.M3;
+			return stv;
+		} else if(getE(0,vList.size()) == null){
+			msg = Message.M5;
+			return stv;
+		}
+    	
+    	vList.addAll((Collection<? extends Vertex<V>>) new Edge(0, vList.size()));
         return false;
     }
     
@@ -45,18 +72,27 @@ public class ListDGraph<V> implements DGraph<V>{
     }
 
     @Override
-    public Edge<V> removeE(Edge<V> e) {
+    public Edge<V> removeE(Edge<V> e) {			// check
     	/**
          * TODO: implement the removeE function;
          */
-        return null;
+    	Message msg;
+    	if (e == null) {
+			msg = Message.M6;
+		}
+    	vList.remove(e);
+        return e;
     }
 
     @Override
-    public V getV(int index) {
+    public V getV(int index) {            // check 
     	/**
          * TODO: implement the getV function;
          */
+    	Message msg;
+    	if (index < 0 || index > vList.size()) {
+			msg = Message.M4;
+		}
         return null;
     }
 
@@ -65,7 +101,14 @@ public class ListDGraph<V> implements DGraph<V>{
     	/**
          * TODO: implement the getE function;
          */
-        return null;
+    	Edge<V> edg = new Edge(src, dest);
+    	Message msg;
+    	if (edg == null) {
+			msg = Message.M4;
+			return null;
+		} else {
+			return edg;
+		}
     }
 
 	@Override

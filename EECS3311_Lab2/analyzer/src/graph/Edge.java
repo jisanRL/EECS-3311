@@ -2,13 +2,14 @@ package graph;
 
 /**
  * The edge class; an edge has one source vertex and one destination vertex;
- * @author wangs and you
+ * @author wangs and farhan
  * @param <V> 
  */
 public class Edge<V> {
 	
     /**source of an edge*/
     private V src;
+    
     /**destination of an edge*/
     private V dest;
     
@@ -37,11 +38,15 @@ public class Edge<V> {
         return this.dest;
     }
 
-    public boolean equals(Edge<V> o) { 
+    public boolean equals(Edge<V> o) {   // check
     	/**
 		 * TODO: implement the comparison between two edges
 		 * IFF `src` and `dest` are the same return true
 		 */
+//    	boolean tst = false;
+    	if (this.src == this.dest) {
+			return true;
+		}
 		return false;
 	}
     
