@@ -43,11 +43,13 @@ public class Edge<V> {
 		 * TODO: implement the comparison between two edges
 		 * IFF `src` and `dest` are the same return true
 		 */
-//    	boolean tst = false;
-    	if (this.src == this.dest) {
+    	Edge<V> myEdge = o;
+    	
+    	if (this.src == myEdge.src || this.dest == myEdge.dest) {
 			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
     
     @Override

@@ -28,19 +28,22 @@ public class ListDGraph<V> implements DGraph<V>{
        * TODO: implement the addV function;
        */
     	Message msg;
-    	if (vList.contains(v)) {
-    		msg= Message.M2; 
-    		return -1;
-		} else {
+    	int cnt = -1;
+//    	Vertex<V> vtx = null;
+    	for (Vertex<V> vertex : vList) {
+			if (vList.contains((Vertex<V>)v)) {
+				msg= Message.M5;
+//				cnt =-1;
+				return cnt;
+			} 
 			
-		}
-    	vList.add(new Vertex(v));
-    	int vID = 0;
-    	for (Vertex<V> vertex : vList) { 
-    		vertex = vList.get(vID);
+			vList.add((Vertex<V>)v);	
+			cnt = vList.indexOf(v);
 		}
     	
-        return vID;
+//    	System.out.println(vList);
+//    	System.out.println(cnt);
+        return cnt;
     }
 
     
@@ -50,17 +53,10 @@ public class ListDGraph<V> implements DGraph<V>{
         * TODO: implement the addE function;
         */
     	Message msg;
-    	boolean stv= false;
-    	if (getE(0, vList.size()) != null) {
-			msg = Message.M3;
-			return stv;
-		} else if(getE(0,vList.size()) == null){
-			msg = Message.M5;
-			return stv;
-		}
     	
-    	vList.addAll((Collection<? extends Vertex<V>>) new Edge(0, vList.size()));
-        return false;
+    	
+        System.out.println(vList);
+    	return false;
     }
     
     @Override
