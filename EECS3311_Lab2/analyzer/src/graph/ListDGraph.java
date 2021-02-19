@@ -2,6 +2,7 @@ package graph;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import util.Message;
 
@@ -28,16 +29,16 @@ public class ListDGraph<V> implements DGraph<V>{
        * TODO: implement the addV function;
        */
     	Message msg;
-    	int cnt = -1;
-//    	Vertex<V> vtx = null;
+    	int cnt = 0;
+    	Vertex<V> vtx = null;
     	for (Vertex<V> vertex : vList) {
 			if (vList.contains((Vertex<V>)v)) {
 				msg= Message.M5;
-//				cnt =-1;
+				cnt =-1;
 				return cnt;
 			} 
 			
-			vList.add((Vertex<V>)v);	
+			vList.add((Vertex<V>) v);	
 			cnt = vList.indexOf(v);
 		}
     	
@@ -53,7 +54,10 @@ public class ListDGraph<V> implements DGraph<V>{
         * TODO: implement the addE function;
         */
     	Message msg;
-    	
+    	// edge exists if there is src and dest 
+//    	if () {
+//			
+//		}
     	
         System.out.println(vList);
     	return false;
@@ -64,7 +68,19 @@ public class ListDGraph<V> implements DGraph<V>{
     	/**
          * TODO: implement the removeV function;
          */
-        return null;
+    	Message msg;
+    	Vertex<V> removedVertex=null;
+    	for (Vertex<V> vertex : vList) {
+			if (!vList.contains(v)) {
+				msg= Message.M5;
+				return null;
+			} else {
+				vList.remove(v);
+			}
+			v = (V)removedVertex;
+		}
+    	
+        return (V) removedVertex;
     }
 
     @Override
@@ -86,10 +102,15 @@ public class ListDGraph<V> implements DGraph<V>{
          * TODO: implement the getV function;
          */
     	Message msg;
-    	if (index < 0 || index > vList.size()) {
-			msg = Message.M4;
+    	V vx = null; 
+    	for (Vertex<V> vertex : vList) {
+			if (index < 0 || index > vList.size()) {
+				msg = Message.M4;
+			}
+    		vx = (V) vList.get(index);
 		}
-        return null;
+//    	System.out.println(vx);
+        return vx;
     }
 
     @Override
@@ -99,14 +120,28 @@ public class ListDGraph<V> implements DGraph<V>{
          */
     	Edge<V> edg = new Edge(src, dest);
     	Message msg;
-    	if (edg == null) {
-			msg = Message.M4;
-			return null;
-		} else {
-			return edg;
+    	
+		for (Vertex<V> vertex : vList) {
+			if (edg.getSource().equals(src) && edg.getDest().equals(dest)) {
+				return edg;
+			} else {
+				if (edg.getSource() == null || edg.getDest() == null) {
+					msg = Message.M4;
+					return null;
+				}
+			}
 		}
+    	return edg;
     }
-
+	
+//	if(edg==null) {
+//		msg = Message.M4;
+//		return null;
+//	}else
+//	{
+//		return edg;
+//	}
+	
 	@Override
 	public ArrayList<ArrayList<V>> branches(V v) {
 		/**
