@@ -31,19 +31,16 @@ public class ListDGraph<V> implements DGraph<V>{
     	Message msg;
     	int cnt = 0;
     	Vertex<V> vtx = null;
+    	
     	for (Vertex<V> vertex : vList) {
 			if (vList.contains((Vertex<V>)v)) {
 				msg= Message.M5;
-				cnt =-1;
-				return cnt;
+				return cnt--;
 			} 
-			
-			vList.add((Vertex<V>) v);	
+			vList.add(vtx);	
 			cnt = vList.indexOf(v);
 		}
-    	
-//    	System.out.println(vList);
-//    	System.out.println(cnt);
+
         return cnt;
     }
 
@@ -54,13 +51,23 @@ public class ListDGraph<V> implements DGraph<V>{
         * TODO: implement the addE function;
         */
     	Message msg;
-    	// edge exists if there is src and dest 
-//    	if () {
-//			
-//		}
+    	boolean result = false;
+    	Edge<V> r = new Edge(e, e);
     	
-        System.out.println(vList);
-    	return false;
+    	
+    	for (Vertex<V> vertex : vList) {
+    		// edge exists if there is src and dest 
+    		if (vList.contains(r.getSource()) && vList.contains(r.getDest())) {
+				msg= Message.M3;
+				result=true;
+				return result;
+			} else {
+				vList.add((Vertex<V>) r.getSource());
+			}
+		}
+    	
+//        System.out.println(vList);
+    	return result;
     }
     
     @Override
@@ -106,8 +113,10 @@ public class ListDGraph<V> implements DGraph<V>{
     	for (Vertex<V> vertex : vList) {
 			if (index < 0 || index > vList.size()) {
 				msg = Message.M4;
+				return null;
+			} else {
+				vx = (V) vList.get(index);
 			}
-    		vx = (V) vList.get(index);
 		}
 //    	System.out.println(vx);
         return vx;
@@ -134,7 +143,8 @@ public class ListDGraph<V> implements DGraph<V>{
     	return edg;
     }
 	
-//	if(edg==null) {
+//	
+//    if(edg==null) {
 //		msg = Message.M4;
 //		return null;
 //	}else
@@ -151,11 +161,23 @@ public class ListDGraph<V> implements DGraph<V>{
 	}
 	
     @Override
-    public int [][] matrix() {
+    public int [][] matrix() {					// check this  https://www.geeksforgeeks.org/add-and-remove-vertex-in-adjacency-matrix-representation-of-graph/
     	/**
     	 * TODO: generate the adjacency matrix of a graph;
     	 */
-    	return null;
- 
+    	int [][] r = new int[4][4];						//	 the matrix
+    	
+    	// initialize matrix
+    	for (int i = 0; i < vList.size(); i++) {			// rows
+			for (int j = 0; j < vList.size(); j++) {		// columns
+				r[i][j] = 0;								// values initialzed to 0
+				
+				// connect the vertex
+				r[i][j] = 1;
+				r[j][i] = 1;
+			}
+		}
+//    	System.out.println(r.toString());
+    	return r;
     }	
 }
