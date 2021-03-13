@@ -9,7 +9,6 @@ public class Edge<V> {
 	
     /**source of an edge*/
     private V src;
-    
     /**destination of an edge*/
     private V dest;
     
@@ -38,14 +37,12 @@ public class Edge<V> {
         return this.dest;
     }
 
-    public boolean equals(Edge<V> o) {   // check
+    public boolean equals(Edge<V> o) { 
     	/**
 		 * TODO: implement the comparison between two edges
 		 * IFF `src` and `dest` are the same return true
 		 */
-    	Edge<V> myEdge = o;
-    	
-    	if (this.src == myEdge.src || this.dest == myEdge.dest) {
+    	if (this.src == o.getSource() && this.dest == o.getDest()) {
 			return true;
 		} else {
 			return false;

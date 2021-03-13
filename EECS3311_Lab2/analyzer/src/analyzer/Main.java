@@ -11,7 +11,7 @@ import util.Utils;
 
 /**
  * @desc entrance of lab2
- * @author wangs and you
+ * @author wangs and farhan
  *
  */
 public class Main {
