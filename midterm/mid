@@ -1,0 +1,124 @@
+4.1 manage parking enforcement -> AdminOpeartions class -> addParkingofficer() and removeParkingofficer()[AdminOpeartions inherits from systemAdministrato]
+4.2 customer registration -> RegisterUser -> registerCustomer() method [register user inherits from user interface and implements it]
+4.3 user login -> Login class [implements user] and associated with database [bi-directional direction] -> if (user == customer) loginAsCustomer(),  
+                                                          if (user == parkingGuy) loginAsParkingGuy()
+                                                          if (user == admin) loginAsAdmin()
+4.4 book a parking space -> BookingOpeartions class -> bookSpot() method and parkingDuration() method
+4.5 cancel a parking space ->  BookingOpeartions class -> cancelbooking() method and parkingDuration() method
+4.6 payment -> BookingOpeartions class and paymentclass -> pay() method in customer class and paymentType(String paymentMethod) inherited from paymentclass   [paymentclass inherits BookingOpeartions ]
+4.7 view bookings -> BookingOpeartions interface implemented in customer class -> ViewBookings()
+4.8 manage parking spaces -> ParkingSpotOperations class implements BookingOpeartions interface -> addParkingSpot() and removeParkingSpot() methods 
+4.9 change payment status -> AdminOpeartions class -> updatePaymentStatus()         
+
+note: 
+ParkingSpotOperations associated with BookingOpeartions
+customer associated with BookingOpeartions  [unidirectional]
+customer associated with Payment  [unidirectional]
+Login associated with customer, parkingEnforcementOfficer, SystemAdministrator [unidirectional]
+
+classes: 
+interface User {
+    isUserExists()                        // checks is the user isUserExists
+    isOfficerExists(lastname, uniqueNum)  // check the enforcer
+    addName()                             // adds the user's name
+    addEmail()                            // adds the user's email
+    removeUser()                          // removes the user 
+    checkLoginType()                      // checks the user type
+    registerCustomer()                    // registers users, req-4.2
+    loginAsCustomer()                     //  registers users, req-4.3
+    loginAsParkingEnforcer()
+    loginAsParkingAdmin()
+    
+    // implemented in SystemAdministrator
+    addParkingofficer( ) : void
+    removeParkingofficer( ) : void
+    updatePaymentStatus( ) : boolean
+}
+
+abstract BookingOpeartions{
+    addParkingSpot()            // implemented Parking enforcement officers
+    removeParkingSpot()         // implemented Parking enforcement officers
+
+    // req 4.4 and 4.5 
+    selectParking()             // implemented in customer
+    bookParkingSpot()           // implemented in customer, req-5 4.3.3
+    parkingDuration()           // implemented in customer, req-4 4.3.3
+    ViewBookings()              // implemented in customer  req-4.7
+    isParkingSpotFree()         // implemented in customer, req-3 4.3.3
+    bookingConfirmation()       // implemented in customer, req-2,6 4.3.3
+    bookingCheck()              // implemented in customer, req-3 4.3.3
+    cancelBooking()             // implemented in customer, req4.5
+    pay()                       // implemented in customer
+    paymentType()               // implemented in customer
+    updatePaymentStatus()       // implemented by SystemAdministrator
+    timeStamp()                 // implemented in payment
+    counter()                   // implemented in payment req-4 4.6.3, 
+    receivePayment()            // implemented in payment
+}
+class Customer implements User, BookingOpeartions {
+    // Fields
+    firstname, lastname, emailAddress;
+    time, numberOfSpots=<3
+
+    isUserExists()           
+    selectParking()             
+    bookParkingSpot(numberOfSpots)           
+    parkingDuration(time)       
+    ViewBookings()              
+    bookingConfirmation()       
+    isParkingSpotFree()     
+    cancelBooking()    
+    pay()                       
+    paymentType()               
+}
+class parkingEnforcementOfficer implements User, BookingOpeartions { // parkingEnforcementOfficer class unidirectional connection with SystemAdministrator class
+    // field
+    firstname, lastname, emailAddress
+    
+    addName()   
+    addEmail()
+    assignUniquIDNumber() 
+    isUserExists()       
+    List<DataType> info()
+    addParkingSpot()                // done by the parkingEnforcementOfficer
+    isParkingSpotFree()
+    removeParkingSpot()             // done by the parkingEnforcementOfficer
+    
+}
+class SystemAdministrator implements User, BookingOpeartions{
+    addName(firstname,lastname ): String
+    addEmail(emailAddress): String
+    addParkingofficer( ) : void
+    removeParkingofficer( ) : void
+    updatePaymentStatus( ) : boolean
+
+}
+class RegisterUser implements User{
+    // field
+    firstname, lastname, emailAddress
+
+    addName()
+    addEmail()
+    registerCustomer()
+    isUserExists()
+}
+
+class Login implements user{
+    // field
+    firstname, lastname, emailAddress
+
+    isUserExists()              // check users type 
+    checkLoginType()            // checks type of customer
+    loginAsCustomer()
+    loginAsParkingEnforcer()
+    loginAsParkingAdmin()
+}
+
+class Payment implements BookingOpeartions{
+    // field
+    time
+
+    timeStamp(time)                 // implemented in payment
+    receivePayment()                // confirmation of payment
+    counter()
+}
