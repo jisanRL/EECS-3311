@@ -10,13 +10,20 @@ class Library {
   /* The following contracts are designed for function 'addBook'*/
   //TODO pre-condition: the 'newBook' should not be null
 	//@ requires 
+  /*@ 
+   		requires newBook != null 
+   @*/
   
   //TODO post-condition: the newBook should be in the holdings after executing this function
 	//@ ensures 
-  
+  /* @
+    	ensures 		//fix this 
+   @*/
   //TODO post-condition: the size of holdings is increased by 1
 	//@ ensures 
-  
+  /*@
+   		ensures neBook = \old(newBook)+1		//check
+   @*/
   Library addBook(Book newBook) {// add a new book to the library (assuming there are no duplicate books)
     holdings.add(newBook);
     return this;
@@ -55,7 +62,7 @@ class Library {
 	//@ ensures
   
   boolean hasBook(Book newBook) {
-	  //TODO invariant: 'i' should decrease after each iteration
+	  //TODO invariant: 'i' should decrease after each iteration-> [prof said] ignore 
 	  // @ decreasing 
 	  for (int i =0; i<holdings.size();i++) {
 		  if (holdings.get(i).equals(newBook)) {
