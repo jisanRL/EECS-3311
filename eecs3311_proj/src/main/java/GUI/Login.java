@@ -1,85 +1,124 @@
 package GUI;
 
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
-public class Login {
+
+// refurbish later this if possible
+public class Login extends JFrame {
 	
 	private static JLabel userlabel;
-	private static JTextField userText;
 	private static JLabel passwordLabel;
-	private static JPasswordField passwordText;
-	private static JButton button;
 	private static JLabel success;
+	private static JLabel thisLabel;
+	private static JPanel contentPane;
+	private static JTextField userText;
+	private static JPasswordField passwordText;
+	private static JButton loginButton;
+	private static JButton registerButton;
 	
-	
+	/*
+	 * Launches the application
+	 */
 	public static void main(String[] args) {
-		
-		JFrame fm = new JFrame("Parking");				// title of the application
-		fm.setSize(350, 200);						    // set the width and height of the frame
-		fm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel jp = new JPanel();
-		fm.add(jp);
-		
-		placeComponents(jp);
-		fm.setVisible(true);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login frm = new Login();
+					frm.setVisible(true);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 	
-	// fix this / refurbish this  
-	private static void placeComponents(JPanel panel) {
+	/*
+	 * create the frame 
+	 */
+	public Login() {
+		// create the panel 
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 305, 340);		// x y len wid
+		contentPane = new JPanel();
+		contentPane.setForeground(new Color(0,0,0));
+		contentPane.setBackground(new Color(192,192,192));		// background color of the app -> Silver 
+		contentPane.setBorder(new EmptyBorder(6,6,6,6));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		//title
+		thisLabel = new JLabel("instaParking");			// Logo
+		thisLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		thisLabel.setFont(new Font("Sans-serif", Font.PLAIN, 16));
+		thisLabel.setBackground(Color.WHITE);
+		thisLabel.setBounds(140, 15, 70, 25);			// set the position of the component 
+		contentPane.add(thisLabel);						// add to the content 
+		
+		// username part
+		userlabel = new JLabel("User Name: ");
+		userlabel.setBounds(10,40,80,25);
+		contentPane.add(userlabel);
+		
+		// user input 
+		userText = new JTextField(20);					// max length of input char = 20
+		userText.setBounds(100,40,165,25);				
+		contentPane.add(userText);
 
-        /* We will discuss about layouts in the later sections
-         * of this tutorial. For now we are setting the layout 
-         * to null
-         */
-        panel.setLayout(null);
-
-        // Creating JLabel
-        JLabel userLabel = new JLabel("User");
-        /* This method specifies the location and size
-         * of component. setBounds(x, y, width, height)
-         * here (x,y) are cordinates from the top left 
-         * corner and remaining two arguments are the width
-         * and height of the component.
-         */
-        userLabel.setBounds(10,20,80,25);
-        panel.add(userLabel);
-
-        /* Creating text field where user is supposed to
-         * enter user name.
-         */
-        JTextField userText = new JTextField(20);
-        userText.setBounds(100,20,165,25);
-        panel.add(userText);
-
-        // Same process for password label and text field.
-        JLabel passwordLabel = new JLabel("Password");
-        passwordLabel.setBounds(10,50,80,25);
-        panel.add(passwordLabel);
-
-        /*This is similar to text field but it hides the user
-         * entered data and displays dots instead to protect
-         * the password like we normally see on login screens.
-         */
-        JPasswordField passwordText = new JPasswordField(20);
-        passwordText.setBounds(100,50,165,25);
-        panel.add(passwordText);
-
-        // Creating login button
-        JButton loginButton = new JButton("login");
-        loginButton.setBounds(10, 80, 120, 25);
-        panel.add(loginButton);
-        
-     // Creating register button
-        JButton rButton = new JButton("register");
-        rButton.setBounds(140, 80, 120, 25);
-        panel.add(rButton);
-    }
-
-
+	     // password part
+	     passwordLabel = new JLabel("Password");
+	     passwordLabel.setBounds(10,70,80,25);
+	     contentPane.add(passwordLabel);
+		
+		// password input 
+	     passwordText = new JPasswordField(20);			// max length of input char = 20
+	     passwordText.setBounds(100,70,165,25);
+	     contentPane.add(passwordText);
+	     
+	     // Creating login button
+	     loginButton = new JButton("Login");
+	     // actionListener to authenticate the user 
+	     loginButton.addActionListener(new ActionListener() {
+	    	 // authentication
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				// temproary stuff, use CSV table (reading through CSV file method) later
+				String user = userText.getText();
+				String pswd = passwordText.getText();
+				
+				if (user.equals("alex") && pswd.equals("1234")) {
+					System.out.println(user + ",  " + pswd);
+					success.setText("Login successful");
+				} else {
+					success.setText("Login unsuccessful");
+				}
+			}	    	
+	     });
+	     loginButton.setBounds(10, 100, 120, 25);
+	     contentPane.add(loginButton);
+	     
+	     // temporary (later -> upon authentication take from login page to booking space / main dashboard)
+	     success = new JLabel("");
+	     success.setBounds(10, 120, 120, 25);
+	     contentPane.add(success);
+	     
+	     // register button, takes to the registration page 
+	     registerButton = new JButton("register");
+	     registerButton.setBounds(140, 100, 120, 25);
+	     contentPane.add(registerButton);
+	}
 }
