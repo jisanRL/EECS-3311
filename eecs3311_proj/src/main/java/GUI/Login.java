@@ -52,7 +52,7 @@ public class Login extends JFrame {
 	public Login() {
 		// create the panel 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 305, 340);		// x y len wid
+		setBounds(100, 100, 550, 400);		// x y len wid
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(0,0,0));
 		contentPane.setBackground(new Color(192,192,192));		// background color of the app -> Silver 
@@ -65,7 +65,7 @@ public class Login extends JFrame {
 		thisLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		thisLabel.setFont(new Font("Sans-serif", Font.PLAIN, 16));
 		thisLabel.setBackground(Color.WHITE);
-		thisLabel.setBounds(140, 15, 70, 25);			// set the position of the component 
+		thisLabel.setBounds(100, 15, 170, 25);			// set the position of the component 
 		contentPane.add(thisLabel);						// add to the content 
 		
 		// username part

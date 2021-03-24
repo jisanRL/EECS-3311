@@ -22,18 +22,14 @@ public class Registration extends JFrame {
 	private static JLabel passwordLabel;
 	private static JLabel success;
 	private static JLabel thisLabel;
-	
 	private static JLabel name;
 	private static JLabel email;
 	private static JLabel address;
 	private static JLabel phone;
-	
 	private static JTextField nameInput;
 	private static JTextField emailInput;
 	private static JTextField addressInput;
 	private static JTextField phoneInput;
-	
-	
 	private static JPanel contentPane;
 	private static JTextField userText;
 	private static JPasswordField passwordText;
@@ -61,7 +57,7 @@ public class Registration extends JFrame {
 	public Registration() {
 		// create the panel
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 305, 340); // x y len wid
+		setBounds(100, 100, 550, 400); // x y len wid
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBackground(new Color(192, 192, 192)); // background color of the app -> Silver
@@ -74,7 +70,7 @@ public class Registration extends JFrame {
 		thisLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		thisLabel.setFont(new Font("Sans-serif", Font.PLAIN, 16));
 		thisLabel.setBackground(Color.WHITE);
-		thisLabel.setBounds(140, 15, 70, 25); // set the position of the component
+		thisLabel.setBounds(100, 15, 170, 25); // set the position of the component
 		contentPane.add(thisLabel); // add to the content
 		
 		// name
@@ -141,13 +137,14 @@ public class Registration extends JFrame {
 		// register button, takes to the registration page, 
 		// later, enter user information and once that is done put the info in the csv file of user table and 
 		registerButton = new JButton("Register");
-		registerButton.setBounds(120, 200, 120, 25);
+//		registerButton.setBackground(Color.BLUE);
+		registerButton.setBounds(90, 210, 190, 25);
 		contentPane.add(registerButton);
 		
 		
 		// Creating login button , Later -> once the success message is given click this button and take to the login page 
 		loginButton = new JButton("Login Page");
-		loginButton.setBounds(120, 225, 120, 25);
+		loginButton.setBounds(90, 235, 190, 25);
 		contentPane.add(loginButton);
 
 		// temporary (later -> upon authentication take from login page to booking space / main dashboard)
