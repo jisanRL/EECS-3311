@@ -80,7 +80,11 @@ public class HomePage extends JFrame {
 		
 		
 		// table view of all the available spot of the choosen location
-		
+		JLabel tag1 = new JLabel();
+		int count = 0;
+		tag1.setText("Available Slots: " + count);
+		tag1.setBounds(10, 125, 170, 25);
+		contentPane.add(tag1);
 		
 	}
 	
