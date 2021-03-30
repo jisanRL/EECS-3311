@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,9 +17,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 //refurbish later this if possible
-public class Registration extends JFrame {
+public class RegistrationView extends JFrame {
 
 	private static JLabel userlabel;
+	private static JLabel usertype;
 	private static JLabel passwordLabel;
 	private static JLabel success;
 	private static JLabel thisLabel;
@@ -41,7 +43,7 @@ public class Registration extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Registration frm = new Registration();
+					RegistrationView frm = new RegistrationView();
 					frm.setVisible(true);
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -54,7 +56,7 @@ public class Registration extends JFrame {
 	/*
 	 * create the frame
 	 */
-	public Registration() {
+	public RegistrationView() {
 		// create the panel
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 400); // x y len wid
@@ -113,43 +115,54 @@ public class Registration extends JFrame {
 		addressInput.setBounds(120, 125, 165, 25);
 		contentPane.add(addressInput);
 		
-		
 		// username part
 		userlabel = new JLabel("User Name: ");
 		userlabel.setBounds(10, 150, 80, 25);
 		contentPane.add(userlabel);
-
+		
 		// user input
 		userText = new JTextField(20); 					// max length of input char = 20
 		userText.setBounds(120, 150, 165, 25);
 		contentPane.add(userText);
+		
+		// usertype part
+		usertype = new JLabel("User Type: ");
+		usertype.setBounds(10, 175, 80, 25);
+		contentPane.add(usertype);
+		
+		String[] userOptions = { "customer", "parking officer" };
+		JComboBox lst = new JComboBox(userOptions);
+		lst.setSelectedIndex(0);
+//		lst.addActionListener(this);
+		lst.setBounds(120, 175, 170, 25);
+		contentPane.add(lst);
 
 		// password part
 		passwordLabel = new JLabel("Password");
-		passwordLabel.setBounds(10, 175, 80, 25);
+		passwordLabel.setBounds(10, 200, 80, 25);
 		contentPane.add(passwordLabel);
 
 		// password input
 		passwordText = new JPasswordField(20);			 // max length of input char = 20
-		passwordText.setBounds(120, 175, 165, 25);
+		passwordText.setBounds(120, 200, 165, 25);
 		contentPane.add(passwordText);
 
 		// register button, takes to the registration page, 
 		// later, enter user information and once that is done put the info in the csv file of user table and 
 		registerButton = new JButton("Register");
 //		registerButton.setBackground(Color.BLUE);
-		registerButton.setBounds(110, 210, 190, 25);
+		registerButton.setBounds(110, 235, 190, 25);
 		contentPane.add(registerButton);
 		
 		
 		// Creating login button , Later -> once the success message is given click this button and take to the login page 
 		loginButton = new JButton("Login Page");
-		loginButton.setBounds(110, 235, 190, 25);
+		loginButton.setBounds(110, 260, 190, 25);
 		contentPane.add(loginButton);
 
 		// temporary (later -> upon authentication take from login page to booking space / main dashboard)
 		success = new JLabel("");
-		success.setBounds(10, 250, 120, 25);
+		success.setBounds(10, 275, 120, 25);
 		contentPane.add(success);
 	}
 }

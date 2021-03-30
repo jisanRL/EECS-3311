@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 
 // refurbish later this if possible
-public class Login extends JFrame {
+public class LoginView extends JFrame {
 	
 	private static JLabel userlabel;
 	private static JLabel passwordLabel;
@@ -36,7 +36,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frm = new Login();
+					LoginView frm = new LoginView();
 					frm.setVisible(true);
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -49,7 +49,7 @@ public class Login extends JFrame {
 	/*
 	 * create the frame 
 	 */
-	public Login() {
+	public LoginView() {
 		// create the panel 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 400);		// x y len wid
