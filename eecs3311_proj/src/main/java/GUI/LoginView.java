@@ -113,7 +113,7 @@ public class LoginView extends JFrame {
 	     
 	     // temporary (later -> upon authentication take from login page to booking space / main dashboard)
 	     success = new JLabel("");
-	     success.setBounds(10, 120, 120, 25);
+	     success.setBounds(10, 120, 170, 25);
 	     contentPane.add(success);
 	     
 	     // register button, takes to the registration page 

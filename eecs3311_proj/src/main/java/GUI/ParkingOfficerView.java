@@ -92,7 +92,7 @@ public class ParkingOfficerView extends JFrame{
 		// buttons
 		// add parking space
 		addLabel = new JLabel();
-		addLabel.setText("Add Parking Enforcement Officer: ");
+		addLabel.setText("Add Parking Space: ");
 		addLabel.setBounds(10, 200, 500, 25);
 		contentPane.add(addLabel);
 		
