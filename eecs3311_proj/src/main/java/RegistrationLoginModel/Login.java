@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 /*
  * Class reads and authenticates the user from the csv files
- * customer reads from customer.csv
  * PEO reads from database.csv
  */
 public class Login {
@@ -31,6 +30,7 @@ public class Login {
 	/*
 	 * Authenticates and verifies the users existance 
 	 */
+	// for testing turn is to static void
 	public String[] authenticate(String userName, String password) {
 		String line = "";
 		String[] val = null;
