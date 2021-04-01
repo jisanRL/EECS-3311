@@ -1,8 +1,10 @@
 package RegistrationLoginModel;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -15,48 +17,45 @@ import java.util.ArrayList;
  */
 public class Register {
 	
-	private static User user;  // composition 
-	private static String userPath = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/PEO.csv";		// fix this later -> turn to relative path
+	private static User user;  			// composition 
+	private static String userPath = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/database.csv";		// fix this later -> turn to relative path
 	
 	/*
-	 * writes the user to the file
+	 * writes the user details to the database file
 	 */
-	public static void writeUser(String firstName, String lastName, 
-			String email, String phoneNumber, String address, 
-			String userName, String password) throws FileNotFoundException {
+	public static void writeUser(String firstName,String lastName,
+			String userType,String email,String userName,String phoneNumber,
+			String address,String password) throws IOException {
 		
-		File fw = new File(userPath);			// path to the file
-		PrintWriter pw = new PrintWriter(fw);	// prints to the file
+		File fw = new File(userPath);						// path to the file
+		FileWriter fwt = new FileWriter(fw, true);
+		BufferedWriter bfw = new BufferedWriter(fwt);
+		PrintWriter pw = new PrintWriter(bfw);				// prints to the file
 		
-		
-		ArrayList<User> theuser = new ArrayList<User>();
-//		theuser.add(user.setFirstName(firstName));
-//		theuser.add(lastName);
-//		theuser.add(email);
-//		theuser.add(phoneNumber);
-//		theuser.add(address);
-//		theuser.add(userName);
-//		theuser.add(password);
-		System.out.println(theuser);
-		
-		for (User str : theuser) {
-//			pw.printf("%s,%s,%s,%s,%s,%s,%s\n", theuser.getFirstName(), theuser.getLastName(), theuser.getEmail(), theuser.getPhoneNumber()), theuser.getAddress(), theuser.getUserName(), theuser.getPassword());	// prints to the file 
+		if (fw.exists() == false) {
+			fw.createNewFile();
+			System.out.println("File exists");
+		} else {
+			System.out.println("File doesn't exist");
 		}
+		pw.printf("\r%s,%s,%s,%s,%s,%s,%s,%s\n", firstName,lastName, userType,email,userName,phoneNumber,address,password).flush();		// writes to the file
+		pw.flush();		// flushes the data into the csv
 		pw.close();		//close file
 	}
 	
 	
 	
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		System.out.println("register");
 		
-		String firstName = "jason";
-		String lastName = "applesead";
-		String email = "jason@yorku.ca";
-		String phoneNumber = "2134141413";
-		String address = "12 apple st";
-		String userName = "jason12";
-		String password = "peo1";
-		writeUser(firstName,lastName,email,phoneNumber,address,userName,password);
+		String firstName = "apple";
+		String lastName = "bull";
+		String userType = "PEO";
+		String email = "apple@yorku.ca";
+		String phoneNumber = "2122141413";
+		String address = "16 apple st";
+		String userName = "apple12";
+		String password = "peo4";
+		writeUser(firstName,lastName, userType,email,userName,phoneNumber,address,password);
 	}
 }

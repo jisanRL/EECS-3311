@@ -13,6 +13,7 @@ import java.util.Scanner;
 /*
  * Class reads and authenticates the user from the csv files
  * PEO reads from database.csv
+ * REMOVE ALL THE STATICS BEFORE FINAL SUBMISSION
  */
 public class Login {
 	
@@ -23,7 +24,7 @@ public class Login {
 	private ArrayList<String> userType;
 	private ArrayList<String> password;
 	
-	private String userPath = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/database.csv";		// fix this later -> turn to relative path
+	private static String userPath = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/database.csv";		// fix this later -> turn to relative path
 	private Scanner f;
 	
 	
@@ -31,7 +32,7 @@ public class Login {
 	 * Authenticates and verifies the users existance 
 	 */
 	// for testing turn is to static void
-	public String[] authenticate(String userName, String password) {
+	public static void authenticate(String userName, String password) {
 		String line = "";
 		String[] val = null;
 		boolean isExists = false;
@@ -55,7 +56,7 @@ public class Login {
 					System.out.println("is exists = " + isExists + " " + msg);
 					break;
 				} else {
-					String msg = "User doesnt' exist";
+					String msg = "User doesn't exist";
 					System.out.println("is exists = " + isExists + " " + msg);
 					isExists = false;
 				}
@@ -71,7 +72,7 @@ public class Login {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return val;
+//		return val;
 	}
 	
 	/*
@@ -110,9 +111,9 @@ public class Login {
 		Login login = new Login();
 		System.out.println(login.userPath);
 		
-		String user = "farhan95";
-		String password = "user1";
-		System.out.println(login.authenticate(user, password));
+		String user = "apple12";
+		String password = "peo4";
+		login.authenticate(user, password);
 		System.out.println("====================================================");
 		System.out.println(login.checkUserType(user, password));
 	}
