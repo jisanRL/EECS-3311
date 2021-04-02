@@ -168,6 +168,13 @@ public class HomePage extends JFrame {
 	    // pay button  [later add action listener]
 		payButton = new JButton("Pay");
 		payButton.setBounds(60, 297, 370, 25);
+		payButton.addActionListener(new ActionListener() {
+			// takes to payView
+			public void actionPerformed(ActionEvent e) {
+				PayView pv = new PayView();
+				pv.setVisible(true);
+			}
+		});
 	    contentPane.add(payButton);
 	    
 	    // view booking button  [later add action listener]
