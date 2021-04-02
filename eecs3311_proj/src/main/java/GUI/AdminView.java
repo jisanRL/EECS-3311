@@ -133,6 +133,17 @@ public class AdminView extends JFrame {
 		paymentconfirmedMessage.setText("Payment Confirmed");
 	    contentPane.add(paymentconfirmedMessage);
 	    
+	    JButton logout = new JButton("Logout");
+		logout.setBounds(444, 15, 100, 25);
+		logout.addActionListener(new ActionListener() {
+			// takes to loginView
+			public void actionPerformed(ActionEvent e) {
+				LoginView lv = new LoginView();
+				lv.setVisible(true);
+			}
+		});
+		contentPane.add(logout);
+	    
 	}
 	
 }

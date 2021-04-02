@@ -25,14 +25,13 @@ public class Login {
 	private ArrayList<String> password;
 	
 	private static String userPath = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/database.csv";		// fix this later -> turn to relative path
-	private Scanner f;
 	
 	
 	/*
 	 * Authenticates and verifies the users existance 
 	 */
 	// for testing turn is to static void
-	public static void authenticate(String userName, String password) {
+	public void authenticate(String userName, String password) {
 		String line = "";
 		String[] val = null;
 		boolean isExists = false;
@@ -42,15 +41,15 @@ public class Login {
 			BufferedReader bfr = new BufferedReader(new FileReader(userPath));
 			while ((line = bfr.readLine())!= null) {
 				val = line.split(",");
-//				System.out.println("userName:" + val[4] + ",  "+ "userType:" + val[2] + ", " +  "password:" + val[7]);
+//				System.out.println("userName:" + val[3] + ",  "+ "userType:" + val[1] + ", " +  "password:" + val[6]);
 				
 				// convert the array into list and put the val into the arraylists
 				List<String> lst = Arrays.asList(val);
 				System.out.println(lst);
-				System.out.println("userName:" + lst.get(4) + ",  "+ "userType:" + lst.get(2) + ", " +  "password:" + lst.get(7));
+				System.out.println("userName:" + lst.get(3) + ",  "+ "userType:" + lst.get(1) + ", " +  "password:" + lst.get(6));
 				
 				// check if the list index 4(username) and index 7(password) contains the input
-				if (lst.get(4).contains(userName) && lst.get(7).contains(password)) {
+				if (lst.get(3).contains(userName) && lst.get(6).contains(password)) {
 					isExists = true;
 					String msg = "User exists";
 					System.out.println("is exists = " + isExists + " " + msg);
@@ -90,11 +89,11 @@ public class Login {
 				// convert the array into list and put the val into the arraylists
 				List<String> lst = Arrays.asList(val);
 
-				// check if the list index 4(username) and index 7(password) contains the input
-				if (lst.get(4).contains(userName) && lst.get(7).contains(password)) {
-					usertype = lst.get(2);
+				// check if the list index 3(username) and index 6(password) contains the input
+				if (lst.get(3).contains(userName) && lst.get(6).contains(password)) {
+					usertype = lst.get(1);
 				} 
-				System.out.println("userType= " + usertype);
+				
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -102,6 +101,7 @@ public class Login {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("userType= " + usertype);
 		return usertype;
 	}
 	

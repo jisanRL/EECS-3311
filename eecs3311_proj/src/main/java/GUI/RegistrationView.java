@@ -60,6 +60,7 @@ public class RegistrationView extends JFrame {
 	 * create the frame
 	 */
 	public RegistrationView() {
+		setTitle("Register");
 		// create the panel
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 400); // x y len wid
@@ -71,7 +72,7 @@ public class RegistrationView extends JFrame {
 		contentPane.setLayout(null);
 
 		// title
-		thisLabel = new JLabel("Register of instaParking!!"); 			// Logo
+		thisLabel = new JLabel("instaParking!!"); 			// Logo
 		thisLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		thisLabel.setFont(new Font("Sans-serif", Font.PLAIN, 16));
 		thisLabel.setBackground(Color.WHITE);
@@ -158,7 +159,6 @@ public class RegistrationView extends JFrame {
 		// write the user input to the database.csv
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				// get the data [later make sure inputs are regular expressions no numbers or random input]
 				String name = nameInput.getText();
 				String email = emailInput.getText();
@@ -202,7 +202,7 @@ public class RegistrationView extends JFrame {
 		loginButton.addActionListener(new ActionListener() {
 			// goes to the login page
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				// go to the loginView
 				LoginView login = new LoginView();
 				login.setVisible(true);
 			}

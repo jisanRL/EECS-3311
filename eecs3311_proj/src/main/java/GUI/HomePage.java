@@ -48,6 +48,7 @@ public class HomePage extends JFrame {
 	}
 	
 	public HomePage() {
+		setTitle("Customer HomePage");
 		// create the panel
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 400); // x y len wid
@@ -161,18 +162,36 @@ public class HomePage extends JFrame {
 		
 		// confirm buttons [later add action listener]
 		bookButton = new JButton("Confirm Booking");
-		bookButton.setBounds(60, 260, 370, 25);
+		bookButton.setBounds(60, 270, 370, 25);
 	    contentPane.add(bookButton);
 	    
 	    // pay button  [later add action listener]
 		payButton = new JButton("Pay");
-		payButton.setBounds(60, 285, 370, 25);
+		payButton.setBounds(60, 297, 370, 25);
 	    contentPane.add(payButton);
 	    
 	    // view booking button  [later add action listener]
 		viewBookingButton = new JButton("View Bookings");
-		viewBookingButton.setBounds(60, 310, 370, 25);
+		viewBookingButton.addActionListener(new ActionListener() {
+			// takes to reservationView
+			public void actionPerformed(ActionEvent e) {
+				ReservationView rv = new ReservationView();
+				rv.setVisible(true);
+			}
+		});
+		viewBookingButton.setBounds(60, 322, 370, 25);
 		contentPane.add(viewBookingButton);
+		
+		JButton logout = new JButton("Logout");
+		logout.setBounds(444, 15, 100, 25);
+		logout.addActionListener(new ActionListener() {
+			// takes to loginView
+			public void actionPerformed(ActionEvent e) {
+				LoginView lv = new LoginView();
+				lv.setVisible(true);
+			}
+		});
+		contentPane.add(logout);
 		
 	}
 	
@@ -190,5 +209,4 @@ public class HomePage extends JFrame {
 		}
 		return "$" + price;
 	}
-	
 }

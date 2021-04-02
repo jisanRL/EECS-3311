@@ -22,6 +22,8 @@ public class Register {
 	
 	/*
 	 * writes the user details to the database file
+	 * table schema: 
+	 * Name | usertype | email | username | Phone number | Address | password
 	 */
 	public void writeUser(String name,
 			String userType,String email,String userName,String phoneNumber,
@@ -32,7 +34,7 @@ public class Register {
 		BufferedWriter bfw = new BufferedWriter(fwt);
 		PrintWriter pw = new PrintWriter(bfw);				// prints to the file
 		
-		if (fw.exists() == false) {
+		if (!fw.exists()) {
 			fw.createNewFile();
 			System.out.println("File exists");
 		} else {

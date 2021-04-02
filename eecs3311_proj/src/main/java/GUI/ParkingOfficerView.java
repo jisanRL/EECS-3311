@@ -42,6 +42,7 @@ public class ParkingOfficerView extends JFrame{
 	}
 	
 	public ParkingOfficerView() {
+		setTitle("PEO page");
 		// create the panel
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 400); // x y len wid
@@ -129,6 +130,16 @@ public class ParkingOfficerView extends JFrame{
 	    addRemoveMessage.setBounds(250,260,200,25);
 	    contentPane.add(addRemoveMessage);
 			    
+	    JButton logout = new JButton("Logout");
+		logout.setBounds(444, 15, 100, 25);
+		logout.addActionListener(new ActionListener() {
+			// takes to loginView
+			public void actionPerformed(ActionEvent e) {
+				LoginView lv = new LoginView();
+				lv.setVisible(true);
+			}
+		});
+		contentPane.add(logout);
 	}
 
 }

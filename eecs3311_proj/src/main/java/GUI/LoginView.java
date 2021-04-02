@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import RegistrationLoginModel.Login;
+
 
 // refurbish later this if possible
 public class LoginView extends JFrame {
@@ -50,6 +52,7 @@ public class LoginView extends JFrame {
 	 * create the frame 
 	 */
 	public LoginView() {
+		setTitle("Login");
 		// create the panel 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 400);		// x y len wid
@@ -100,12 +103,17 @@ public class LoginView extends JFrame {
 				String user = userText.getText();
 				String pswd = passwordText.getText();
 				
-				if (user.equals("alex") && pswd.equals("1234")) {
-					System.out.println(user + ",  " + pswd);
-					success.setText("Login successful");
-				} else {
-					success.setText("Login unsuccessful");
-				}
+				Login login = new Login();
+				login.authenticate(user, pswd);
+				
+//				if (user.equals("alex") && pswd.equals("1234")) {
+//					System.out.println(user + ",  " + pswd);
+//					success.setText("Login successful");
+//				} else if (user == null || pswd == null){
+//					success.setText("No field left empty");
+//				} else {
+//					success.setText("Login unsuccessful");
+//				}
 			}	    	
 	     });
 	     loginButton.setBounds(10, 100, 120, 25);
@@ -113,7 +121,7 @@ public class LoginView extends JFrame {
 	     
 	     // temporary (later -> upon authentication take from login page to booking space / main dashboard)
 	     success = new JLabel("");
-	     success.setBounds(10, 120, 170, 25);
+	     success.setBounds(20, 129, 250, 25);
 	     contentPane.add(success);
 	     
 	     // register button, takes to the registration page 
