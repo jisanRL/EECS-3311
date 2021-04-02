@@ -1,12 +1,13 @@
-First name,Last name,usertype,email,username ,Phone number,Address,password
-Farhan,Latif,customer,farhan@yorku.ca,farhan95,3141514113,12 Arboretum,user1
-Jack,Chan,customer,jack@yorku.ca,jack12,3144134414,13 Arboretum,user2
-Donald,Tusk,customer,donald@yorku.ca,donald1,1213141114,14 Arboretum,user3
-Salman ,Khan ,customer,salman@yorku.ca,salman90,1314121414,15 Arboretum,user4
-Shahrukh ,Khan,customer,shahrukh@yorku.ca,srk,4134141451,16 Arboretum,user5
-Aamir ,Khan,customer,aamir@yorku.ca,ak47,4411151341,17 Arboretum,user6
-Brad,Pitt,customer,brad@yorku.ca,pitt13,5251115115,18 Arboretum,user7
-James,Bond,customer,james@yorku.ca,bond007,1451114414,19 Arboretum,user8
-Frank,Sinatra,customer,frank@yorku.ca,fs13,1452151314,20 Arboretum,user9jason,bull,PEO,jason@yorku.ca,jason12,2122141413,15 apple st,peo3
-jason,bull,PEO,jason@yorku.ca,jason12,2122141413,15 apple st,peo3
-apple,bull,PEO,apple@yorku.ca,apple12,2122141413,16 apple st,peo4
+Name,usertype,email,username ,Phone number,Address,password
+Farhan Latif,customer,farhan@yorku.ca,farhan95,3141514113,12 Arboretum,user1
+Jack chan,customer,jack@yorku.ca,jack12,3144134414,13 Arboretum,user2
+Donald tusk,customer,donald@yorku.ca,donald1,1213141114,14 Arboretum,user3
+Salman khan,customer,salman@yorku.ca,salman90,1314121414,15 Arboretum,user4
+Shahrukh khan,customer,shahrukh@yorku.ca,srk,4134141451,16 Arboretum,user5
+Aamir khan,customer,aamir@yorku.ca,ak47,4411151341,17 Arboretum,user6
+Brad pitt,customer,brad@yorku.ca,pitt13,5251115115,18 Arboretum,user7
+James Bond,customer,james@yorku.ca,bond007,1451114414,19 Arboretum,user8
+Frank Sinatra,customer,frank@yorku.ca,fs13,1452151314,20 Arboretum,user9apple bull,PEO,apple@yorku.ca,apple12,2122141413,16 apple st,peo4
+apple bull,PEO,apple@yorku.ca,apple12,2122141413,16 apple st,peo4
+tom car,PEO,tom@yorku.ca,cat12,2133141413,17 apple st,peo54
+tom alter,customer,tom13@outlook.com,tom65,2133141415,16 York str,user16

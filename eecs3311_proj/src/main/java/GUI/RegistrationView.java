@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,6 +16,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import RegistrationLoginModel.Register;
 
 //refurbish later this if possible
 public class RegistrationView extends JFrame {
@@ -120,7 +123,7 @@ public class RegistrationView extends JFrame {
 		userlabel.setBounds(10, 150, 80, 25);
 		contentPane.add(userlabel);
 		
-		// user input
+		// username input
 		userText = new JTextField(20); 					// max length of input char = 20
 		userText.setBounds(120, 150, 165, 25);
 		contentPane.add(userText);
@@ -131,7 +134,7 @@ public class RegistrationView extends JFrame {
 		contentPane.add(usertype);
 		
 		String[] userOptions = { "customer", "parking officer" };
-		JComboBox lst = new JComboBox(userOptions);
+		final JComboBox lst = new JComboBox(userOptions);
 		lst.setSelectedIndex(0);
 //		lst.addActionListener(this);
 		lst.setBounds(120, 175, 170, 25);
@@ -151,6 +154,44 @@ public class RegistrationView extends JFrame {
 		// later, enter user information and once that is done put the info in the csv file of user table and 
 		registerButton = new JButton("Register");
 //		registerButton.setBackground(Color.BLUE);
+		
+		// write the user input to the database.csv
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				// get the data [later make sure inputs are regular expressions no numbers or random input]
+				String name = nameInput.getText();
+				String email = emailInput.getText();
+				String phoneNumber = phoneInput.getText();
+				String address = addressInput.getText();
+				String userName = userText.getText();
+				String userType = (String) lst.getSelectedItem();
+				String password = passwordText.getText();
+				
+				// write into database.csv by calling writeUser method
+				if (name.equals(null) || email.equals(null) || phoneNumber.equals(null) || 
+						address.equals(null) || userName.equals(null) || userType.equals(null) || 
+						password.equals(null)) {
+					success.setText("Leave no field empty");
+				} else {
+					Register rg = new Register();
+					try {
+						rg.writeUser(name, userType, email, userName, phoneNumber, address, password);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				System.out.println(name);
+				System.out.println(userType);
+				System.out.println(email);
+				System.out.println(userName);
+				System.out.println(phoneNumber);
+				System.out.println(address);
+				System.out.println(password);
+			}
+		});
+		
 		registerButton.setBounds(110, 235, 190, 25);
 		contentPane.add(registerButton);
 		
@@ -158,6 +199,14 @@ public class RegistrationView extends JFrame {
 		// Creating login button , Later -> once the success message is given click this button and take to the login page 
 		loginButton = new JButton("Login Page");
 		loginButton.setBounds(110, 260, 190, 25);
+		loginButton.addActionListener(new ActionListener() {
+			// goes to the login page
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				LoginView login = new LoginView();
+				login.setVisible(true);
+			}
+		});
 		contentPane.add(loginButton);
 
 		// temporary (later -> upon authentication take from login page to booking space / main dashboard)

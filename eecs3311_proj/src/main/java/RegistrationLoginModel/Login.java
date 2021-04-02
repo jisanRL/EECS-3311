@@ -111,8 +111,8 @@ public class Login {
 		Login login = new Login();
 		System.out.println(login.userPath);
 		
-		String user = "apple12";
-		String password = "peo4";
+		String user = "farhan95";
+		String password = "user1";
 		login.authenticate(user, password);
 		System.out.println("====================================================");
 		System.out.println(login.checkUserType(user, password));

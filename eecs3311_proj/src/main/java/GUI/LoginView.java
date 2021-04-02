@@ -119,6 +119,14 @@ public class LoginView extends JFrame {
 	     // register button, takes to the registration page 
 	     registerButton = new JButton("register");
 	     registerButton.setBounds(140, 100, 120, 25);
+	     registerButton.addActionListener(new ActionListener() {
+				// goes to the register page
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					RegistrationView reg = new RegistrationView();
+					reg.setVisible(true);
+				}
+			});
 	     contentPane.add(registerButton);
 	}
 }

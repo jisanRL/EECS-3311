@@ -23,7 +23,7 @@ public class Register {
 	/*
 	 * writes the user details to the database file
 	 */
-	public static void writeUser(String firstName,String lastName,
+	public void writeUser(String name,
 			String userType,String email,String userName,String phoneNumber,
 			String address,String password) throws IOException {
 		
@@ -38,7 +38,7 @@ public class Register {
 		} else {
 			System.out.println("File doesn't exist");
 		}
-		pw.printf("\r%s,%s,%s,%s,%s,%s,%s,%s\n", firstName,lastName, userType,email,userName,phoneNumber,address,password).flush();		// writes to the file
+		pw.printf("%s,%s,%s,%s,%s,%s,%s\n", name, userType,email,userName,phoneNumber,address,password);		// writes to the file
 		pw.flush();		// flushes the data into the csv
 		pw.close();		//close file
 	}
@@ -48,14 +48,13 @@ public class Register {
 	public static void main(String[] args) throws IOException {
 		System.out.println("register");
 		
-		String firstName = "apple";
-		String lastName = "bull";
+		String name = "tom car";
 		String userType = "PEO";
-		String email = "apple@yorku.ca";
-		String phoneNumber = "2122141413";
-		String address = "16 apple st";
-		String userName = "apple12";
-		String password = "peo4";
-		writeUser(firstName,lastName, userType,email,userName,phoneNumber,address,password);
+		String email = "tom@yorku.ca";
+		String phoneNumber = "2133141413";
+		String address = "17 apple st";
+		String userName = "cat12";
+		String password = "peo54";
+//		writeUser(name, userType,email,userName,phoneNumber,address,password);
 	}
 }
