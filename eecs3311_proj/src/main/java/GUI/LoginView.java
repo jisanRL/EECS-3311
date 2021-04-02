@@ -97,23 +97,37 @@ public class LoginView extends JFrame {
 	     loginButton.addActionListener(new ActionListener() {
 	    	 // authentication
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
 				// temproary stuff, use CSV table (reading through CSV file method) later
-				String user = userText.getText();
-				String pswd = passwordText.getText();
+				try {
+					String user = userText.getText();
+					String pswd = passwordText.getText();
 				
-				Login login = new Login();
-				login.authenticate(user, pswd);
-				
-//				if (user.equals("alex") && pswd.equals("1234")) {
-//					System.out.println(user + ",  " + pswd);
-//					success.setText("Login successful");
-//				} else if (user == null || pswd == null){
-//					success.setText("No field left empty");
-//				} else {
-//					success.setText("Login unsuccessful");
-//				}
+					// later -> add exceptions for null input or in valid input
+					Login login = new Login();
+					login.authenticate(user, pswd); 
+//					if (user.equals("alex") && pswd.equals("1234")) {
+//						System.out.println(user + ",  " + pswd);
+//						success.setText("Login successful");
+//					} else if (user.equals(null) || pswd.equals(null)){
+//						success.setText("No field left empty");
+//					} else {
+//						success.setText("Login unsuccessful");
+//					}
+					
+					// set the path
+					if (login.checkUserType(user, pswd).equalsIgnoreCase("customer")) {
+						HomePage hp = new HomePage();
+						hp.setVisible(true);
+					} else if(login.checkUserType(user, pswd).equalsIgnoreCase("parking officer")) {
+						ParkingOfficerView pv = new ParkingOfficerView();
+						pv.setVisible(true);
+					}
+					
+					
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
 			}	    	
 	     });
 	     loginButton.setBounds(10, 100, 120, 25);

@@ -96,7 +96,8 @@ public class User {
 	 *  determine the type of the user 
 	 *  are they customer or PEO;
 	 */
-	public boolean userType(String type) {
+	public boolean userType() {
+		String type = "";
 		if (type.equalsIgnoreCase("customer")) {
 			userType = true;
 			System.out.println("User is customer");
@@ -117,7 +118,7 @@ public class User {
 		User user = new User("Farhan", "Latif", "farhan95@my.yorku.ca", "4163451214", "112 Arboretum", "farhan95", "user1");
 		System.out.println(user.toString());
 //		System.out.println(user.userType("USER"));
-		System.out.println(user.userType("CUSTOMER"));
+		System.out.println(user.userType());
 	}
 
 }

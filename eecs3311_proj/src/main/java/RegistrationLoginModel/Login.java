@@ -59,10 +59,6 @@ public class Login {
 					System.out.println("is exists = " + isExists + " " + msg);
 					isExists = false;
 				}
-//				user.add(lst.get(4));
-//				user.add(lst.get(2));
-//				user.add(lst.get(7));
-//				System.out.println("user = " + user);
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -84,7 +80,7 @@ public class Login {
 		
 		try {
 			BufferedReader bfr = new BufferedReader(new FileReader(userPath));
-			while ((line = bfr.readLine())!= null) {
+			while ((line = bfr.readLine()) !=  null) {
 				val = line.split(",");				
 				// convert the array into list and put the val into the arraylists
 				List<String> lst = Arrays.asList(val);
@@ -92,8 +88,10 @@ public class Login {
 				// check if the list index 3(username) and index 6(password) contains the input
 				if (lst.get(3).contains(userName) && lst.get(6).contains(password)) {
 					usertype = lst.get(1);
-				} 
-				
+					break;
+				} else {
+					usertype = null;
+				}
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

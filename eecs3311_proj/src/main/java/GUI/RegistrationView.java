@@ -169,6 +169,7 @@ public class RegistrationView extends JFrame {
 				String password = passwordText.getText();
 				
 				// write into database.csv by calling writeUser method
+				// later -> add exceptions for null input or in valid input
 				if (name.equals(null) || email.equals(null) || phoneNumber.equals(null) || 
 						address.equals(null) || userName.equals(null) || userType.equals(null) || 
 						password.equals(null)) {
