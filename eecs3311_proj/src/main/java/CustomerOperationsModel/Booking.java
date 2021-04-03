@@ -1,4 +1,4 @@
-package CustomerOperations;
+package CustomerOperationsModel;
 
 /*
  * REQ 4.4 Booking a parking space
