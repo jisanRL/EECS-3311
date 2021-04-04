@@ -72,7 +72,7 @@ public class RegistrationView extends JFrame {
 		contentPane.setLayout(null);
 
 		// title
-		thisLabel = new JLabel("instaParking!!"); 			// Logo
+		thisLabel = new JLabel("instaParking"); 			// Logo
 		thisLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		thisLabel.setFont(new Font("Sans-serif", Font.PLAIN, 16));
 		thisLabel.setBackground(Color.WHITE);

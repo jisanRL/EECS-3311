@@ -188,6 +188,7 @@ public class AdminView extends JFrame {
 					Register rg = new Register();
 					try {
 						rg.writeUser(name, userType, email, userName, phoneNumber, address, password);
+						addRemoveMessage.setText("PEO successfully Added/Removed");
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -219,7 +220,7 @@ public class AdminView extends JFrame {
 		contentPane.add(removeButton);
 
 		// addRemoveMessage [later fix the add remove message]
-		addRemoveMessage = new JLabel("PEO successfully Added/Removed");
+		addRemoveMessage = new JLabel("");
 		addRemoveMessage.setBounds(101, 255, 269, 25);
 		contentPane.add(addRemoveMessage);
 
@@ -228,7 +229,8 @@ public class AdminView extends JFrame {
 		confirmPaymentButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				PaymentStateView psv = new PaymentStateView();
+				psv.setVisible(true);
 			}
 		});
 		confirmPaymentButton.setBounds(354,51,190,25);
