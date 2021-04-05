@@ -90,7 +90,8 @@ public class ParkingOfficerView extends JFrame{
 		contentPane.add(parkingSpaceCount);
 		
 		availableparkingSpaceCount = new JLabel();
-		int availableCount = 0;									// later fix the number make it realtime
+		PEO p = new PEO();
+		int availableCount = p.countParkingSpace();									// later fix the number make it realtime
 		availableparkingSpaceCount.setText("Total Number of Available Parking Spaces: " + availableCount);
 		availableparkingSpaceCount.setBounds(10, 130, 500, 25);
 		contentPane.add(availableparkingSpaceCount);
@@ -112,12 +113,11 @@ public class ParkingOfficerView extends JFrame{
 				try {
 					PEO peo = new PEO();
 					peo.addSpaces(spotName);
-				    addRemoveMessage.setText("Successfully Added/Removed  Parking Space");					//
+				    addRemoveMessage.setText("Successfully Added Parking Space");					//
 				} catch (Exception e2) {
 					// TODO: handle exception
 					e2.printStackTrace();
 				}
-				
 			}
 		});
 		addButton.setBounds(348, 179, 90, 25);
@@ -134,7 +134,15 @@ public class ParkingOfficerView extends JFrame{
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
+				String spotName = textField.getText();
+				try {
+					PEO peo = new PEO();
+					peo.removeSpaces(spotName);
+				    addRemoveMessage.setText("Successfully Removed Parking Space");					//
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
 			}
 		});
 		removeButton.setBounds(349, 214, 90, 25);
