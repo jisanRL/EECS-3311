@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /*
  * REQ: 4.8 Managing parking Space
@@ -23,9 +24,8 @@ public class PEO {
 	
 	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/bookingpeo.csv";				// fix this later -> turn to relative path
 	private static List<String> parkingspot = Arrays.asList(new String[1500]);
-//	private static ArrayList<String> parkingspot;
-//	private static String[] parkingspot = new String[1500];
 	private final int spotPerLocation = 1500;
+	private static Scanner x;
 			
 	
  	/* 4.8.3-REQ-4
@@ -58,46 +58,33 @@ public class PEO {
 	 */
 	public void removeSpaces(String spotName) {
 		// FIX THIS
-		String line = "";
-		String[] val = null;
-		int cnt = 0;
-		ArrayList<ArrayList<String>> vp = new ArrayList<ArrayList<String>>();
+		String tmpFile = "tmp.csv";
+		String target = "";
+		File oldFile = new File(path);
+		File newFile = new File(tmpFile);
 		
+		System.out.println(spotName);
 		try {
-			BufferedReader bfr = new BufferedReader(new FileReader(path));
-			while ((line = bfr.readLine()) != null) {
-				val = line.split(",");
-				// checks the entire column for spotname
-				if (spotName.equals(val[0])) {
-					ArrayList<String> q = new ArrayList<String>();
-					for (String str : q) {
-						q.add(str);
-					}
-					vp.add(q);
-				}
-			}
-		} catch (FileNotFoundException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println(vp.toString());
-		
-		//re-write the whole file again after deleting the spot
-		try {
-			FileWriter fw = new FileWriter(path, true);
+			FileWriter fw = new FileWriter(tmpFile, true);
 			BufferedWriter bfw = new BufferedWriter(fw);
 			PrintWriter pw = new PrintWriter(bfw);
+			x = new Scanner(new File(path));
+			x.useDelimiter("[,\n]");
 			
-			for (ArrayList<String> arrayList : vp) {
-				pw.println(vp.get(0));
+			while (x.hasNext()) {
+				target = x.next();
+				if (!target.equals(spotName)) {
+					pw.println(target);
+				}
 			}
+			x.close();
+			pw.flush();
 			pw.close();
-		} catch (FileNotFoundException e) {
+			oldFile.delete();
+			File dmp = new File(path);
+			newFile.renameTo(dmp);
+		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
-		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
