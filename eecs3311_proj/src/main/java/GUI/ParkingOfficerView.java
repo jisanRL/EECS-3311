@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -91,8 +92,14 @@ public class ParkingOfficerView extends JFrame{
 		
 		availableparkingSpaceCount = new JLabel();
 		PEO p = new PEO();
-		int availableCount = p.countParkingSpace();									// later fix the number make it realtime
-		availableparkingSpaceCount.setText("Total Number of Available Parking Spaces: " + availableCount);
+		int availableCount = 0;
+		try {
+			availableCount = p.countParkingSpace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}									// later fix the number make it realtime
+		availableparkingSpaceCount.setText("Total Number of Available Parking Spaces in all locations: " + availableCount);
 		availableparkingSpaceCount.setBounds(10, 130, 500, 25);
 		contentPane.add(availableparkingSpaceCount);
 		

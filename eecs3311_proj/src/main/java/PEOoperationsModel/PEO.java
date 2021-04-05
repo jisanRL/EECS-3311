@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.LineNumberReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +35,7 @@ public class PEO {
 	 * table schema ->   spotname
 	 */
 	public void addSpaces(String spotName) throws IOException {
-		
+		String downtown = ""; String yorkdale = ""; String square1 = ""; String yorku = ""; String stGeorge = "";
 		//FIX THIS
 		File fw = new File(path);							// path to the file
 		FileWriter fwt = new FileWriter(fw, true);
@@ -47,6 +48,21 @@ public class PEO {
 		} else {
 			System.out.println("File doesn't exist");
 		}
+		
+		// tabalizeing the input
+//		if (spotName.contains("dt")) {
+//			spotName = downtown;
+//		} else if(spotName.contains("yorkdale")) {
+//			spotName = yorkdale;
+//		} else if(spotName.contains("york")) {
+//			spotName = yorku; 
+//		} else if(spotName.contains("square1")) {
+//			spotName = square1;
+//		} else if(spotName.contains("stg")) {
+//			spotName = stGeorge;
+//		} else {
+//			spotName = null;
+//		}
 		pw.printf("%s\n", spotName);		// writes to the file
 		pw.flush();							// flushes the data into the csv
 		pw.close();							//close file
@@ -54,7 +70,7 @@ public class PEO {
 	
 	
 	/* 4.8.3-REQ-2:
-	 * Remove parking spot from booking.csv
+	 * Remove parking spot from bookingpeo.csv
 	 */
 	public void removeSpaces(String spotName) {
 		// FIX THIS
@@ -91,20 +107,23 @@ public class PEO {
 	
 	/*
 	 * Gives count of the available spot
+	 * LOGIC -> COUNT THE NUMBER OF LINES IN THE CSV FILE
 	 */
-	public int countParkingSpace() {
-		int counter = 0;
-		if (parkingspot == null) {
-			return spotPerLocation;
-		} else {
+	public int countParkingSpace() throws IOException {
+		File file = new File(path);
+		
+		int cnt = 0;
+		if (file.exists()) {
+			FileReader fr = new FileReader(file);
+			LineNumberReader ln = new LineNumberReader(fr);
 			
-			for (String str : parkingspot) {
-				if (parkingspot != null) {
-					counter++;
-				}
+			while (ln.readLine() != null) {
+				cnt++;
 			}
+			System.out.println("Line number = " + cnt);
+			ln.close();
 		}
-		return 1500 - counter ;
+		return spotPerLocation - cnt;
 	}
 	
 	public static void main(String[] args) throws IOException {
