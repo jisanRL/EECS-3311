@@ -49,25 +49,13 @@ public class PEO {
 			System.out.println("File doesn't exist");
 		}
 		
-		// tabalizeing the input
-//		if (spotName.contains("dt")) {
-//			spotName = downtown;
-//		} else if(spotName.contains("yorkdale")) {
-//			spotName = yorkdale;
-//		} else if(spotName.contains("york")) {
-//			spotName = yorku; 
-//		} else if(spotName.contains("square1")) {
-//			spotName = square1;
-//		} else if(spotName.contains("stg")) {
-//			spotName = stGeorge;
-//		} else {
-//			spotName = null;
-//		}
+//		x = new Scanner(new File(path));
+//		x.useDelimiter("[,\n]");
 		pw.printf("%s\n", spotName);		// writes to the file
 		pw.flush();							// flushes the data into the csv
 		pw.close();							//close file
 	}
-	
+
 	
 	/* 4.8.3-REQ-2:
 	 * Remove parking spot from bookingpeo.csv
