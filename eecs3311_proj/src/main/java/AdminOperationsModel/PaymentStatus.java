@@ -71,6 +71,7 @@ public class PaymentStatus {
 	 * 			do nothing 
 	 *		if status = no 
 	 *			change status to yes
+	 * BASICALLY -> read through booking.csv edit index6 if its a NO
 	 */
 	public void confirmPayment() {
 		
