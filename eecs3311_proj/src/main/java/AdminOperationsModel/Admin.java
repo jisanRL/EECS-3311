@@ -106,36 +106,47 @@ public class Admin {
 	public void removeUser(String name,
 			String userType,String email,String userName,String phoneNumber,
 			String address,String password) {
-//		// FIX THIS
-//		String tmpFile = "tmp.csv";
-//		String target = "";
-//		File oldFile = new File(userPath);
-//		File newFile = new File(tmpFile);
-//		
-//		System.out.println(userName);
-//		try {
-//			FileWriter fw = new FileWriter(tmpFile, true);
-//			BufferedWriter bfw = new BufferedWriter(fw);
-//			PrintWriter pw = new PrintWriter(bfw);
-//			x = new Scanner(new File(userPath));
-//			x.useDelimiter("[,\n]");
-//			
-//			while (x.hasNext()) {
-//				target = x.next();
-//				if (!target.equals(userName)) {
-//					pw.printf("%s,%s,%s,%s,%s,%s,%s\n", name, userType,email,userName,phoneNumber,address,password);
-//				}
-//			}
-//			x.close();
-//			pw.flush();
-//			pw.close();
-//			oldFile.delete();
-//			File dmp = new File(userPath);
-//			newFile.renameTo(dmp);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//		}
+	
+		// FIX THIS
+		String tmpFile = "tmp.csv";
+		String target1 = ""; String target2 = ""; String target3 = ""; String target4 = ""; String target5 = "";String target6 = "";String target7 = "";
+		String target = "";
+		File oldFile = new File(userPath);
+		File newFile = new File(tmpFile);
+		
+		System.out.println(userName);
+		try {
+			FileWriter fw = new FileWriter(tmpFile, true);
+			BufferedWriter bfw = new BufferedWriter(fw);
+			PrintWriter pw = new PrintWriter(bfw);
+			x = new Scanner(new File(userPath));			// reads/scans the file 
+			x.useDelimiter("[,\n]");						// write each field separated by newline or comma 
+			
+			// scan the file till the end
+			while (x.hasNext()) {
+				target1 = x.next();		// name
+				target2 = x.next();		// usertype
+				target3 = x.next();		// email
+				target4 = x.next();		// username
+				target5 = x.next();		// phoneNumber
+				target6 = x.next();		// address
+				target7 = x.next();		// password
+				
+				// if the target is not equals the input credentials then write all the other lines accept for the line that mathches the inputs  
+				if (!target1.equals(name) && !target2.equals(userType) && !target3.equals(email) && !target4.equals(userName) && !target5.equals(phoneNumber) && !target6.equals(address) && !target7.equals(password)) {
+					pw.println(target1 + ","+ target2 + "," + target3 + ","+ target4 + "," + target5 + ","+ target6 + "," + target7);
+				}		
+			}
+			x.close();
+			pw.flush();
+			pw.close();
+			oldFile.delete();				// delete the old file
+			File dmp = new File(userPath);	// recreate a file in the path
+			newFile.renameTo(dmp);			// rename the new file to old file's name					
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 	
 	
