@@ -62,7 +62,6 @@ public class PaymentStatus {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		return val;
 	}
 	
 	/*
