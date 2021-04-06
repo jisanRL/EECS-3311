@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 /*
  * REQ: 4.1
- * 		4.1.3-REQ-1: The system must assign a unique ID to each new parking enforcement officer added
+ * 		4.1.3-REQ-1: The system must assign a unique ID to each new parking enforcement officer added  [this is the username the user puts in]
  * 		4.1.3-REQ-2: The system must verify the parking enforcement officer exists in the system before removing an officer
  * 		4.1.3-REQ-3: The system must verify a new parking enforcement officer’s ID does not exist in the system already
  * 		4.1.3-REQ-4: The system must store a new parking enforcement officer’s registration information
@@ -25,33 +25,19 @@ public class Admin {
 	private static String userPath = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/database.csv";		// fix this later -> turn to relative path
 	private static Scanner x;
 	
-	/*
-	 * 4.1.3-REQ-1: The system must assign a unique ID to each new parking enforcement officer added
-	 */
-	public String assignPEOID() {
-		return null;
-		
-	}
 	
 	/*
 	 * 4.1.3-REQ-2: The system must verify the parking enforcement officer exists in the system before removing an officer
 	 * 4.1.3-REQ-3: The system must verify a new parking enforcement officer’s ID does not exist in the system already
-	 * LIKE ISEXISTS() METHOD
-	 */
-	public boolean authenticatePEO() {
-		return false;
-		
-	}
-	
-	/*	USE THIS INSTEAD
-	 * Authenticates and verifies the users existance in database.csv
+	 * 		LIKE ISEXISTS() METHOD
+	 * 		BASICSLLY -> CHECK THE USERNAME COLUMN
+	 * 		Authenticates and verifies the users existance in database.csv
 	 */
 	// for testing turn is to static void
 	public void authenticate(String userName, String password) {
 		String line = "";
 		String[] val = null;
 		boolean isExists = false;
-		ArrayList<String> user = null;		// the final output of name, usertype and password
 		
  		try {
 			BufferedReader bfr = new BufferedReader(new FileReader(userPath));
@@ -64,8 +50,8 @@ public class Admin {
 				System.out.println(lst);
 				System.out.println("userName:" + lst.get(3) + ",  "+ "userType:" + lst.get(1) + ", " +  "password:" + lst.get(6));
 				
-				// check if the list index 4(username) and index 7(password) contains the input
-				if (lst.get(3).contains(userName) && lst.get(6).contains(password)) {
+				// check if the list index 4(username) and index 7(password) contains the input  [&& lst.get(6).contains(password)]
+				if (lst.get(3).contains(userName) ) {
 					isExists = true;
 					String msg = "User exists";
 					System.out.println("is exists = " + isExists + " " + msg);
@@ -76,17 +62,13 @@ public class Admin {
 					isExists = false;
 				}
 			}
-			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		return val;
 	}
-	
-	
 	
 	
 	/*
@@ -102,6 +84,8 @@ public class Admin {
 		FileWriter fwt = new FileWriter(fw, true);
 		BufferedWriter bfw = new BufferedWriter(fwt);
 		PrintWriter pw = new PrintWriter(bfw);				// prints to the file
+		x = new Scanner(new File(userPath));
+		x.useDelimiter("[,\n]");
 		
 		if (!fw.exists()) {
 			fw.createNewFile();
@@ -118,37 +102,39 @@ public class Admin {
 	 * Remove PEO from database.csv
 	 * FIX THIS
 	 */
-	public void removePEO(String spotName) {
-		// FIX THIS
-		String tmpFile = "tmp.csv";
-		String target = "";
-		File oldFile = new File(userPath);
-		File newFile = new File(tmpFile);
-		
-		System.out.println(spotName);
-		try {
-			FileWriter fw = new FileWriter(tmpFile, true);
-			BufferedWriter bfw = new BufferedWriter(fw);
-			PrintWriter pw = new PrintWriter(bfw);
-			x = new Scanner(new File(userPath));
-			x.useDelimiter("[,\n]");
-			
-			while (x.hasNext()) {
-				target = x.next();
-				if (!target.equals(spotName)) {
-					pw.println(target);
-				}
-			}
-			x.close();
-			pw.flush();
-			pw.close();
-			oldFile.delete();
-			File dmp = new File(userPath);
-			newFile.renameTo(dmp);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+	public void removeUser(String name,
+			String userType,String email,String userName,String phoneNumber,
+			String address,String password) {
+//		// FIX THIS
+//		String tmpFile = "tmp.csv";
+//		String target = "";
+//		File oldFile = new File(userPath);
+//		File newFile = new File(tmpFile);
+//		
+//		System.out.println(userName);
+//		try {
+//			FileWriter fw = new FileWriter(tmpFile, true);
+//			BufferedWriter bfw = new BufferedWriter(fw);
+//			PrintWriter pw = new PrintWriter(bfw);
+//			x = new Scanner(new File(userPath));
+//			x.useDelimiter("[,\n]");
+//			
+//			while (x.hasNext()) {
+//				target = x.next();
+//				if (!target.equals(userName)) {
+//					pw.printf("%s,%s,%s,%s,%s,%s,%s\n", name, userType,email,userName,phoneNumber,address,password);
+//				}
+//			}
+//			x.close();
+//			pw.flush();
+//			pw.close();
+//			oldFile.delete();
+//			File dmp = new File(userPath);
+//			newFile.renameTo(dmp);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
 	}
 	
 	

@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import AdminOperationsModel.Admin;
 import RegistrationLoginModel.Register;
 
 public class AdminView extends JFrame {
@@ -165,12 +166,10 @@ public class AdminView extends JFrame {
 		// later, enter user information and once that is done put the info in the csv
 		// file of user table and
 		addButton = new JButton("+ Add PEO");
-
 		// write the user input to the database.csv
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// get the data [later make sure inputs are regular expressions no numbers or
-				// random input]
+				// get the data [later make sure inputs are regular expressions no numbers or random input]
 				String name = nameInput.getText();
 				String email = emailInput.getText();
 				String phoneNumber = phoneInput.getText();
@@ -178,17 +177,17 @@ public class AdminView extends JFrame {
 				String userName = userText.getText();
 				String userType = (String) lst.getSelectedItem();
 				String password = passwordText.getText();
-
+				Admin adm = new Admin();
+				
 				// write into database.csv by calling writeUser method
 				// later -> add exceptions for null input or in valid input
 				if (name.equals(null) || email.equals(null) || phoneNumber.equals(null) || address.equals(null)
 						|| userName.equals(null) || userType.equals(null) || password.equals(null)) {
 					success.setText("Leave no field empty");
 				} else {
-					Register rg = new Register();
 					try {
-						rg.writeUser(name, userType, email, userName, phoneNumber, address, password);
-						addRemoveMessage.setText("PEO successfully Added/Removed");
+						adm.writeUser(name, userType, email, userName, phoneNumber, address, password);
+						addRemoveMessage.setText("PEO successfully Added");
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -212,7 +211,33 @@ public class AdminView extends JFrame {
 		// later -> removes the specific PEO officer from the database
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				// get the data [later make sure inputs are regular expressions no numbers or random input]
+				String name = nameInput.getText();
+				String email = emailInput.getText();
+				String phoneNumber = phoneInput.getText();
+				String address = addressInput.getText();
+				String userName = userText.getText();
+				String userType = (String) lst.getSelectedItem();
+				String password = passwordText.getText();
+				Admin adm = new Admin();
+				
+				// write into database.csv by calling writeUser method
+				// later -> add exceptions for null input or in valid input
+				if (name.equals(null) || email.equals(null) || phoneNumber.equals(null) || address.equals(null)
+						|| userName.equals(null) || userType.equals(null) || password.equals(null)) {
+					success.setText("Leave no field empty");
+				} else {
+					adm.removeUser(name, userType, email, userName, phoneNumber, address, password);
+					addRemoveMessage.setText("PEO successfully Removed");
+					
+				}
+				System.out.println(name);
+				System.out.println(userType);
+				System.out.println(email);
+				System.out.println(userName);
+				System.out.println(phoneNumber);
+				System.out.println(address);
+				System.out.println(password);
 
 			}
 		});
