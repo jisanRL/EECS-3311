@@ -96,6 +96,7 @@ public class PEO {
 	/*
 	 * Gives count of the available spot
 	 * LOGIC -> COUNT THE NUMBER OF LINES IN THE CSV FILE
+	 * LATER -> READ THE LINES AND COUNT ACCORDING TO LOCATIONS AND OCCUPANCY OF THE LOCATION (do with contains, if line char contains york count york spots)
 	 */
 	public int countParkingSpace() throws IOException {
 		File file = new File(path);

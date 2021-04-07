@@ -22,12 +22,14 @@ public class HomePage extends JFrame {
 	private JLabel selectParkingSpot;
 	private JTextField timeSlotinput;
 	private JLabel timeAdded;
-	private JButton timeSlotButton;
+	private JButton bookButton;
 	private JButton payButton;
 	private JButton viewBookingButton;
 	private JTextField parkingspotinput;
 	private JLabel lblLicensePlate;
 	private JTextField textField;
+	private JComboBox lst;
+	private JLabel locationCode;
 	
 	/*
 	 *REQ-4.4 and 4.5 and 4.6 Booking Space/ Main Dashboard 
@@ -73,22 +75,22 @@ public class HomePage extends JFrame {
 		// city name 
 		JLabel cityLabel = new JLabel();
 		cityLabel.setText("City: Toronto");
-		cityLabel.setBounds(10, 65, 170, 25);
+		cityLabel.setBounds(10, 52, 170, 25);
 		contentPane.add(cityLabel);
 		
 		// choose location
 		JLabel location = new JLabel();
 		location.setText("Choose Location: ");
-		location.setBounds(10, 85, 170, 25);
+		location.setBounds(10, 70, 170, 25);
 		contentPane.add(location);
 		
 		// location options [https://docs.oracle.com/javase/tutorial/uiswing/components/combobox.html]
 		//later -> implement this option button fully 
 		String[] locOptions = {"Downtown", "Yorkdale", "Square one", "York University", "St George"};
-		JComboBox lst = new JComboBox(locOptions);
-		lst.setSelectedIndex(4);
+		lst = new JComboBox(locOptions);
+//		lst.setSelectedIndex(4);
 //		lst.addActionListener(this);
-		lst.setBounds(120, 85, 170, 25);
+		lst.setBounds(120, 71, 170, 25);
 		contentPane.add(lst);
 		
 		
@@ -97,29 +99,58 @@ public class HomePage extends JFrame {
 		JLabel tag1 = new JLabel();
 		int count = 0;
 		tag1.setText("Available Slots: " + count);
-		tag1.setBounds(10, 122, 170, 25);
+		tag1.setBounds(10, 101, 170, 25);
 		contentPane.add(tag1);
 		
-		// select parking slots
+		/* get the code of the location and check if the parking slots is empty */
 		selectParkingSpot = new JLabel();
-		selectParkingSpot.setText("Select Spot: ");
-		selectParkingSpot.setBounds(10, 160, 170, 25);
+		selectParkingSpot.setText("Check Spot: ");
+		selectParkingSpot.setBounds(10, 138, 80, 25);
 		contentPane.add(selectParkingSpot);
+		
+		// get the selected locations code
+		lst.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String selLoc = lst.getSelectedItem().toString();
+				System.out.println(selLoc);
+
+//						locationCode.setText(selLoc);
+				String selectedloc = (String) lst.getSelectedItem();
+				if (selLoc.equals("Downtown")) {
+					locationCode.setText("dt");
+				} else if (selLoc.equals("Yorkdale")) {
+					locationCode.setText("ydl");
+				} else if (selLoc.equals("Square one")) {
+					locationCode.setText("sqo");
+				} else if (selLoc.equals("York University")) {
+					locationCode.setText("york");
+				} else if (selLoc.equals("St George")) {
+					locationCode.setText("stg");
+				} else {
+				}
+//						System.out.println(locationCode);
+			}
+		});
+		
+		locationCode = new JLabel();
+//		locationCode.setText();
+		locationCode.setBounds(120, 138, 73, 25);
+		contentPane.add(locationCode);
 		
 		// parking spot input
 		parkingspotinput = new JTextField(20);
-		parkingspotinput.setBounds(120, 159, 170, 25);
+		parkingspotinput.setBounds(149, 137, 126, 25);
 		contentPane.add(parkingspotinput);
 		
-		// after clicking this button the system will put parkingspot name in booking.csv index4
-		JButton selectparkingspotbtn = new JButton("Select Spot");
+		// after clicking this button the system will check if parkingspot is taken or not, by checking booking.csv index4
+		JButton selectparkingspotbtn = new JButton("Check Spot");
 		selectparkingspotbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
-		selectparkingspotbtn.setBounds(286, 159, 100, 25);
+		selectparkingspotbtn.setBounds(270, 137, 100, 25);
 		contentPane.add(selectparkingspotbtn);
-		
 		
 		
 		// available time slot
@@ -144,35 +175,35 @@ public class HomePage extends JFrame {
 		tag2.setBounds(292,191,80,25);
 		contentPane.add(tag2);
 		
-		// time-slot button    [may not be needed]
-		timeSlotButton = new JButton("Enter Time");
+		// this button will dump spot number time slot and licsence plate# to booking.csv
+		bookButton = new JButton("Reserve Spot ");
 	    // actionListener to confirm time
-		timeSlotButton.addActionListener(new ActionListener() {
+		bookButton.addActionListener(new ActionListener() {
 	    	 // time slot confimation
 			public void actionPerformed(ActionEvent e) {
-				String time = timeSlotinput.getText();
-				double doubleTime = Double.parseDouble(time);
+//				String time = timeSlotinput.getText();
+//				double doubleTime = Double.parseDouble(time);
 				
 				// set the time limit for parkinghere [assumtion: customer can book anytime between 0 to 24hrs]
 				// this one is for hours; later -> make the same arrangement for miniutes when cs chooses minitues
-				if (doubleTime > 0.0 && doubleTime < 24.0) {
-					System.out.println(doubleTime);
-					timeAdded.setText("Time added successfully");
-				} else {
-					timeAdded.setText("Invalid timing!! Please put time between 0 to 24 hrs");
-				}
+//				if (doubleTime > 0.0 && doubleTime < 24.0) {
+//					System.out.println(doubleTime);
+//					timeAdded.setText("Time added successfully");
+//				} else {
+//					timeAdded.setText("Invalid timing!! Please put time between 0 to 24 hrs");
+//				}
 			}	    	
 	     });
-		timeSlotButton.setBounds(363,189,100,25);
-	    contentPane.add(timeSlotButton);
+		bookButton.setBounds(101,242,370,25);
+	    contentPane.add(bookButton);
 		
 	    timeAdded = new JLabel("success label");
-	    timeAdded.setBounds(101,303,411,25);
+	    timeAdded.setBounds(101,328,411,25);
 	    contentPane.add(timeAdded);
 	    
 	    // pay button  [later add action listener]
 		payButton = new JButton("Pay");
-		payButton.setBounds(101, 249, 370, 25);
+		payButton.setBounds(101, 279, 370, 25);
 		payButton.addActionListener(new ActionListener() {
 			// takes to payView
 			public void actionPerformed(ActionEvent e) {
@@ -191,7 +222,7 @@ public class HomePage extends JFrame {
 				rv.setVisible(true);
 			}
 		});
-		viewBookingButton.setBounds(101, 275, 370, 25);
+		viewBookingButton.setBounds(101, 306, 370, 25);
 		contentPane.add(viewBookingButton);
 		
 		JButton logout = new JButton("Logout");
@@ -213,6 +244,11 @@ public class HomePage extends JFrame {
 		textField = new JTextField(20);
 		textField.setBounds(120, 220, 170, 25);
 		contentPane.add(textField);
+		
+		JLabel lblchooseAnyNumber = new JLabel();
+		lblchooseAnyNumber.setText("(Choose any number between 1-50)");
+		lblchooseAnyNumber.setBounds(120, 162, 293, 25);
+		contentPane.add(lblchooseAnyNumber);
 	}
 	
 	// price calculator per min [move it to the backend class later]
