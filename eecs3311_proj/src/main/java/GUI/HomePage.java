@@ -15,13 +15,15 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import CustomerOperationsModel.Booking;
+
 public class HomePage extends JFrame {
 	
 	private JPanel contentPane;
 	private JLabel thisLabel;
 	private JLabel selectParkingSpot;
 	private JTextField timeSlotinput;
-	private JLabel timeAdded;
+	private JLabel slabel;
 	private JButton bookButton;
 	private JButton payButton;
 	private JButton viewBookingButton;
@@ -146,7 +148,13 @@ public class HomePage extends JFrame {
 		JButton selectparkingspotbtn = new JButton("Check Spot");
 		selectparkingspotbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String pks = parkingspotinput.getText();
+				Booking kp = new Booking();
+				if (!kp.checkParkingSpace(pks)) {
+					slabel.setText("This spot is free");
+				} else {
+					slabel.setText("This spot is occupied Please try another spot");
+				}
 			}
 		});
 		selectparkingspotbtn.setBounds(270, 137, 100, 25);
@@ -194,16 +202,16 @@ public class HomePage extends JFrame {
 //				}
 			}	    	
 	     });
-		bookButton.setBounds(101,242,370,25);
+		bookButton.setBounds(73,252,370,25);
 	    contentPane.add(bookButton);
 		
-	    timeAdded = new JLabel("success label");
-	    timeAdded.setBounds(101,328,411,25);
-	    contentPane.add(timeAdded);
+	    slabel = new JLabel();
+	    slabel.setBounds(101,328,411,25);
+	    contentPane.add(slabel);
 	    
 	    // pay button  [later add action listener]
 		payButton = new JButton("Pay");
-		payButton.setBounds(101, 279, 370, 25);
+		payButton.setBounds(73, 279, 370, 25);
 		payButton.addActionListener(new ActionListener() {
 			// takes to payView
 			public void actionPerformed(ActionEvent e) {
@@ -222,7 +230,7 @@ public class HomePage extends JFrame {
 				rv.setVisible(true);
 			}
 		});
-		viewBookingButton.setBounds(101, 306, 370, 25);
+		viewBookingButton.setBounds(73, 304, 370, 25);
 		contentPane.add(viewBookingButton);
 		
 		JButton logout = new JButton("Logout");
@@ -241,6 +249,7 @@ public class HomePage extends JFrame {
 		lblLicensePlate.setBounds(10, 220, 170, 25);
 		contentPane.add(lblLicensePlate);
 		
+		// license plate input
 		textField = new JTextField(20);
 		textField.setBounds(120, 220, 170, 25);
 		contentPane.add(textField);
