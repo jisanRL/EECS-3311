@@ -107,7 +107,6 @@ public class Admin {
 			String userType,String email,String userName,String phoneNumber,
 			String address,String password) {
 	
-		// FIX THIS
 		String tmpFile = "tmp.csv";
 		String target1 = ""; String target2 = ""; String target3 = ""; String target4 = ""; String target5 = "";String target6 = "";String target7 = "";
 		String target = "";

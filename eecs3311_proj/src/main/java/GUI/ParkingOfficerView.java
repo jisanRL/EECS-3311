@@ -86,7 +86,7 @@ public class ParkingOfficerView extends JFrame{
 		// later -> this part will be connected in the backend with the customer's part where they see the number of available spaces 
 		parkingSpaceCount = new JLabel();
 		int count = 1500;									// later fix the number make it realtime
-		parkingSpaceCount.setText("Total Number of Parking Spaces per location: " + count);
+		parkingSpaceCount.setText("Total Number of Parking Spaces per location: 50");
 		parkingSpaceCount.setBounds(10, 100, 500, 25);
 		contentPane.add(parkingSpaceCount);
 		

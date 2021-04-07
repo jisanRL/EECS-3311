@@ -30,6 +30,7 @@ public class Booking {
 	/*
 	 * 4.4.3-REQ-5: The system allows a customer to book up to three parking spaces  [in a given location;ie.3 space in york at a time]
 	 * 4.4.3-REQ-7: The system must display an error message if the parking space the customer booked is occupied in the system
+	 * BOOKING.CSV schema -> USERNAME,BOOKINGID,DATE,DURATION ,BOOKING SPOT,PRICE,PAYMENT STATUS , LICENSE NUMBER
 	 */
 	public int bookparkingSpace() {
 		return 0;
@@ -44,5 +45,4 @@ public class Booking {
 		// TODO Auto-generated method stub
 		System.out.println("Booking Backend");
 	}
-
 }

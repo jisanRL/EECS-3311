@@ -17,7 +17,7 @@ public class Payment {
 		return null;
 	}
 	
-	/*	4.6.3-REQ-4 */
+	/*	4.6.3-REQ-4: Time stamp current time */
 	public void timeStamp() {
 		
 	}

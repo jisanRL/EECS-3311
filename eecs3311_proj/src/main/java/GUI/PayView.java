@@ -28,6 +28,12 @@ public class PayView extends JFrame {
 	private JButton bookButton;
 	private JButton payButton;
 	private JButton viewBookingButton;
+	private JLabel selectParkingSpot_1;
+	private JTextField textField;
+	private JButton selectparkingspotbtn;
+	private JLabel lblCreditCard;
+	private JTextField textField_1;
+	private JLabel lblPayementSuccessful;
 	/**
 	 * Launch the application.
 	 */
@@ -81,13 +87,41 @@ public class PayView extends JFrame {
 		
 		// pay button  [later add action listener]
 		payButton = new JButton("Pay");
-		payButton.setBounds(60, 297, 370, 25);
+		payButton.setBounds(89, 159, 370, 25);
 		contentPane.add(payButton);
+		
+		JLabel price_1 = new JLabel();
+		price_1.setText("Price:  $time * 0.5");
+		price_1.setBounds(51, 52, 170, 25);
+		contentPane.add(price_1);
+		
+		selectParkingSpot_1 = new JLabel();
+		selectParkingSpot_1.setText("Select Spot: ");
+		selectParkingSpot_1.setBounds(19, 89, 170, 25);
+		contentPane.add(selectParkingSpot_1);
+		
+		textField = new JTextField(20);
+		textField.setBounds(100, 88, 170, 25);
+		contentPane.add(textField);
+		
+		selectparkingspotbtn = new JButton("Select Spot");
+		selectparkingspotbtn.setBounds(271, 88, 100, 25);
+		contentPane.add(selectparkingspotbtn);
+		
+		lblCreditCard = new JLabel();
+		lblCreditCard.setText("Credit Card#:");
+		lblCreditCard.setBounds(19, 122, 170, 25);
+		contentPane.add(lblCreditCard);
+		
+		textField_1 = new JTextField(20);
+		textField_1.setBounds(100, 121, 170, 25);
+		contentPane.add(textField_1);
+		
+		lblPayementSuccessful = new JLabel("Payement Successful");
+		lblPayementSuccessful.setBounds(99, 196, 411, 25);
+		contentPane.add(lblPayementSuccessful);
 		
 		// more functions to be added later
 		// add payment format
 	}
-
-	
-
 }

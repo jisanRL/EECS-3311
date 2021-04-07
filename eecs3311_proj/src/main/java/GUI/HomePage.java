@@ -23,11 +23,11 @@ public class HomePage extends JFrame {
 	private JTextField timeSlotinput;
 	private JLabel timeAdded;
 	private JButton timeSlotButton;
-	private JLabel price;
-	
-	private JButton bookButton;
 	private JButton payButton;
 	private JButton viewBookingButton;
+	private JTextField parkingspotinput;
+	private JLabel lblLicensePlate;
+	private JTextField textField;
 	
 	/*
 	 *REQ-4.4 and 4.5 and 4.6 Booking Space/ Main Dashboard 
@@ -97,7 +97,7 @@ public class HomePage extends JFrame {
 		JLabel tag1 = new JLabel();
 		int count = 0;
 		tag1.setText("Available Slots: " + count);
-		tag1.setBounds(10, 125, 170, 25);
+		tag1.setBounds(10, 122, 170, 25);
 		contentPane.add(tag1);
 		
 		// select parking slots
@@ -105,6 +105,22 @@ public class HomePage extends JFrame {
 		selectParkingSpot.setText("Select Spot: ");
 		selectParkingSpot.setBounds(10, 160, 170, 25);
 		contentPane.add(selectParkingSpot);
+		
+		// parking spot input
+		parkingspotinput = new JTextField(20);
+		parkingspotinput.setBounds(120, 159, 170, 25);
+		contentPane.add(parkingspotinput);
+		
+		// after clicking this button the system will put parkingspot name in booking.csv index4
+		JButton selectparkingspotbtn = new JButton("Select Spot");
+		selectparkingspotbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		selectparkingspotbtn.setBounds(286, 159, 100, 25);
+		contentPane.add(selectparkingspotbtn);
+		
+		
 		
 		// available time slot
 		JLabel timeSlot = new JLabel();
@@ -115,7 +131,7 @@ public class HomePage extends JFrame {
 		// timeSlot input
 		timeSlotinput = new JTextField(20);					// max length of input char = 20
 //		HintTextField textfield = new HintTextField("Enter your hint");   // later -> add a placeholder text in this input 
-		timeSlotinput.setBounds(100,190,170,25);				
+		timeSlotinput.setBounds(120,189,170,25);				
 		contentPane.add(timeSlotinput);
 		
 //		JLabel tag2 = new JLabel("hours");   useless delete later 
@@ -125,7 +141,7 @@ public class HomePage extends JFrame {
 		String[] timeArr = {"Hrs", "Min"};
 		JComboBox tag2 = new JComboBox(timeArr);
 		tag2.setSelectedIndex(1);
-		tag2.setBounds(265,192,80,25);
+		tag2.setBounds(292,191,80,25);
 		contentPane.add(tag2);
 		
 		// time-slot button    [may not be needed]
@@ -147,27 +163,16 @@ public class HomePage extends JFrame {
 				}
 			}	    	
 	     });
-		timeSlotButton.setBounds(340,190,100,25);
+		timeSlotButton.setBounds(363,189,100,25);
 	    contentPane.add(timeSlotButton);
 		
-	    timeAdded = new JLabel("");
-	    timeAdded.setBounds(100,220,2000,25);
+	    timeAdded = new JLabel("success label");
+	    timeAdded.setBounds(101,303,411,25);
 	    contentPane.add(timeAdded);
-	    
-	    // price 
-	    price = new JLabel();
-	    price.setText("Price: " + " $time * 0.5");  // fix this later
-	    price.setBounds(10, 240, 170, 25);
-		contentPane.add(price);
-		
-		// confirm buttons [later add action listener]
-		bookButton = new JButton("Confirm Booking");
-		bookButton.setBounds(60, 270, 370, 25);
-	    contentPane.add(bookButton);
 	    
 	    // pay button  [later add action listener]
 		payButton = new JButton("Pay");
-		payButton.setBounds(60, 297, 370, 25);
+		payButton.setBounds(101, 249, 370, 25);
 		payButton.addActionListener(new ActionListener() {
 			// takes to payView
 			public void actionPerformed(ActionEvent e) {
@@ -186,7 +191,7 @@ public class HomePage extends JFrame {
 				rv.setVisible(true);
 			}
 		});
-		viewBookingButton.setBounds(60, 322, 370, 25);
+		viewBookingButton.setBounds(101, 275, 370, 25);
 		contentPane.add(viewBookingButton);
 		
 		JButton logout = new JButton("Logout");
@@ -200,6 +205,14 @@ public class HomePage extends JFrame {
 		});
 		contentPane.add(logout);
 		
+		lblLicensePlate = new JLabel();
+		lblLicensePlate.setText("License Plate#:");
+		lblLicensePlate.setBounds(10, 220, 170, 25);
+		contentPane.add(lblLicensePlate);
+		
+		textField = new JTextField(20);
+		textField.setBounds(120, 220, 170, 25);
+		contentPane.add(textField);
 	}
 	
 	// price calculator per min [move it to the backend class later]

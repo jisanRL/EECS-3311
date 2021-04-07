@@ -73,6 +73,7 @@ public class ReservationView extends JFrame {
 	    contentPane.add(backButton);
 	    
 	    // later -> customer clicks on a button, a jPane opens up and enters their booking number
+	    // removes the entire booking column of the user logged in
 	    JButton btnCancellations = new JButton("Cancellations");
 	    btnCancellations.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
@@ -81,6 +82,7 @@ public class ReservationView extends JFrame {
 	    btnCancellations.setBounds(30, 290, 170, 25);
 	    contentPane.add(btnCancellations);
 	    
+	    // display all the bookings of the logged in user
 	    JScrollPane scrollPane = new JScrollPane();
 	    scrollPane.setBounds(30, 52, 420, 209);
 	    contentPane.add(scrollPane);
