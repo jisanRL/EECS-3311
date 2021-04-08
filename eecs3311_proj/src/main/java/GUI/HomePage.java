@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +20,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import CustomerOperationsModel.Booking;
+import RegistrationLoginModel.Register;
 
 public class HomePage extends JFrame {
 	
@@ -36,8 +38,14 @@ public class HomePage extends JFrame {
 	private JComboBox lst;
 	private JLabel locationCode;
 	private JTextField durationInput;
-	private String dateOut;
+	private String currentTime;
+	private String currentDate;
 	private String selLoc;
+	private JLabel lblDate;
+	private JTextField dateInput;
+	private JButton dateButton;
+	
+	
 	/*
 	 *REQ-4.4 and 4.5 and 4.6 Booking Space/ Main Dashboard 
 	 */
@@ -74,21 +82,12 @@ public class HomePage extends JFrame {
 		thisLabel.setFont(new Font("Sans-serif", Font.PLAIN, 16));
 		thisLabel.setBackground(Color.WHITE);
 		thisLabel.setBounds(140, 15, 170, 25); 	// set the position of the component
-		contentPane.add(thisLabel); 			// add to the content		
-		
-		/*
-		 *  booking pane 
-		 */
-		// city name 
-		JLabel cityLabel = new JLabel();
-		cityLabel.setText("City: Toronto");
-		cityLabel.setBounds(10, 52, 170, 25);
-		contentPane.add(cityLabel);
+		contentPane.add(thisLabel);
 		
 		// choose location
 		JLabel location = new JLabel();
 		location.setText("Choose Location: ");
-		location.setBounds(10, 70, 170, 25);
+		location.setBounds(10, 52, 170, 25);
 		contentPane.add(location);
 		
 		// location options [https://docs.oracle.com/javase/tutorial/uiswing/components/combobox.html]
@@ -97,7 +96,7 @@ public class HomePage extends JFrame {
 		lst = new JComboBox(locOptions);
 //		lst.setSelectedIndex(4);
 //		lst.addActionListener(this);
-		lst.setBounds(120, 71, 170, 25);
+		lst.setBounds(120, 52, 170, 25);
 		contentPane.add(lst);
 		
 		
@@ -106,13 +105,13 @@ public class HomePage extends JFrame {
 		JLabel tag1 = new JLabel();
 		int count = 0;
 		tag1.setText("Available Slots: " + count);
-		tag1.setBounds(10, 101, 170, 25);
+		tag1.setBounds(302, 52, 170, 25);
 		contentPane.add(tag1);
 		
 		/* get the code of the location and check if the parking slots is empty */
 		selectParkingSpot = new JLabel();
 		selectParkingSpot.setText("Check Spot: ");
-		selectParkingSpot.setBounds(10, 138, 80, 25);
+		selectParkingSpot.setBounds(10, 105, 80, 25);
 		contentPane.add(selectParkingSpot);
 		
 		// get the selected locations code
@@ -137,12 +136,12 @@ public class HomePage extends JFrame {
 		
 		locationCode = new JLabel();
 //		locationCode.setText();
-		locationCode.setBounds(120, 138, 73, 25);
+		locationCode.setBounds(89, 105, 73, 25);
 		contentPane.add(locationCode);
 		
 		// parking spot input
 		parkingspotinput = new JTextField(20);
-		parkingspotinput.setBounds(149, 137, 126, 25);
+		parkingspotinput.setBounds(120, 104, 126, 25);
 		contentPane.add(parkingspotinput);
 		
 		// after clicking this button the system will check if parkingspot is taken or not, by checking booking.csv index4
@@ -160,9 +159,34 @@ public class HomePage extends JFrame {
 				}
 			}
 		});
-		selectparkingspotbtn.setBounds(270, 137, 100, 25);
+		selectparkingspotbtn.setBounds(245, 106, 100, 25);
 		contentPane.add(selectparkingspotbtn);
 		
+		//date
+		lblDate = new JLabel();
+		lblDate.setText("Date:");
+		lblDate.setBounds(10, 153, 170, 25);
+		contentPane.add(lblDate);
+		
+		dateInput = new JTextField(20);
+		dateInput.setBounds(120, 153, 100, 25);
+		contentPane.add(dateInput);
+		
+		
+		// gets the current date
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		Date dt = new Date();
+		currentDate =  df.format(dt);
+		System.out.println(currentDate);
+		
+		dateButton = new JButton("D");
+		dateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dateInput.setText(currentDate);
+			}
+		});
+		dateButton.setBounds(220, 152, 45, 25);
+		contentPane.add(dateButton);
 		
 		// available time slot
 		JLabel timeSlot = new JLabel();
@@ -187,15 +211,15 @@ public class HomePage extends JFrame {
 		contentPane.add(durationInput);
 		
 		// get the current date
-		DateFormat dt = new SimpleDateFormat("HH:mm:ss");
+		DateFormat dt2 = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
-		dateOut = dt.format(date);
-		System.out.println(dateOut);
+		currentTime = dt2.format(date);
+		System.out.println(currentTime);
 		
 		JButton startTimeButton = new JButton("T");
 		startTimeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				timeSlotinput.setText(dateOut);
+				timeSlotinput.setText(currentTime);
 			}
 		});
 		startTimeButton.setBounds(220, 189, 45, 25);
@@ -216,16 +240,30 @@ public class HomePage extends JFrame {
 		bookButton = new JButton("Reserve Spot ");
 		bookButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String userName = LoginView.user;
 				String spotName = parkingspotinput.getText();
 				String startTime = timeSlotinput.getText();
 				String duration = durationInput.getText();
 				String licensePlate = licenceinput.getText();
+				String bookingID = "???"; String price = "???"; String paymentStat = "???"; // GET THIS VALUES LATER
 				
 				// dump the data to booking.csv
+				// later -> add exceptions for null input or in valid input
+				if (userName.equals(null) || spotName.equals(null) || startTime.equals(null) || 
+						duration.equals(null) || licensePlate.equals(null)) {
+					slabel.setText("Leave no field empty");
+				} else {
+					Booking bk = new Booking();
+					try {
+						bk.bookparkingSpace(userName,bookingID,currentDate,currentTime,duration,spotName,price,paymentStat,licensePlate);
+						slabel.setText("Space Reserved, complete payment to book the spot");
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 				
-				
-				
-				
+				System.out.println(userName);
 				System.out.println(spotName);
 				System.out.println(startTime);
 				System.out.println(duration);
@@ -286,7 +324,7 @@ public class HomePage extends JFrame {
 		
 		JLabel lblchooseAnyNumber = new JLabel();
 		lblchooseAnyNumber.setText("(Choose any number between 1-50)");
-		lblchooseAnyNumber.setBounds(120, 162, 293, 25);
+		lblchooseAnyNumber.setBounds(120, 125, 293, 25);
 		contentPane.add(lblchooseAnyNumber);
 		
 	}

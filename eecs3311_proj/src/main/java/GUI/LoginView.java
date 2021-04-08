@@ -23,13 +23,15 @@ public class LoginView extends JFrame {
 	
 	private static JLabel userlabel;
 	private static JLabel passwordLabel;
-	private static JLabel success;
+	private static JLabel slabel;
 	private static JLabel thisLabel;
 	private static JPanel contentPane;
 	private static JTextField userText;
 	private static JPasswordField passwordText;
 	private static JButton loginButton;
 	private static JButton registerButton;
+	static String user;
+	String pswd;
 	
 	/*
 	 * Launches the application
@@ -99,12 +101,16 @@ public class LoginView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// temproary stuff, use CSV table (reading through CSV file method) later
 				try {
-					String user = userText.getText();
-					String pswd = passwordText.getText();
+					user = userText.getText();
+					pswd = passwordText.getText();
 				
 					// later -> add exceptions for null input or in valid input
 					Login login = new Login();
 					login.authenticate(user, pswd); 
+//					if (!login.authenticate(user, pswd); ){
+//					}else {
+//						slabel.setText("User not found");
+//					}
 //					if (user.equals("alex") && pswd.equals("1234")) {
 //						System.out.println(user + ",  " + pswd);
 //						success.setText("Login successful");
@@ -121,9 +127,7 @@ public class LoginView extends JFrame {
 					} else if(login.checkUserType(user, pswd).equalsIgnoreCase("parking officer")) {
 						ParkingOfficerView pv = new ParkingOfficerView();
 						pv.setVisible(true);
-					}
-					
-					
+					} 
 				} catch (Exception e2) {
 					// TODO: handle exception
 					e2.printStackTrace();
@@ -134,9 +138,9 @@ public class LoginView extends JFrame {
 	     contentPane.add(loginButton);
 	     
 	     // temporary (later -> upon authentication take from login page to booking space / main dashboard)
-	     success = new JLabel("");
-	     success.setBounds(20, 129, 250, 25);
-	     contentPane.add(success);
+	     slabel = new JLabel("");
+	     slabel.setBounds(20, 129, 250, 25);
+	     contentPane.add(slabel);
 	     
 	     // register button, takes to the registration page 
 	     registerButton = new JButton("register");

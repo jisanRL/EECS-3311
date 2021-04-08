@@ -1,9 +1,13 @@
 package CustomerOperationsModel;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -74,8 +78,26 @@ public class Booking {
 	 * 4.4.3-REQ-7: The system must display an error message if the parking space the customer booked is occupied in the system
 	 * BOOKING.CSV schema -> USERNAME,BOOKINGID,DATE,TIME OF BOOKING,DURATION ,BOOKING SPOT,PRICE,PAYMENT STATUS , LICENSE NUMBER
 	 */
-	public int bookparkingSpace() {
-		return 0;
+	public void bookparkingSpace(String userName, String bookingID, String date, String time, 
+			String duration,String spotName, String price, String paymentStat, String licenceNum) throws IOException {
+		File fw = new File(path);							// path to the file
+		FileWriter fwt = new FileWriter(fw, true);
+		BufferedWriter bfw = new BufferedWriter(fwt);
+		PrintWriter pw = new PrintWriter(bfw);				// prints to the file
+		
+		if (!fw.exists()) {
+			fw.createNewFile();
+			System.out.println("File exists");
+		} else {
+			System.out.println("File doesn't exist");
+		}
+		
+//		x = new Scanner(new File(path));
+//		x.useDelimiter("[,\n]");
+		pw.printf("%s,%s,%s,%s,%s,%s,%s,%s,%s\n", userName,bookingID,date,time,duration,spotName,price,paymentStat,licenceNum);		// writes to the file
+		pw.flush();							// flushes the data into the csv
+		pw.close();							//close file
+		
 	}
 	
 	/* 4.4.3-REQ-6  */
