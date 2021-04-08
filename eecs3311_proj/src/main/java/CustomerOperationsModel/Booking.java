@@ -23,7 +23,7 @@ public class Booking {
 	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/booking.csv";		// fix this later -> turn to relative path
 
 	/* 4.4.3-REQ-2 
-	 * READS THHROUGH BOOKING.CSV INDEX 4 AND SEES IF THE ENTERED SPOT IS THERE OR NOT
+	 * READS THHROUGH BOOKING.CSV INDEX 5 AND SEES IF THE ENTERED SPOT IS THERE OR NOT
 	 * REMOVE STATIC AFTER TESTING
 	 */
 	public boolean checkParkingSpace(String spotName) {
@@ -41,10 +41,10 @@ public class Booking {
 				// convert the array into list and put the val into the arraylists
 				List<String> lst = Arrays.asList(val);
 				System.out.println(lst);
-				System.out.println("spotName:" + lst.get(4));
+				System.out.println("spotName:" + lst.get(5));
 				
 				// check if the list contains index 4(spotName) and index 7(password) contains the input
-				if (lst.get(4).contains(spotName)) {
+				if (lst.get(5).contains(spotName)) {
 					isExists = true;
 					String msg = "Spot is occupied";
 					System.out.println("is exists = " + isExists + "; " + msg);
@@ -72,7 +72,7 @@ public class Booking {
 	/*
 	 * 4.4.3-REQ-5: The system allows a customer to book up to three parking spaces  [in a given location;ie.3 space in york at a time]
 	 * 4.4.3-REQ-7: The system must display an error message if the parking space the customer booked is occupied in the system
-	 * BOOKING.CSV schema -> USERNAME,BOOKINGID,DATE,DURATION ,BOOKING SPOT,PRICE,PAYMENT STATUS , LICENSE NUMBER
+	 * BOOKING.CSV schema -> USERNAME,BOOKINGID,DATE,TIME OF BOOKING,DURATION ,BOOKING SPOT,PRICE,PAYMENT STATUS , LICENSE NUMBER
 	 */
 	public int bookparkingSpace() {
 		return 0;

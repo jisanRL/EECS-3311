@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -29,10 +32,12 @@ public class HomePage extends JFrame {
 	private JButton viewBookingButton;
 	private JTextField parkingspotinput;
 	private JLabel lblLicensePlate;
-	private JTextField textField;
+	private JTextField licenceinput;
 	private JComboBox lst;
 	private JLabel locationCode;
-	
+	private JTextField durationInput;
+	private String dateOut;
+	private String selLoc;
 	/*
 	 *REQ-4.4 and 4.5 and 4.6 Booking Space/ Main Dashboard 
 	 */
@@ -113,11 +118,9 @@ public class HomePage extends JFrame {
 		// get the selected locations code
 		lst.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String selLoc = lst.getSelectedItem().toString();
+				selLoc = lst.getSelectedItem().toString();
 				System.out.println(selLoc);
 
-//						locationCode.setText(selLoc);
-				String selectedloc = (String) lst.getSelectedItem();
 				if (selLoc.equals("Downtown")) {
 					locationCode.setText("dt");
 				} else if (selLoc.equals("Yorkdale")) {
@@ -128,9 +131,7 @@ public class HomePage extends JFrame {
 					locationCode.setText("york");
 				} else if (selLoc.equals("St George")) {
 					locationCode.setText("stg");
-				} else {
-				}
-//						System.out.println(locationCode);
+				} else {}
 			}
 		});
 		
@@ -149,7 +150,9 @@ public class HomePage extends JFrame {
 		selectparkingspotbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String pks = parkingspotinput.getText();
+				
 				Booking kp = new Booking();
+				System.out.println(pks);
 				if (!kp.checkParkingSpace(pks)) {
 					slabel.setText("This spot is free");
 				} else {
@@ -163,43 +166,70 @@ public class HomePage extends JFrame {
 		
 		// available time slot
 		JLabel timeSlot = new JLabel();
-		timeSlot.setText("Time Slot: ");
+		timeSlot.setText("Start Time:");
 		timeSlot.setBounds(10, 190, 170, 25);
 		contentPane.add(timeSlot);
 		
 		// timeSlot input
 		timeSlotinput = new JTextField(20);					// max length of input char = 20
 //		HintTextField textfield = new HintTextField("Enter your hint");   // later -> add a placeholder text in this input 
-		timeSlotinput.setBounds(120,189,170,25);				
+		timeSlotinput.setBounds(120,189,100,25);				
 		contentPane.add(timeSlotinput);
 		
+		// duration label 
+		JLabel durationLabel = new JLabel();
+		durationLabel.setText("Duration (Hrs):");
+		durationLabel.setBounds(273, 190, 170, 25);
+		contentPane.add(durationLabel);
+		
+		durationInput = new JTextField(20);
+		durationInput.setBounds(375, 189, 109, 25);
+		contentPane.add(durationInput);
+		
+		// get the current date
+		DateFormat dt = new SimpleDateFormat("HH:mm:ss");
+		Date date = new Date();
+		dateOut = dt.format(date);
+		System.out.println(dateOut);
+		
+		JButton startTimeButton = new JButton("T");
+		startTimeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				timeSlotinput.setText(dateOut);
+			}
+		});
+		startTimeButton.setBounds(220, 189, 45, 25);
+		contentPane.add(startTimeButton);
+		
+	
 //		JLabel tag2 = new JLabel("hours");   useless delete later 
 //		tag2.setBounds(270,150,170,25);
 //		contentPane.add(tag2);
 		
-		String[] timeArr = {"Hrs", "Min"};
-		JComboBox tag2 = new JComboBox(timeArr);
-		tag2.setSelectedIndex(1);
-		tag2.setBounds(292,191,80,25);
-		contentPane.add(tag2);
+//		String[] timeArr = {"Hrs", "Min"};
+//		JComboBox tag2 = new JComboBox(timeArr);
+//		tag2.setSelectedIndex(1);
+//		tag2.setBounds(480,191,80,25);
+//		contentPane.add(tag2);
 		
 		// this button will dump spot number time slot and licsence plate# to booking.csv
 		bookButton = new JButton("Reserve Spot ");
-	    // actionListener to confirm time
 		bookButton.addActionListener(new ActionListener() {
-	    	 // time slot confimation
 			public void actionPerformed(ActionEvent e) {
-//				String time = timeSlotinput.getText();
-//				double doubleTime = Double.parseDouble(time);
+				String spotName = parkingspotinput.getText();
+				String startTime = timeSlotinput.getText();
+				String duration = durationInput.getText();
+				String licensePlate = licenceinput.getText();
 				
-				// set the time limit for parkinghere [assumtion: customer can book anytime between 0 to 24hrs]
-				// this one is for hours; later -> make the same arrangement for miniutes when cs chooses minitues
-//				if (doubleTime > 0.0 && doubleTime < 24.0) {
-//					System.out.println(doubleTime);
-//					timeAdded.setText("Time added successfully");
-//				} else {
-//					timeAdded.setText("Invalid timing!! Please put time between 0 to 24 hrs");
-//				}
+				// dump the data to booking.csv
+				
+				
+				
+				
+				System.out.println(spotName);
+				System.out.println(startTime);
+				System.out.println(duration);
+				System.out.println(licensePlate);
 			}	    	
 	     });
 		bookButton.setBounds(73,252,370,25);
@@ -250,19 +280,32 @@ public class HomePage extends JFrame {
 		contentPane.add(lblLicensePlate);
 		
 		// license plate input
-		textField = new JTextField(20);
-		textField.setBounds(120, 220, 170, 25);
-		contentPane.add(textField);
+		licenceinput = new JTextField(20);
+		licenceinput.setBounds(120, 220, 170, 25);
+		contentPane.add(licenceinput);
 		
 		JLabel lblchooseAnyNumber = new JLabel();
 		lblchooseAnyNumber.setText("(Choose any number between 1-50)");
 		lblchooseAnyNumber.setBounds(120, 162, 293, 25);
 		contentPane.add(lblchooseAnyNumber);
+		
 	}
 	
 	// price calculator per min [move it to the backend class later]
 	// time in min
 	private static String priceTag(double time) {
+//		String time = timeSlotinput.getText();
+//		double doubleTime = Double.parseDouble(time);
+		
+		// set the time limit for parkinghere [assumtion: customer can book anytime between 0 to 24hrs]
+		// this one is for hours; later -> make the same arrangement for miniutes when cs chooses minitues
+//		if (doubleTime > 0.0 && doubleTime < 24.0) {
+//			System.out.println(doubleTime);
+//			timeAdded.setText("Time added successfully");
+//		} else {
+//			timeAdded.setText("Invalid timing!! Please put time between 0 to 24 hrs");
+//		}
+		
 		// per min -> $0.5
 		double price = 0.0;
 		// in terms of min
