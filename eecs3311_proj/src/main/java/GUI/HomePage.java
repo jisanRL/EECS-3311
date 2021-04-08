@@ -44,7 +44,8 @@ public class HomePage extends JFrame {
 	private JLabel lblDate;
 	private JTextField dateInput;
 	private JButton dateButton;
-	
+	Booking booking = new Booking();
+
 	
 	/*
 	 *REQ-4.4 and 4.5 and 4.6 Booking Space/ Main Dashboard 
@@ -245,7 +246,8 @@ public class HomePage extends JFrame {
 				String startTime = timeSlotinput.getText();
 				String duration = durationInput.getText();
 				String licensePlate = licenceinput.getText();
-				String bookingID = "???"; String price = "???"; String paymentStat = "???"; // GET THIS VALUES LATER
+				String bookingID = booking.bookingID(); 
+				String price = "???"; String paymentStat = "???"; // GET THIS VALUES LATER
 				
 				// dump the data to booking.csv
 				// later -> add exceptions for null input or in valid input

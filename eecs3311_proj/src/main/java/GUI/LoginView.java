@@ -127,7 +127,10 @@ public class LoginView extends JFrame {
 					} else if(login.checkUserType(user, pswd).equalsIgnoreCase("parking officer")) {
 						ParkingOfficerView pv = new ParkingOfficerView();
 						pv.setVisible(true);
-					} 
+					} else if(login.checkUserType(user, pswd).equalsIgnoreCase("admin")) {
+						AdminView adv = new AdminView();
+						adv.setVisible(true);
+					}
 				} catch (Exception e2) {
 					// TODO: handle exception
 					e2.printStackTrace();

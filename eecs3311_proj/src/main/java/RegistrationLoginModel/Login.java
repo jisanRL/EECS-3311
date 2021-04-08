@@ -41,7 +41,6 @@ public class Login {
 			BufferedReader bfr = new BufferedReader(new FileReader(userPath));
 			while ((line = bfr.readLine())!= null) {
 				val = line.split(",");
-//				System.out.println("userName:" + val[3] + ",  "+ "userType:" + val[1] + ", " +  "password:" + val[6]);
 				
 				// convert the array into list and put the val into the arraylists
 				List<String> lst = Arrays.asList(val);
@@ -60,14 +59,12 @@ public class Login {
 					isExists = false;
 				}
 			}
-			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		return val;
 	}
 	
 	/*

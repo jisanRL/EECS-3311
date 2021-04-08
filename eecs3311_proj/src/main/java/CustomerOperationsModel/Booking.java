@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /*
  * REQ 4.4 Booking a parking space
@@ -70,6 +71,7 @@ public class Booking {
 	
 	/*  4.4.3-REQ-4 */
 	public int bookingDuration() {
+		
 		return 0;
 	}
 	
@@ -101,8 +103,17 @@ public class Booking {
 	}
 	
 	/* 4.4.3-REQ-6  */
-	public int bookingNumber() {
-		return 0;
+	public String bookingID() {
+		//FIX THIS
+		int len = 4;
+		String chr = "abcdefghijk0123456789";
+		Random rn = new Random();
+		StringBuilder str = new StringBuilder(len);
+		for (int i = 0; i < len; i++) {
+			str.append(chr.charAt(rn.nextInt(chr.length())));
+		}
+			
+		return str.toString();
 	}
 
 	public static void main(String[] args) {
@@ -112,6 +123,8 @@ public class Booking {
 		Booking bk = new Booking();
 		String spotName= "york12";
 		bk.checkParkingSpace(spotName);
+		
+		System.out.println(bk.bookingID());
 		
 	}
 }
