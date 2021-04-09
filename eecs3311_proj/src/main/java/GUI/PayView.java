@@ -7,12 +7,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import CustomerOperationsModel.Payment;
 
 public class PayView extends JFrame {
 
@@ -29,11 +32,13 @@ public class PayView extends JFrame {
 	private JButton payButton;
 	private JButton viewBookingButton;
 	private JLabel selectParkingSpot_1;
-	private JTextField textField;
+	private JTextField spotName;
 	private JButton selectparkingspotbtn;
 	private JLabel lblCreditCard;
-	private JTextField textField_1;
+	private JTextField creditCard;
 	private JLabel lblPayementSuccessful;
+	HomePage hp = new HomePage();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -87,35 +92,55 @@ public class PayView extends JFrame {
 		
 		// pay button  [later add action listener]
 		payButton = new JButton("Pay");
-		payButton.setBounds(89, 159, 370, 25);
+		payButton.setBounds(98, 159, 361, 25);
 		contentPane.add(payButton);
 		
 		JLabel price_1 = new JLabel();
-		price_1.setText("Price:  $time * 0.5");
-		price_1.setBounds(51, 52, 170, 25);
+		price_1.setText("Price: ");
+		price_1.setBounds(66, 75, 170, 25);
 		contentPane.add(price_1);
 		
-		selectParkingSpot_1 = new JLabel();
-		selectParkingSpot_1.setText("Select Spot: ");
-		selectParkingSpot_1.setBounds(19, 89, 170, 25);
-		contentPane.add(selectParkingSpot_1);
 		
-		textField = new JTextField(20);
-		textField.setBounds(100, 88, 170, 25);
-		contentPane.add(textField);
+		String prc = hp.prc;
+		JLabel price = new JLabel();
+		price.setText(prc);
+		price.setBounds(110, 75, 170, 25);
+		contentPane.add(price);
 		
-		selectparkingspotbtn = new JButton("Select Spot");
-		selectparkingspotbtn.setBounds(271, 88, 100, 25);
-		contentPane.add(selectparkingspotbtn);
+//		selectParkingSpot_1 = new JLabel();
+//		selectParkingSpot_1.setText("Selected Spot: ");
+//		selectParkingSpot_1.setBounds(19, 89, 170, 25);
+//		contentPane.add(selectParkingSpot_1);
+//		
+//		spotName = new JTextField(20);
+//		spotName.setBounds(110, 89, 170, 25);
+//		contentPane.add(spotName);
+		
+//		selectparkingspotbtn = new JButton("Select Spot");
+//		selectparkingspotbtn.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				HomePage hp = new HomePage();
+//				spotName.setText(hp.spotName);
+//			}
+//		});
+//		selectparkingspotbtn.setBounds(279, 90, 100, 25);
+//		contentPane.add(selectparkingspotbtn);
 		
 		lblCreditCard = new JLabel();
 		lblCreditCard.setText("Credit Card#:");
 		lblCreditCard.setBounds(19, 122, 170, 25);
 		contentPane.add(lblCreditCard);
 		
-		textField_1 = new JTextField(20);
-		textField_1.setBounds(100, 121, 170, 25);
-		contentPane.add(textField_1);
+		String[] payOptions = {"pay options..", "Credit card", "paypal", "Debit card"};
+		JComboBox lst = new JComboBox(payOptions);
+//		lst.setSelectedIndex(4);
+//		lst.addActionListener(this);
+		lst.setBounds(279, 128, 126, 25);
+		contentPane.add(lst);
+		
+		creditCard = new JTextField(20);
+		creditCard.setBounds(110, 126, 170, 25);
+		contentPane.add(creditCard);
 		
 		lblPayementSuccessful = new JLabel("Payement Successful");
 		lblPayementSuccessful.setBounds(99, 196, 411, 25);

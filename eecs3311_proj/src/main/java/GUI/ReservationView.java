@@ -10,17 +10,24 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import CustomerOperationsModel.Cancelbooking;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class ReservationView extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel thisLabel;
 	private JButton backButton;
+	private JTextField spotName;
+	private JLabel lblBookingCancelled;
+	HomePage hp = new HomePage();
 
 	/**
 	 * Launch the application.
@@ -74,18 +81,44 @@ public class ReservationView extends JFrame {
 	    
 	    // later -> customer clicks on a button, a jPane opens up and enters their booking number
 	    // removes the entire booking column of the user logged in
-	    JButton btnCancellations = new JButton("Cancellations");
+	    JButton btnCancellations = new JButton("Cancel Booking");
 	    btnCancellations.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
+	    		String userName = LoginView.user;
+	    		String bookginID = hp.bookingID;
+	    		String currentDate = hp.startTime;
+	    		String currentTime = hp.dateinput;
+	    		String duration = hp.duration;
+	    		String spot =  spotName.getText();
+	    		String price = hp.prc;
+	    		String paymentstatus = hp.paymentStat;
+	    		String licenseplate = hp.licenseplate;
+	    		
+	    		Cancelbooking cn = new Cancelbooking();
+	    		cn.cancelBooking(userName,bookginID,currentDate,currentTime,duration,spot,price,paymentstatus,licenseplate);
+	    	    lblBookingCancelled.setText("Booking cancelled ");
 	    	}
 	    });
-	    btnCancellations.setBounds(30, 290, 170, 25);
+	    btnCancellations.setBounds(125, 256, 199, 25);
 	    contentPane.add(btnCancellations);
 	    
 	    // display all the bookings of the logged in user
 	    JScrollPane scrollPane = new JScrollPane();
-	    scrollPane.setBounds(30, 52, 420, 209);
+	    scrollPane.setBounds(30, 52, 495, 118);
 	    contentPane.add(scrollPane);
+	    
+	    spotName = new JTextField(20);
+	    spotName.setBounds(140, 230, 175, 25);
+	    contentPane.add(spotName);
+	    
+	    JLabel lblParkingSpot = new JLabel();
+	    lblParkingSpot.setText("Parking Spot: ");
+	    lblParkingSpot.setBounds(25, 231, 114, 25);
+	    contentPane.add(lblParkingSpot);
+	    
+	    lblBookingCancelled = new JLabel();
+	    lblBookingCancelled.setBounds(166, 293, 118, 25);
+	    contentPane.add(lblBookingCancelled);
 		
 		// the table -> https://www.geeksforgeeks.org/java-swing-jtable/
 		

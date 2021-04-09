@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import CustomerOperationsModel.Booking;
+import CustomerOperationsModel.Payment;
 import RegistrationLoginModel.Register;
 
 public class HomePage extends JFrame {
@@ -38,15 +39,16 @@ public class HomePage extends JFrame {
 	private JComboBox lst;
 	private JLabel locationCode;
 	private JTextField durationInput;
-	private String currentTime;
-	private String currentDate;
 	private String selLoc;
 	private JLabel lblDate;
 	private JTextField dateInput;
 	private JButton dateButton;
 	Booking booking = new Booking();
-
-	
+	Payment payment = new Payment();
+	String spotName; String bookingID; String currentTime; String currentDate;
+	String startTime;String dateinput; String duration; String licenseplate; 
+	String prc; double price; String paymentStat;
+					
 	/*
 	 *REQ-4.4 and 4.5 and 4.6 Booking Space/ Main Dashboard 
 	 */
@@ -242,22 +244,25 @@ public class HomePage extends JFrame {
 		bookButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String userName = LoginView.user;
-				String spotName = parkingspotinput.getText();
-				String startTime = timeSlotinput.getText();
-				String duration = durationInput.getText();
-				String licensePlate = licenceinput.getText();
-				String bookingID = booking.bookingID(); 
-				String price = "???"; String paymentStat = "???"; // GET THIS VALUES LATER
+				spotName = parkingspotinput.getText();
+				startTime = timeSlotinput.getText();
+				dateinput = dateInput.getText();
+				duration = durationInput.getText();
+				licenseplate = licenceinput.getText();
+				bookingID = booking.bookingID();  
 				
-				// dump the data to booking.csv
-				// later -> add exceptions for null input or in valid input
-				if (userName.equals(null) || spotName.equals(null) || startTime.equals(null) || 
-						duration.equals(null) || licensePlate.equals(null)) {
+				price = payment.price(Double.parseDouble(duration));
+				prc = Double.toString(price);
+				paymentStat = ""; // GET THIS VALUES LATER
+				
+				// dump the data to booking.csv later -> add exceptions for null input or in valid input
+				if (userName.equals(null) || spotName.equals(null) || currentDate.equals(null) || currentTime.equals(null) ||
+						duration.equals(null) || licenseplate.equals(null)) {
 					slabel.setText("Leave no field empty");
 				} else {
 					Booking bk = new Booking();
 					try {
-						bk.bookparkingSpace(userName,bookingID,currentDate,currentTime,duration,spotName,price,paymentStat,licensePlate);
+						bk.bookparkingSpace(userName,bookingID,dateinput,startTime,duration,spotName,prc,paymentStat,licenseplate);
 						slabel.setText("Space Reserved, complete payment to book the spot");
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
@@ -267,9 +272,10 @@ public class HomePage extends JFrame {
 				
 				System.out.println(userName);
 				System.out.println(spotName);
-				System.out.println(startTime);
+//				System.out.println(startTime);
+				System.out.println(prc);
 				System.out.println(duration);
-				System.out.println(licensePlate);
+				System.out.println(licenseplate);
 			}	    	
 	     });
 		bookButton.setBounds(73,252,370,25);
@@ -286,6 +292,8 @@ public class HomePage extends JFrame {
 			// takes to payView
 			public void actionPerformed(ActionEvent e) {
 				PayView pv = new PayView();
+				price = payment.price(Double.parseDouble(duration));
+				prc = Double.toString(price);
 				pv.setVisible(true);
 			}
 		});
