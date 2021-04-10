@@ -37,11 +37,12 @@ public class Payment {
 	}
 	
 	/*	4.6.3-REQ-4: Time stamp current tie 
-	 * EXECUTES WHEN THE PAY BUTTON IS CLICKED
-	 * */
-	public void timeStamp() {
+	 *	EXECUTES WHEN THE PAY BUTTON IS CLICKED
+	 */
+	public String timeStamp() {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());	// gets the current time
 		System.out.println(ts);
+		return ts.toString();
 	}
 	
 	/*  4.6.3-REQ-5 

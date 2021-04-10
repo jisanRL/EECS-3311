@@ -244,7 +244,8 @@ public class HomePage extends JFrame {
 				bookingID = booking.bookingID();  
 				price = payment.price(Double.parseDouble(duration));
 				prc = Double.toString(price);
-				paymentStat = ""; // GET THIS VALUES LATER
+				
+				paymentStat = "Paid at: " + payment.timeStamp(); 
 				
 				// dump the data to booking.csv later -> add exceptions for null input or in valid input
 				if (userName.equals(null) || spotName.equals(null) || currentDate.equals(null) || currentTime.equals(null) ||
@@ -260,7 +261,6 @@ public class HomePage extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-				
 				System.out.println(userName);
 				System.out.println(spotName);
 //				System.out.println(startTime);
