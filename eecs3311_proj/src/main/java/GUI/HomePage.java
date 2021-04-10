@@ -48,6 +48,9 @@ public class HomePage extends JFrame {
 	String spotName; String bookingID; String currentTime; String currentDate;
 	String startTime;String dateinput; String duration; String licenseplate; 
 	String prc; double price; String paymentStat;
+ private JTextField creditcardinput;
+ private JLabel priceTag;
+ private JLabel lblThisWillDisplay;
 					
 	/*
 	 *REQ-4.4 and 4.5 and 4.6 Booking Space/ Main Dashboard 
@@ -107,7 +110,7 @@ public class HomePage extends JFrame {
 		//available slot
 		JLabel tag1 = new JLabel();
 		int count = 0;
-		tag1.setText("Available Slots: " + count);
+		tag1.setText("Available Spots: 0");
 		tag1.setBounds(302, 52, 170, 25);
 		contentPane.add(tag1);
 		
@@ -134,17 +137,18 @@ public class HomePage extends JFrame {
 				} else if (selLoc.equals("St George")) {
 					locationCode.setText("stg");
 				} else {}
+				parkingspotinput.setText(locationCode.getText());
 			}
 		});
 		
 		locationCode = new JLabel();
-//		locationCode.setText();
 		locationCode.setBounds(89, 105, 73, 25);
-		contentPane.add(locationCode);
+//		contentPane.add(locationCode);
 		
 		// parking spot input
 		parkingspotinput = new JTextField(20);
 		parkingspotinput.setBounds(120, 104, 126, 25);
+		
 		contentPane.add(parkingspotinput);
 		
 		// after clicking this button the system will check if parkingspot is taken or not, by checking booking.csv index4
@@ -162,7 +166,7 @@ public class HomePage extends JFrame {
 				}
 			}
 		});
-		selectparkingspotbtn.setBounds(245, 106, 100, 25);
+		selectparkingspotbtn.setBounds(242, 106, 100, 25);
 		contentPane.add(selectparkingspotbtn);
 		
 		//date
@@ -199,7 +203,6 @@ public class HomePage extends JFrame {
 		
 		// timeSlot input
 		timeSlotinput = new JTextField(20);					// max length of input char = 20
-//		HintTextField textfield = new HintTextField("Enter your hint");   // later -> add a placeholder text in this input 
 		timeSlotinput.setBounds(120,189,100,25);				
 		contentPane.add(timeSlotinput);
 		
@@ -228,19 +231,8 @@ public class HomePage extends JFrame {
 		startTimeButton.setBounds(220, 189, 45, 25);
 		contentPane.add(startTimeButton);
 		
-	
-//		JLabel tag2 = new JLabel("hours");   useless delete later 
-//		tag2.setBounds(270,150,170,25);
-//		contentPane.add(tag2);
-		
-//		String[] timeArr = {"Hrs", "Min"};
-//		JComboBox tag2 = new JComboBox(timeArr);
-//		tag2.setSelectedIndex(1);
-//		tag2.setBounds(480,191,80,25);
-//		contentPane.add(tag2);
-		
 		// this button will dump spot number time slot and licsence plate# to booking.csv
-		bookButton = new JButton("Reserve Spot ");
+		bookButton = new JButton("Book Spot ");
 		bookButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String userName = LoginView.user;
@@ -278,26 +270,26 @@ public class HomePage extends JFrame {
 				System.out.println(licenseplate);
 			}	    	
 	     });
-		bookButton.setBounds(73,252,370,25);
+		bookButton.setBounds(109,280,334,25);
 	    contentPane.add(bookButton);
 		
 	    slabel = new JLabel();
-	    slabel.setBounds(101,328,411,25);
+	    slabel.setBounds(73,336,411,25);
 	    contentPane.add(slabel);
 	    
 	    // pay button  [later add action listener]
-		payButton = new JButton("Pay");
-		payButton.setBounds(73, 279, 370, 25);
-		payButton.addActionListener(new ActionListener() {
-			// takes to payView
-			public void actionPerformed(ActionEvent e) {
-				PayView pv = new PayView();
-				price = payment.price(Double.parseDouble(duration));
-				prc = Double.toString(price);
-				pv.setVisible(true);
-			}
-		});
-	    contentPane.add(payButton);
+//		payButton = new JButton("Pay");
+//		payButton.setBounds(73, 279, 370, 25);
+//		payButton.addActionListener(new ActionListener() {
+//			// takes to payView
+//			public void actionPerformed(ActionEvent e) {
+//				PayView pv = new PayView();
+//				price = payment.price(Double.parseDouble(duration));
+//				prc = Double.toString(price);
+//				pv.setVisible(true);
+//			}
+//		});
+//	    contentPane.add(payButton);
 	    
 	    // view booking button  [later add action listener]
 		viewBookingButton = new JButton("View Bookings");
@@ -308,7 +300,7 @@ public class HomePage extends JFrame {
 				rv.setVisible(true);
 			}
 		});
-		viewBookingButton.setBounds(73, 304, 370, 25);
+		viewBookingButton.setBounds(109, 307, 334, 25);
 		contentPane.add(viewBookingButton);
 		
 		JButton logout = new JButton("Logout");
@@ -329,7 +321,7 @@ public class HomePage extends JFrame {
 		
 		// license plate input
 		licenceinput = new JTextField(20);
-		licenceinput.setBounds(120, 220, 170, 25);
+		licenceinput.setBounds(120, 220, 140, 25);
 		contentPane.add(licenceinput);
 		
 		JLabel lblchooseAnyNumber = new JLabel();
@@ -337,32 +329,39 @@ public class HomePage extends JFrame {
 		lblchooseAnyNumber.setBounds(120, 125, 293, 25);
 		contentPane.add(lblchooseAnyNumber);
 		
-	}
-	
-	// price calculator per min [move it to the backend class later]
-	// time in min
-	private static String priceTag(double time) {
-//		String time = timeSlotinput.getText();
-//		double doubleTime = Double.parseDouble(time);
+		JLabel lblCreditCard = new JLabel();
+		lblCreditCard.setText("Credit Card#:");
+		lblCreditCard.setBounds(273, 220, 170, 25);
+		contentPane.add(lblCreditCard);
 		
-		// set the time limit for parkinghere [assumtion: customer can book anytime between 0 to 24hrs]
-		// this one is for hours; later -> make the same arrangement for miniutes when cs chooses minitues
-//		if (doubleTime > 0.0 && doubleTime < 24.0) {
-//			System.out.println(doubleTime);
-//			timeAdded.setText("Time added successfully");
-//		} else {
-//			timeAdded.setText("Invalid timing!! Please put time between 0 to 24 hrs");
-//		}
+		creditcardinput = new JTextField(20);
+		creditcardinput.setBounds(374, 219, 109, 25);
+		contentPane.add(creditcardinput);
 		
-		// per min -> $0.5
-		double price = 0.0;
-		// in terms of min
-		if (time > 0 && time < 60) {
-			price = time * 0.5;
-		} else if (time > 60 && time < 1440) {
-			double timehrs = time/60;			// convert min to hrs
-			price = timehrs * 30; 				//"calculate in terms of hrs later";
-		}
-		return "$" + price;
+		String[] payOptions = {".....", "Credit card", "paypal", "Debit card"};	
+		JComboBox lst_1 = new JComboBox(payOptions);
+		lst_1.setBounds(480, 221, 62, 25);
+		contentPane.add(lst_1);
+		
+		JButton durationbtn = new JButton("DR");
+		// gets the duration input for calculating the price 
+		durationbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		durationbtn.setBounds(480, 189, 45, 25);
+		contentPane.add(durationbtn);
+		
+		priceTag = new JLabel();
+		priceTag.setText("Price: ");
+		priceTag.setBounds(10, 253, 170, 25);
+		contentPane.add(priceTag);
+		
+		lblThisWillDisplay = new JLabel();
+		lblThisWillDisplay.setText("This  will display the price in dollars upon DR button being clicked");
+		lblThisWillDisplay.setBounds(120, 253, 405, 25);
+		contentPane.add(lblThisWillDisplay);
+		
 	}
 }

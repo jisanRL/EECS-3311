@@ -30,9 +30,12 @@ public class ParkingOfficerView extends JFrame{
 	private JLabel addLabel;
 	private JLabel removeLabel;
 	private JLabel addRemoveMessage;
-	private JTextField textField;
-	private JTextField textField_1;
-
+	private JTextField addInput;
+	private JTextField removeInput;
+	private JComboBox lst;
+	private String selLoc;
+	private JLabel locationCode;
+	
 	public static void main(String[] args) {
 		System.out.println("This is the Parking Officer pane");
 		EventQueue.invokeLater(new Runnable() {
@@ -77,11 +80,38 @@ public class ParkingOfficerView extends JFrame{
 		// [https://docs.oracle.com/javase/tutorial/uiswing/components/combobox.html]
 		// later -> implement this option button fully
 		String[] locOptions = { "Downtown", "Yorkdale", "Square one", "York University", "St George" };
-		JComboBox lst = new JComboBox(locOptions);
+		lst = new JComboBox(locOptions);
 		lst.setSelectedIndex(4);
 //		lst.addActionListener(this);
 		lst.setBounds(120, 60, 170, 25);
 		contentPane.add(lst);
+		
+		// get the selected locations code
+		lst.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selLoc = lst.getSelectedItem().toString();
+				System.out.println(selLoc);
+
+				if (selLoc.equals("Downtown")) {
+					locationCode.setText("dt");
+				} else if (selLoc.equals("Yorkdale")) {
+					locationCode.setText("ydl");
+				} else if (selLoc.equals("Square one")) {
+					locationCode.setText("sqo");
+				} else if (selLoc.equals("York University")) {
+					locationCode.setText("york");
+				} else if (selLoc.equals("St George")) {
+					locationCode.setText("stg");
+				} else {
+				}
+				addInput.setText(locationCode.getText());
+				removeInput.setText(locationCode.getText());
+			}
+		});
+
+		locationCode = new JLabel();
+		locationCode.setBounds(89, 105, 73, 25);
+//				contentPane.add(locationCode);
 		
 		// later -> this part will be connected in the backend with the customer's part where they see the number of available spaces 
 		parkingSpaceCount = new JLabel();
@@ -99,7 +129,7 @@ public class ParkingOfficerView extends JFrame{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}									// later fix the number make it realtime
-		availableparkingSpaceCount.setText("Total Number of Available Parking Spaces in all locations: " + availableCount);
+		availableparkingSpaceCount.setText("Total Number of Available Parking Spaces in selected locations: " + availableCount);
 		availableparkingSpaceCount.setBounds(10, 130, 500, 25);
 		contentPane.add(availableparkingSpaceCount);
 		
@@ -116,7 +146,7 @@ public class ParkingOfficerView extends JFrame{
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String spotName = textField.getText();
+				String spotName = addInput.getText();
 				try {
 					PEO peo = new PEO();
 					peo.addSpaces(spotName);
@@ -141,7 +171,7 @@ public class ParkingOfficerView extends JFrame{
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String spotName = textField.getText();
+				String spotName = removeInput.getText();
 				try {
 					PEO peo = new PEO();
 					peo.removeSpaces(spotName);
@@ -172,14 +202,14 @@ public class ParkingOfficerView extends JFrame{
 		contentPane.add(logout);
 		
 		// parking spot number 
-		textField = new JTextField();
-		textField.setBounds(178, 178, 170, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		addInput = new JTextField();
+		addInput.setBounds(178, 178, 170, 26);
+		contentPane.add(addInput);
+		addInput.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(178, 211, 170, 26);
-		contentPane.add(textField_1);
+		removeInput = new JTextField();
+		removeInput.setColumns(10);
+		removeInput.setBounds(178, 211, 170, 26);
+		contentPane.add(removeInput);
 	}
 }
