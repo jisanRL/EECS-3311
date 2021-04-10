@@ -69,40 +69,50 @@ public class PaymentStateView extends JFrame {
 		thisLabel.setBounds(100, 15, 200, 25); // set the position of the component
 		contentPane.add(thisLabel); // add to the content
 		
+		// back button takes back to homePage
+		backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminView av = new AdminView();
+				av.setVisible(true);
+			}
+		});
+		backButton.setBounds(458, 6, 86, 25);
+		contentPane.add(backButton);
 		
 		// name
 		name = new JLabel("Name: ");
-		name.setBounds(30, 126, 80, 25);
+		name.setBounds(30, 222, 80, 25);
 		contentPane.add(name);
 
 		// user input
 		nameInput = new JTextField(20); // max length of input char = 20
-		nameInput.setBounds(135, 125, 165, 25);
+		nameInput.setBounds(135, 221, 165, 25);
 		contentPane.add(nameInput);
 
 		// email
 		email = new JLabel("Email: ");
-		email.setBounds(30, 164, 80, 25);
+		email.setBounds(30, 249, 80, 25);
 		contentPane.add(email);
 
 		// email input
 		emailInput = new JTextField(20); // max length of input char = 20
-		emailInput.setBounds(135, 163, 165, 25);
+		emailInput.setBounds(135, 248, 165, 25);
 		contentPane.add(emailInput);
 
 		// phone
 		parkingSpacenum = new JLabel("Parking Space#:");
-		parkingSpacenum.setBounds(30, 201, 100, 25);
+		parkingSpacenum.setBounds(30, 276, 100, 25);
 		contentPane.add(parkingSpacenum);
 		
 		// phone input
 		psnInput = new JTextField(20); // max length of input char = 20
-		psnInput.setBounds(135, 200, 165, 25);
+		psnInput.setBounds(135, 275, 165, 25);
 		contentPane.add(psnInput);
 		
 		 // later -> move this to the new paymentView GUI once confirmPaymentButton is clicked this message will appear, implement this
 		paymentconfirmedMessage = new JLabel();
-		paymentconfirmedMessage.setBounds(135,279,200,25);
+		paymentconfirmedMessage.setBounds(168,341,200,25);
 		paymentconfirmedMessage.setText("Payment Confirmed");
 	    contentPane.add(paymentconfirmedMessage);
 
@@ -114,28 +124,21 @@ public class PaymentStateView extends JFrame {
 	    paymentreceivedMessage.setText("Payment Amount received:  $" + amount);
 	    contentPane.add(paymentreceivedMessage);
 	    
+	    // clicking this button will dump the username, email and parkingspace# to the adminbooking.csv where all the booking records are kept
 	    JButton btnNewButton = new JButton("Paid");
 	    btnNewButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
+	    		
 	    	}
 	    });
-	    btnNewButton.setBounds(122, 238, 200, 29);
+	    btnNewButton.setBounds(122, 313, 200, 29);
 	    contentPane.add(btnNewButton);
 	    
 	    JLabel lblTotalAmount = new JLabel();
-	    lblTotalAmount.setText("Total Amount $0.0");
-	    lblTotalAmount.setBounds(22, 89, 300, 25);
+	    lblTotalAmount.setText("here we will have a table to view entire booking.csv");
+	    lblTotalAmount.setBounds(78, 117, 414, 25);
 	    contentPane.add(lblTotalAmount);
 	    
-		// back button takes back to homePage
-		backButton = new JButton("Back");
-		backButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AdminView av = new AdminView();
-				av.setVisible(true);
-			}
-		});
-		backButton.setBounds(439, 17, 86, 25);
-		contentPane.add(backButton);
+		
 	}
 }

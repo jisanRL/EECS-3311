@@ -132,7 +132,7 @@ public class Admin {
 				target7 = x.next();		// password
 				
 				// if the target is not equals the input credentials then write all the other lines accept for the line that mathches the inputs  
-				if (!target1.equals(name) && !target2.equals(userType) && !target3.equals(email) && !target4.equals(userName) && !target5.equals(phoneNumber) && !target6.equals(address) && !target7.equals(password)) {
+				if (!target1.equals(name)  && !target3.equals(email) && !target4.equals(userName) && !target5.equals(phoneNumber) && !target6.equals(address) && !target7.equals(password)) {
 					pw.println(target1 + ","+ target2 + "," + target3 + ","+ target4 + "," + target5 + ","+ target6 + "," + target7);
 				}		
 			}
