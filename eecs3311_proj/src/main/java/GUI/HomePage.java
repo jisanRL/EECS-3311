@@ -48,9 +48,9 @@ public class HomePage extends JFrame {
 	String spotName; String bookingID; String currentTime; String currentDate;
 	String startTime;String dateinput; String duration; String licenseplate; 
 	String prc; double price; String paymentStat;
- private JTextField creditcardinput;
- private JLabel priceTag;
- private JLabel lblThisWillDisplay;
+	private JTextField creditcardinput;
+	private JLabel priceTag;
+	private JLabel lblThisWillDisplay;
 					
 	/*
 	 *REQ-4.4 and 4.5 and 4.6 Booking Space/ Main Dashboard 
@@ -242,7 +242,6 @@ public class HomePage extends JFrame {
 				duration = durationInput.getText();
 				licenseplate = licenceinput.getText();
 				bookingID = booking.bookingID();  
-				
 				price = payment.price(Double.parseDouble(duration));
 				prc = Double.toString(price);
 				paymentStat = ""; // GET THIS VALUES LATER
@@ -274,7 +273,7 @@ public class HomePage extends JFrame {
 	    contentPane.add(bookButton);
 		
 	    slabel = new JLabel();
-	    slabel.setBounds(73,336,411,25);
+	    slabel.setBounds(120,336,344,25);
 	    contentPane.add(slabel);
 	    
 	    // pay button  [later add action listener]
@@ -347,19 +346,20 @@ public class HomePage extends JFrame {
 		// gets the duration input for calculating the price 
 		durationbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				double price2 = payment.price(Double.parseDouble(durationInput.getText()));
+				String prc2 = Double.toString(price2);
+				lblThisWillDisplay.setText(prc2);
 			}
 		});
 		durationbtn.setBounds(480, 189, 45, 25);
 		contentPane.add(durationbtn);
 		
 		priceTag = new JLabel();
-		priceTag.setText("Price: ");
+		priceTag.setText("Price ($ CAD): ");
 		priceTag.setBounds(10, 253, 170, 25);
 		contentPane.add(priceTag);
 		
 		lblThisWillDisplay = new JLabel();
-		lblThisWillDisplay.setText("This  will display the price in dollars upon DR button being clicked");
 		lblThisWillDisplay.setBounds(120, 253, 405, 25);
 		contentPane.add(lblThisWillDisplay);
 		
