@@ -94,6 +94,10 @@ public class ReservationView extends JFrame {
 	    		String paymentstatus = hp.paymentStat;
 	    		String licenseplate = hp.licenseplate;
 	    		
+	    		if (spotName.getText() == null) {
+	    			lblBookingCancelled.setText("Please leave no field empty");
+					throw new RuntimeException();
+	    		}
 	    		Cancelbooking cn = new Cancelbooking();
 	    		cn.cancelBooking(userName,bookginID,currentDate,currentTime,duration,spot,price,paymentstatus,licenseplate);
 	    	    lblBookingCancelled.setText("Booking cancelled ");

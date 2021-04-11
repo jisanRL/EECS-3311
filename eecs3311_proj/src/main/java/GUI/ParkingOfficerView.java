@@ -147,10 +147,14 @@ public class ParkingOfficerView extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String spotName = addInput.getText();
+				if (spotName == null) {
+					addRemoveMessage.setText("Please leave no field empty");
+					throw new RuntimeException();
+					}
 				try {
 					PEO peo = new PEO();
 					peo.addSpaces(spotName);
-				    addRemoveMessage.setText("Successfully Added Parking Space");					//
+					addRemoveMessage.setText("Successfully Added Parking Space");		
 				} catch (Exception e2) {
 					// TODO: handle exception
 					e2.printStackTrace();
@@ -172,10 +176,14 @@ public class ParkingOfficerView extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String spotName = removeInput.getText();
+				if (spotName == null) {
+						addRemoveMessage.setText("Please leave no field empty");
+						throw new RuntimeException();
+					}
 				try {
 					PEO peo = new PEO();
 					peo.removeSpaces(spotName);
-				    addRemoveMessage.setText("Successfully Removed Parking Space");					//
+					addRemoveMessage.setText("Successfully Removed Parking Space");		
 				} catch (Exception e2) {
 					// TODO: handle exception
 					e2.printStackTrace();

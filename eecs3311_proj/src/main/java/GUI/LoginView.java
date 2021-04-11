@@ -99,7 +99,6 @@ public class LoginView extends JFrame {
 	     loginButton.addActionListener(new ActionListener() {
 	    	 // authentication
 			public void actionPerformed(ActionEvent e) {
-				// temproary stuff, use CSV table (reading through CSV file method) later
 				try {
 					user = userText.getText();
 					pswd = passwordText.getText();
@@ -107,18 +106,11 @@ public class LoginView extends JFrame {
 					// later -> add exceptions for null input or in valid input
 					Login login = new Login();
 					login.authenticate(user, pswd); 
-//					if (!login.authenticate(user, pswd); ){
-//					}else {
-//						slabel.setText("User not found");
-//					}
-//					if (user.equals("alex") && pswd.equals("1234")) {
-//						System.out.println(user + ",  " + pswd);
-//						success.setText("Login successful");
-//					} else if (user.equals(null) || pswd.equals(null)){
-//						success.setText("No field left empty");
-//					} else {
-//						success.setText("Login unsuccessful");
-//					}
+					
+					if(user == null || pswd.isEmpty()){
+				        slabel.setText("Please leave no field empty");
+						throw new RuntimeException();
+				    }
 					
 					// set the path
 					if (login.checkUserType(user, pswd).equalsIgnoreCase("customer")) {

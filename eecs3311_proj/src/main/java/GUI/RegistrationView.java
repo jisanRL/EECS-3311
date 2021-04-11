@@ -168,12 +168,13 @@ public class RegistrationView extends JFrame {
 				String userType = (String) lst.getSelectedItem();
 				String password = passwordText.getText();
 				
+				
 				// write into database.csv by calling writeUser method
-				// later -> add exceptions for null input or in valid input
-				if (name.equals(null) || email.equals(null) || phoneNumber.equals(null) || 
-						address.equals(null) || userName.equals(null) || userType.equals(null) || 
-						password.equals(null)) {
-					success.setText("Leave no field empty");
+				if (name==null || email == null || phoneNumber== null || 
+						address == null || userName == null || userType == null || 
+						password.isEmpty()) {
+					success.setText("Please leave no field empty");
+					throw new RuntimeException();
 				} else {
 					Register rg = new Register();
 					try {
@@ -212,7 +213,7 @@ public class RegistrationView extends JFrame {
 
 		// temporary (later -> upon authentication take from login page to booking space / main dashboard)
 		success = new JLabel("");
-		success.setBounds(10, 275, 120, 25);
+		success.setBounds(109, 297, 224, 25);
 		contentPane.add(success);
 	}
 }

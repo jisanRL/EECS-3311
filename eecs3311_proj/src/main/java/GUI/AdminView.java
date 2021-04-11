@@ -181,9 +181,11 @@ public class AdminView extends JFrame {
 				
 				// write into database.csv by calling writeUser method
 				// later -> add exceptions for null input or in valid input
-				if (name.equals(null) || email.equals(null) || phoneNumber.equals(null) || address.equals(null)
-						|| userName.equals(null) || userType.equals(null) || password.equals(null)) {
-					success.setText("Leave no field empty");
+				if (name==null || email == null || phoneNumber== null || 
+						address == null || userName == null || userType == null || 
+						password.isEmpty()) {
+					addRemoveMessage.setText("Please leave no field empty");
+					throw new RuntimeException();
 				} else {
 					try {
 						adm.writeUser(name, userType, email, userName, phoneNumber, address, password);
@@ -223,9 +225,9 @@ public class AdminView extends JFrame {
 				
 				// write into database.csv by calling writeUser method
 				// later -> add exceptions for null input or in valid input
-				if (name.equals(null) || email.equals(null) || phoneNumber.equals(null) || address.equals(null)
-						|| userName.equals(null) || userType.equals(null) || password.equals(null)) {
-					success.setText("Leave no field empty");
+				if (name==null || email == null || phoneNumber== null || address == null || userName == null || userType == null || password.isEmpty()) {
+					addRemoveMessage.setText("Please leave no field empty");
+					throw new RuntimeException();
 				} else {
 					adm.removeUser(name, userType, email, userName, phoneNumber, address, password);
 					addRemoveMessage.setText("PEO successfully Removed");
