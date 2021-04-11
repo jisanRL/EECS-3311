@@ -9,12 +9,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
+import javax.swing.JTable;
 
 public class PaymentStateView extends JFrame {
 
@@ -29,6 +38,8 @@ public class PaymentStateView extends JFrame {
 	private static JTextField emailInput;
 	private static JTextField psnInput;
 	private JButton backButton;
+	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/booking.csv";				// fix this later -> turn to relative path
+	private JTable table;
 	
 	/**
 	 * Launch the application.
@@ -66,7 +77,7 @@ public class PaymentStateView extends JFrame {
 		thisLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		thisLabel.setFont(new Font("Sans-serif", Font.PLAIN, 16));
 		thisLabel.setBackground(Color.WHITE);
-		thisLabel.setBounds(100, 15, 200, 25); // set the position of the component
+		thisLabel.setBounds(168, 6, 200, 25); // set the position of the component
 		contentPane.add(thisLabel); // add to the content
 		
 		// back button takes back to homePage
@@ -119,7 +130,7 @@ public class PaymentStateView extends JFrame {
         
 	    // update customer payment section  
 	    paymentreceivedMessage = new JLabel();
-	    paymentreceivedMessage.setBounds(22,52,300,25);
+	    paymentreceivedMessage.setBounds(18,39,300,25);
 	    double amount = 0.0;
 	    paymentreceivedMessage.setText("Payment Amount received:  $" + amount);
 	    contentPane.add(paymentreceivedMessage);
@@ -136,9 +147,28 @@ public class PaymentStateView extends JFrame {
 	    
 	    JLabel lblTotalAmount = new JLabel();
 	    lblTotalAmount.setText("here we will have a table to view entire booking.csv");
-	    lblTotalAmount.setBounds(78, 117, 414, 25);
+	    lblTotalAmount.setBounds(135, 197, 414, 25);
 	    contentPane.add(lblTotalAmount);
+	  
+	    String col[] = {"USERNAME","BOOKINGID","DATE","BOOKING TIME","DURATION" ,"BOOKING SPOT","PRICE","PAYMENT STATUS" , "LICENSE NUMBER"};
+	    String data[][] = {{},{}};
+	    		
+	    // table to display booking.csv
+	    table = new JTable(data, data);
+	    table.setColumnSelectionAllowed(true);
+	    table.setCellSelectionEnabled(true);
+	    table.setBounds(30, 186, 465, -122);
+	    contentPane.add(table);
 	    
-		
+	    // clicking this button will display the contents of booking.csv
+	    JButton viewBookingbtn = new JButton("Bookings");
+	    viewBookingbtn.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		
+	    		
+	    	}
+	    });
+	    viewBookingbtn.setBounds(458, 38, 86, 25);
+	    contentPane.add(viewBookingbtn);
 	}
 }

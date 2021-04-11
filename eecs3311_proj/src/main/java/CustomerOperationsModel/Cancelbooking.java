@@ -54,7 +54,7 @@ public class Cancelbooking {
 				
 				//FIX THIS PART SO THAT ONLY THE UNIQUE PARKING SPOT IS DELETED
 				// if the target is not equals the input credentials then write all the other lines accept for the line that mathches the inputs  
-				if (!target1.equals(userName) && !target2.equals(bookingID) && !target3.equals(date) && !target4.equals(time) && !target5.equals(duration) && !target6.equals(spotName) && !target7.equals(price) && !target8.equals(paymentStat) && !target9.equals(licenceNum)) {
+				if (!target2.equals(bookingID) && !target3.equals(date) && !target4.equals(time) && !target5.equals(duration) && !target6.equals(spotName)&& !target7.equals(price) && !target8.equals(paymentStat) && !target9.equals(licenceNum)) {
 					pw.println(target1 + ","+ target2 + "," + target3 + ","+ target4 + "," + target5 + ","+ target6 + "," + target7 + ","+ target8 + "," + target9);
 				}		
 			}
