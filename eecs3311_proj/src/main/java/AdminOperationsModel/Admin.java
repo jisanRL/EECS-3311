@@ -33,7 +33,6 @@ public class Admin {
 	 * 		BASICSLLY -> CHECK THE USERNAME COLUMN
 	 * 		Authenticates and verifies the users existance in database.csv
 	 */
-	// for testing turn is to static void
 	public void authenticate(String userName, String password) {
 		String line = "";
 		String[] val = null;
@@ -147,9 +146,6 @@ public class Admin {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

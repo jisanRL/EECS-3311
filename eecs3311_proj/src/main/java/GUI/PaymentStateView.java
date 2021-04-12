@@ -123,7 +123,7 @@ public class PaymentStateView extends JFrame {
 		
 		 // later -> move this to the new paymentView GUI once confirmPaymentButton is clicked this message will appear, implement this
 		paymentconfirmedMessage = new JLabel();
-		paymentconfirmedMessage.setBounds(168,341,200,25);
+		paymentconfirmedMessage.setBounds(156,329,200,25);
 		paymentconfirmedMessage.setText("Payment Confirmed");
 	    contentPane.add(paymentconfirmedMessage);
 
@@ -142,7 +142,7 @@ public class PaymentStateView extends JFrame {
 	    		
 	    	}
 	    });
-	    btnNewButton.setBounds(122, 313, 200, 29);
+	    btnNewButton.setBounds(117, 300, 200, 29);
 	    contentPane.add(btnNewButton);
 	    
 	    JLabel lblTotalAmount = new JLabel();

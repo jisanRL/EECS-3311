@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import CustomerOperationsModel.Cancelbooking;
+import CustomerOperationsModel.ViewBooking;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -19,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JList;
 
 public class ReservationView extends JFrame {
 
@@ -27,6 +30,7 @@ public class ReservationView extends JFrame {
 	private JButton backButton;
 	private JTextField spotName;
 	private JLabel lblBookingCancelled;
+	private JList list;
 	HomePage hp = new HomePage();
 
 	/**
@@ -76,7 +80,7 @@ public class ReservationView extends JFrame {
 				hp.setVisible(true);
 			}
 		});
-		backButton.setBounds(439, 17, 86, 25);
+		backButton.setBounds(458, 17, 86, 25);
 	    contentPane.add(backButton);
 	    
 	    // later -> customer clicks on a button, a jPane opens up and enters their booking number
@@ -106,11 +110,6 @@ public class ReservationView extends JFrame {
 	    btnCancellations.setBounds(125, 256, 199, 25);
 	    contentPane.add(btnCancellations);
 	    
-	    // display all the bookings of the logged in user
-	    JScrollPane scrollPane = new JScrollPane();
-	    scrollPane.setBounds(30, 52, 495, 118);
-	    contentPane.add(scrollPane);
-	    
 	    spotName = new JTextField(20);
 	    spotName.setBounds(140, 230, 175, 25);
 	    contentPane.add(spotName);
@@ -123,6 +122,31 @@ public class ReservationView extends JFrame {
 	    lblBookingCancelled = new JLabel();
 	    lblBookingCancelled.setBounds(166, 293, 118, 25);
 	    contentPane.add(lblBookingCancelled);
+	    
+	    list = new JList();
+	    list.setBounds(25, 46, 423, 172);
+	    contentPane.add(list);
+	    
+	    JButton viewBookingbtn = new JButton("Bookings");
+	    viewBookingbtn.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		DefaultListModel dl = new DefaultListModel();
+	    		ViewBooking vb = new ViewBooking();
+	    		dl.addElement(vb.viewBooking());
+//	    		dl.addElement("Name");
+//	    		dl.addElement("Name");
+//	    		dl.addElement("Name");
+//	    		dl.addElement("Name");
+//	    		dl.addElement("Name");
+	    		list.setModel(dl);
+	    	}
+	    });
+	    viewBookingbtn.setBounds(458, 43, 86, 25);
+	    contentPane.add(viewBookingbtn);
+	    
+	    JScrollPane scrollPane = new JScrollPane();
+	    scrollPane.setBounds(25, 46, 423, 172);
+	    contentPane.add(scrollPane);
 		
 		// the table -> https://www.geeksforgeeks.org/java-swing-jtable/
 		
