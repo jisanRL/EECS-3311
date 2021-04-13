@@ -346,6 +346,13 @@ public class HomePage extends JFrame {
 		// gets the duration input for calculating the price 
 		durationbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String v = durationInput.getText();
+				int h = Integer.parseInt(v);
+				if (h < 0 || h > 24) {
+					lblThisWillDisplay.setText("Can't book more the 24 hrs or less then 0 hrs");
+				} else if(durationInput.getText().equals(null)) {
+					lblThisWillDisplay.setText("Leave no field blank");
+				}
 				double price2 = payment.price(Double.parseDouble(durationInput.getText()));
 				String prc2 = Double.toString(price2);
 				lblThisWillDisplay.setText(prc2);

@@ -25,7 +25,6 @@ public class PaymentStatus {
 	 * 4.9.3-REQ-3:
 	 * BASICALLY -> check the 6th index of the csv array for booking status and 4th index for bookingspot
 	 */
-	// for testing turn is to static void
 	public void authenticate(String userName, String password) {
 		String line = "";
 		String[] val = null;
@@ -55,7 +54,6 @@ public class PaymentStatus {
 					isExists = false;
 				}
 			}
-			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,33 +72,33 @@ public class PaymentStatus {
 		List<String> lst2 = new ArrayList<String>();
 		
 		// FIX THIS
+		//USERNAME,BOOKINGID,DATE,TIME OF BOOKING,DURATION ,BOOKING SPOT,PRICE,PAYMENT STATUS , LICENSE NUMBER
+		
  		try {
 			BufferedReader bfr = new BufferedReader(new FileReader(path));
 			while ((line = bfr.readLine()) != null) {
 				val = line.split(",");
 				
 				// fix this
-				String pp = val[0] + " " + val[1] + " " + val[2];
-//				+ " " + val[3] + " " + val[4] + " " + val[5] + " " + val[6] + " " + val[7] + " " + val[8];
+				String pp = val[0] + " " + val[1] + " " + val[2] + " " ;
+				//+  val[3] + " " + val[4] + " " + val[5] + " " + val[6] + " " + val[7] + " " + val[8];
+				
+//				String username = val[0];
+//				String bookingID = val[1];
+//				String date = val[2];
+//				String bookingtime = val[3];
+//				String duration = val[4];
+//				String bookingspot =val[5];
+//				String price = val[6];
+//				String paystat = val[7];
+//				String lcNum = val[8];
 				
 				// convert the array into list and put the val into the arraylists
 //				lst = Arrays.asList(val);
 				lst.add(pp);
 				System.out.println(lst);
 				
-				
-//				// check if the list index 4(username) and index 7(password) contains the input  [&& lst.get(6).contains(password)]
-//				if (lst.get(3).contains(userName) ) {
-//					isExists = true;
-//					String msg = "User exists";
-//					System.out.println("is exists = " + isExists + " " + msg);
-//					break;
-//				} else {
-//					String msg = "User doesn't exist";
-//					System.out.println("is exists = " + isExists + " " + msg);
-//					isExists = false;
-//				}
-//				val = new String[20];
+				val = new String[20];
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
