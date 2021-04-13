@@ -65,6 +65,54 @@ public class PaymentStatus {
 	}
 	
 	/*
+	 * Displays the booking.csv
+	 */
+	public List<String> viewBooking() {
+		String line = "";
+		String[] val = new String[20];
+		List<String> lst = new ArrayList<String>();
+		List<String> lst2 = new ArrayList<String>();
+		
+		// FIX THIS
+ 		try {
+			BufferedReader bfr = new BufferedReader(new FileReader(path));
+			while ((line = bfr.readLine()) != null) {
+				val = line.split(",");
+				
+				// fix this
+				String pp = val[0] + " " + val[1] + " " + val[2];
+//				+ " " + val[3] + " " + val[4] + " " + val[5] + " " + val[6] + " " + val[7] + " " + val[8];
+				
+				// convert the array into list and put the val into the arraylists
+//				lst = Arrays.asList(val);
+				lst.add(pp);
+				System.out.println(lst);
+				
+				
+//				// check if the list index 4(username) and index 7(password) contains the input  [&& lst.get(6).contains(password)]
+//				if (lst.get(3).contains(userName) ) {
+//					isExists = true;
+//					String msg = "User exists";
+//					System.out.println("is exists = " + isExists + " " + msg);
+//					break;
+//				} else {
+//					String msg = "User doesn't exist";
+//					System.out.println("is exists = " + isExists + " " + msg);
+//					isExists = false;
+//				}
+//				val = new String[20];
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return lst;
+	}
+	
+	
+	/*
 	 * 4.9.3-REQ-4: The system must verify the customer’s payment of the parking space before changing their payment status
 	 * BASICALLY -> go through the booking.csv and check index6 of the array 
 	 * 		if the status = yes 
@@ -73,13 +121,15 @@ public class PaymentStatus {
 	 *			change status to yes
 	 * BASICALLY -> read through booking.csv edit index6 if its a NO
 	 */
-	public void confirmPayment() {
+	public void confirmPayment(String name, String email, String parkingspace) {
 		
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("PAYMENT STATUS");
+		PaymentStatus py = new PaymentStatus();
+		System.out.println(py.viewBooking());
 	}
 
 }

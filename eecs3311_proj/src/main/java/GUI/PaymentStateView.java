@@ -7,6 +7,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -15,12 +16,16 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import AdminOperationsModel.PaymentStatus;
+import CustomerOperationsModel.ViewBooking;
+
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
@@ -38,8 +43,8 @@ public class PaymentStateView extends JFrame {
 	private static JTextField emailInput;
 	private static JTextField psnInput;
 	private JButton backButton;
+	private JList list;
 	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/booking.csv";				// fix this later -> turn to relative path
-	private JTable table;
 	
 	/**
 	 * Launch the application.
@@ -150,15 +155,16 @@ public class PaymentStateView extends JFrame {
 	    lblTotalAmount.setBounds(135, 197, 414, 25);
 	    contentPane.add(lblTotalAmount);
 	  
+	    
+	    ArrayList<String> mx = new ArrayList<String>();
+	    PaymentStatus ps = new PaymentStatus();
+//		mx.addAll();
+	    list = new JList(ps.viewBooking().toArray());
+	    list.setBounds(28, 62, 499, 131);
+	    contentPane.add(list);
+	    
 	    String col[] = {"USERNAME","BOOKINGID","DATE","BOOKING TIME","DURATION" ,"BOOKING SPOT","PRICE","PAYMENT STATUS" , "LICENSE NUMBER"};
 	    String data[][] = {{},{}};
-	    		
-	    // table to display booking.csv
-	    table = new JTable(data, data);
-	    table.setColumnSelectionAllowed(true);
-	    table.setCellSelectionEnabled(true);
-	    table.setBounds(30, 186, 465, -122);
-	    contentPane.add(table);
 	    
 	    // clicking this button will display the contents of booking.csv
 	    JButton viewBookingbtn = new JButton("Bookings");
@@ -170,5 +176,11 @@ public class PaymentStateView extends JFrame {
 	    });
 	    viewBookingbtn.setBounds(458, 38, 86, 25);
 	    contentPane.add(viewBookingbtn);
+	    
+	    JScrollPane scrollPane = new JScrollPane();
+	    scrollPane.setBounds(28, 62, 499, 131);
+	    scrollPane.setViewportView(list);
+	    list.setLayoutOrientation(JList.VERTICAL);
+	    contentPane.add(scrollPane);
 	}
 }

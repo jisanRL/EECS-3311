@@ -18,6 +18,7 @@ import CustomerOperationsModel.ViewBooking;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -123,32 +124,38 @@ public class ReservationView extends JFrame {
 	    lblBookingCancelled.setBounds(166, 293, 118, 25);
 	    contentPane.add(lblBookingCancelled);
 	    
-	    list = new JList();
+	    ArrayList<String> mx = new ArrayList<String>();
+	    ViewBooking vb = new ViewBooking();
+//		mx.addAll();
+	    list = new JList(vb.viewBooking().toArray());
 	    list.setBounds(25, 46, 423, 172);
 	    contentPane.add(list);
 	    
-	    JButton viewBookingbtn = new JButton("Bookings");
-	    viewBookingbtn.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    		DefaultListModel dl = new DefaultListModel();
-	    		ViewBooking vb = new ViewBooking();
-	    		dl.addElement(vb.viewBooking());
-//	    		dl.addElement("Name");
-//	    		dl.addElement("Name");
-//	    		dl.addElement("Name");
-//	    		dl.addElement("Name");
-//	    		dl.addElement("Name");
-	    		list.setModel(dl);
-	    	}
-	    });
-	    viewBookingbtn.setBounds(458, 43, 86, 25);
-	    contentPane.add(viewBookingbtn);
+//	    JButton viewBookingbtn = new JButton("Bookings");
+//	    viewBookingbtn.addActionListener(new ActionListener() {
+//	    	public void actionPerformed(ActionEvent e) {
+////	    		DefaultListModel dl = new DefaultListModel();
+////	    		ViewBooking vb = new ViewBooking();
+////	    		
+////	    		ArrayList<String> mx = new ArrayList<String>();
+////	    		mx.addAll(vb.viewBooking());
+////	    		dl.addElement(mx);
+//////	    		dl.addElement("Name");
+//////	    		dl.addElement("Name");
+//////	    		dl.addElement("Name");
+//////	    		dl.addElement("Name");
+//////	    		dl.addElement("Name");
+////	    		list.setModel(dl);
+//	    	}
+//	    });
+//	    viewBookingbtn.setBounds(458, 43, 86, 25);
+//	    contentPane.add(viewBookingbtn);
 	    
 	    JScrollPane scrollPane = new JScrollPane();
 	    scrollPane.setBounds(25, 46, 423, 172);
+	    scrollPane.setViewportView(list);
+	    list.setLayoutOrientation(JList.VERTICAL);
 	    contentPane.add(scrollPane);
-		
-		// the table -> https://www.geeksforgeeks.org/java-swing-jtable/
 		
 		
 	}

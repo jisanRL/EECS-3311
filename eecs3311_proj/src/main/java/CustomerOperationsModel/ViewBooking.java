@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,22 +21,26 @@ public class ViewBooking {
 	/*
 	 * 4.7.3-REQ-1
 	 * both customer and PEO has access to this method
+	 * 
 	 */
 	public List<String> viewBooking() {
 		String line = "";
 		String[] val = null;
-		List<String> lst = null;
-		boolean isExists = false;
+		List<String> lst = new ArrayList<String>();
 		
+		// FIX THIS
  		try {
 			BufferedReader bfr = new BufferedReader(new FileReader(path));
-			while ((line = bfr.readLine())!= null) {
+			while ((line = bfr.readLine()) != null) {
 				val = line.split(",");
 				
+				String pp = val[0] + "   " + val[2] + "   " + val[3];
 				// convert the array into list and put the val into the arraylists
-				lst = Arrays.asList(val);
+				// val[0] + " Booking Time: " + val[3] + "  Duration: " + val[4]+ " Spot: " + val[5] + " Price: " + val[6];
+//				lst = Arrays.asList(val);
+				lst.add(pp);
 				System.out.println(lst);
-//				System.out.println("userName:" + lst.get(3) + ",  "+ "userType:" + lst.get(1) + ", " +  "password:" + lst.get(6));
+				
 				
 //				// check if the list index 4(username) and index 7(password) contains the input  [&& lst.get(6).contains(password)]
 //				if (lst.get(3).contains(userName) ) {
@@ -48,6 +53,7 @@ public class ViewBooking {
 //					System.out.println("is exists = " + isExists + " " + msg);
 //					isExists = false;
 //				}
+				val = new String[20];
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
