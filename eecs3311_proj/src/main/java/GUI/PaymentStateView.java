@@ -129,7 +129,6 @@ public class PaymentStateView extends JFrame {
 		 // later -> move this to the new paymentView GUI once confirmPaymentButton is clicked this message will appear, implement this
 		paymentconfirmedMessage = new JLabel();
 		paymentconfirmedMessage.setBounds(156,329,200,25);
-		paymentconfirmedMessage.setText("Payment Confirmed");
 	    contentPane.add(paymentconfirmedMessage);
 
         
@@ -144,16 +143,27 @@ public class PaymentStateView extends JFrame {
 	    JButton btnNewButton = new JButton("Paid");
 	    btnNewButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
+	    		PaymentStatus ps = new PaymentStatus();
+	    		String name = nameInput.getText();
+	    		String email = emailInput.getText();
+	    		String pspot  = psnInput.getText();
 	    		
+	    		try {
+					ps.confirmPayment(name, email, pspot);
+					paymentconfirmedMessage.setText("Payment Confirmed");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	    	}
 	    });
 	    btnNewButton.setBounds(117, 300, 200, 29);
 	    contentPane.add(btnNewButton);
 	    
-	    JLabel lblTotalAmount = new JLabel();
-	    lblTotalAmount.setText("here we will have a table to view entire booking.csv");
-	    lblTotalAmount.setBounds(135, 197, 414, 25);
-	    contentPane.add(lblTotalAmount);
+//	    JLabel lblTotalAmount = new JLabel();
+//	    lblTotalAmount.setText("here we will have a table to view entire booking.csv");
+//	    lblTotalAmount.setBounds(135, 197, 414, 25);
+//	    contentPane.add(lblTotalAmount);
 	  
 	    
 	    ArrayList<String> mx = new ArrayList<String>();

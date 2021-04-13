@@ -21,7 +21,7 @@ public class ViewBooking {
 	/*
 	 * 4.7.3-REQ-1
 	 * both customer and PEO has access to this method
-	 * 
+	 * display 
 	 */
 	public List<String> viewBooking() {
 		String line = "";
@@ -34,7 +34,7 @@ public class ViewBooking {
 			while ((line = bfr.readLine()) != null) {
 				val = line.split(",");
 				
-				String pp = val[0] + "   " + val[2] + "   " + val[3];
+				String pp = val[0] + "  " + val[3] + "  " + val[4] + "  " + val[5] ;
 				// convert the array into list and put the val into the arraylists
 				// val[0] + " Booking Time: " + val[3] + "  Duration: " + val[4]+ " Spot: " + val[5] + " Price: " + val[6];
 //				lst = Arrays.asList(val);

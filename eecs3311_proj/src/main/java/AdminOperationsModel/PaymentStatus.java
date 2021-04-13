@@ -1,12 +1,17 @@
 package AdminOperationsModel;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /*
  * REQ: 4.9
@@ -18,6 +23,8 @@ import java.util.List;
 public class PaymentStatus {
 	
 	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/booking.csv";				// fix this later -> turn to relative path
+	private static String path2 = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/admindatabase.csv";
+	private static Scanner x;
 	
 	/*	
 	 * 	FIX THIS
@@ -119,7 +126,25 @@ public class PaymentStatus {
 	 *			change status to yes
 	 * BASICALLY -> read through booking.csv edit index6 if its a NO
 	 */
-	public void confirmPayment(String name, String email, String parkingspace) {
+	public void confirmPayment(String name, String email, String parkingspace) throws IOException {
+		File fw = new File(path2);							// path to the file
+		FileWriter fwt = new FileWriter(fw, true);
+		BufferedWriter bfw = new BufferedWriter(fwt);
+		PrintWriter pw = new PrintWriter(bfw);				// prints to the file
+		
+		x = new Scanner(new File(path2));
+		x.useDelimiter("[,\n]");
+		
+		if (!fw.exists()) {
+			fw.createNewFile();
+			System.out.println("File exists");
+		} else {
+			System.out.println("File doesn't exist");
+		}
+		
+		pw.printf("%s,%s,%s\n", name, email,parkingspace);		// writes to the file
+		pw.flush();		// flushes the data into the csv
+		pw.close();		//close file
 		
 	}
 
