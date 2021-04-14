@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import Interfaces.Customer;
+
 /*
  * REQ; 4.5
  * 		4.5.3-REQ-1: Customer must be registered and logged-in before cancelling a parking space  [[done in REQ 4.2 and 4.3]]
