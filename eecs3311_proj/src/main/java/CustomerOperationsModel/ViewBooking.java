@@ -23,7 +23,7 @@ public class ViewBooking {
 	 * both customer and PEO has access to this method
 	 * display 
 	 */
-	public List<String> viewBooking() {
+	public List<String> viewBooking(String userName) {
 		String line = "";
 		String[] val = null;
 		List<String> lst = new ArrayList<String>();
@@ -34,13 +34,15 @@ public class ViewBooking {
 			while ((line = bfr.readLine()) != null) {
 				val = line.split(",");
 				
-				String pp = val[0] + "  " + val[3] + "  " + val[4] + "  " + val[5] ;
-				// convert the array into list and put the val into the arraylists
-				// val[0] + " Booking Time: " + val[3] + "  Duration: " + val[4]+ " Spot: " + val[5] + " Price: " + val[6];
-//				lst = Arrays.asList(val);
-				lst.add(pp);
-				System.out.println(lst);
-				
+				if (val[0].contains(userName)) {
+					
+					String pp = val[0] + "  " + val[3] + "  " + val[4] + "  " + val[5] ;
+					// convert the array into list and put the val into the arraylists
+					// val[0] + " Booking Time: " + val[3] + "  Duration: " + val[4]+ " Spot: " + val[5] + " Price: " + val[6];
+	//				lst = Arrays.asList(val);
+					lst.add(pp);
+					System.out.println(lst);
+				}
 				
 //				// check if the list index 4(username) and index 7(password) contains the input  [&& lst.get(6).contains(password)]
 //				if (lst.get(3).contains(userName) ) {
@@ -74,7 +76,8 @@ public class ViewBooking {
 		// TODO Auto-generated method stub
 		System.out.println("View Booking");
 		ViewBooking vb = new ViewBooking();
-		vb.viewBooking();
+		String username = "farhan95";
+		vb.viewBooking(username);
 	}
 
 }

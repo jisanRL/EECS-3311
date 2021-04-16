@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import CustomerOperationsModel.Cancelbooking;
 import CustomerOperationsModel.ViewBooking;
+import RegistrationLoginModel.Login;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -124,10 +125,12 @@ public class ReservationView extends JFrame {
 	    lblBookingCancelled.setBounds(166, 293, 118, 25);
 	    contentPane.add(lblBookingCancelled);
 	    
+	    String userName = LoginView.user;
 	    ArrayList<String> mx = new ArrayList<String>();
 	    ViewBooking vb = new ViewBooking();
 //		mx.addAll();
-	    list = new JList(vb.viewBooking().toArray());
+//	    String userName = LoginView.user;
+	    list = new JList(vb.viewBooking(userName).toArray());
 	    list.setBounds(25, 46, 423, 172);
 	    contentPane.add(list);
 	    
