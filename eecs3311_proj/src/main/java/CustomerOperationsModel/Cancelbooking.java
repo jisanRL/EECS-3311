@@ -72,11 +72,6 @@ public class Cancelbooking {
 		}
 	}
 	
-	
-	public void bookingIDCheck() {
-		
-	}
-	
 	/* 4.5.3-REQ-3 */
 	public boolean checkTiming() {
 		return false;

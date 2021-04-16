@@ -64,12 +64,6 @@ public class ViewBooking {
 		return lst;
 	}
 	
-	/*
-	 * 4.7.3-REQ-2:
-	 */
-	public void viewBookingDetails() {
-		
-	}
 	
 	/* 4.7.3-REQ-3: */
 	public void notifyCustomer() {

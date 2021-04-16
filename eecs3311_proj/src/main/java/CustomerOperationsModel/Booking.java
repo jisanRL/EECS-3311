@@ -30,7 +30,7 @@ import Interfaces.Customer;
  * 		4.4.3-REQ-6: Each booked parking space receives a unique booking ID  [DONE]
  * 		4.4.3-REQ-7: The system must display an error message if the parking space the customer booked is occupied in the system [DONE]
  */
-public class Booking extends Customer {
+public class Booking {
 	
 	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/booking.csv";		// fix this later -> turn to relative path
 
@@ -39,7 +39,6 @@ public class Booking extends Customer {
 	 * REMOVE STATIC AFTER TESTING
 	 */
 	public boolean checkParkingSpace(String spotName) {
-		//FIX THIS
 		String line = "";
 		String[] val = null;
 		boolean isExists = false;
@@ -79,7 +78,7 @@ public class Booking extends Customer {
 	/*
 	 * 4.4.3-REQ-5: The system allows a customer to book up to three parking spaces  [in a given location;ie.3 space in york at a time]
 	 * 4.4.3-REQ-7: The system must display an error message if the parking space the customer booked is occupied in the system
-	 * BOOKING.CSV schema -> USERNAME,BOOKINGID,DATE,TIME OF BOOKING,DURATION ,BOOKING SPOT,PRICE,PAYMENT STATUS , LICENSE NUMBER
+	 * BOOKING.CSV schema -> USERNAME,BOOKINGID,DATE,TIME OF BOOKING,DURATION,BOOKING SPOT,PRICE,PAYMENT STATUS, LICENSE NUMBER, EXPIRY TIME
 	 */
 	public void bookparkingSpace(String userName, String bookingID, String date, String time, 
 			String duration,String spotName, String price, String paymentStat, String licenceNum) throws IOException {

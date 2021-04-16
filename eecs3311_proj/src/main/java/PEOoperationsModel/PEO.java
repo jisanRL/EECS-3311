@@ -31,7 +31,7 @@ public class PEO {
 	
  	/* 4.8.3-REQ-4
 	 * add parking spot to the bookingpeo.csv
-	 * spotName convention -> location abreviation + num[1-1500] eg: york78 [location: york, spot number:78]
+	 * spotName convention -> location abreviation + num[1-50] eg: york78 [location: york, spot number:78]
 	 * table schema ->   spotname
 	 */
 	public void addSpaces(String spotName) throws IOException {
@@ -91,6 +91,41 @@ public class PEO {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean checkParkingSpace(String spotName) {
+		String line = "";
+		String[] val = null;
+		boolean isExists = false;
+		
+ 		try {
+			BufferedReader bfr = new BufferedReader(new FileReader(path));
+			while ((line = bfr.readLine())!= null) {
+				val = line.split(",");
+				
+				// convert the array into list and put the val into the arraylists
+				List<String> lst = Arrays.asList(val);
+				System.out.println(lst);
+				System.out.println("spotName:" + lst.get(0));
+				
+				if (lst.get(0).contains(spotName)) {
+					isExists = true;
+					String msg = "Spot is occupied";
+					System.out.println("is exists = " + isExists + "; " + msg);
+					break;
+				} else {
+					String msg = "Spot is free";
+					System.out.println("is exists = " + isExists + "; " + msg);
+					isExists = false;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return isExists;
 	}
 	
 	/*

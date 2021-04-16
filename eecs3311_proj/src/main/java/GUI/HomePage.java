@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 
 import CustomerOperationsModel.Booking;
 import CustomerOperationsModel.Payment;
+import PEOoperationsModel.PEO;
 import RegistrationLoginModel.Register;
 
 public class HomePage extends JFrame {
@@ -46,8 +47,9 @@ public class HomePage extends JFrame {
 	private JButton dateButton;
 	Booking booking = new Booking();
 	Payment payment = new Payment();
+	PEO peo = new PEO();
 	String spotName; String bookingID; String currentTime; String currentDate;
-	String startTime;String dateinput; String duration; String licenseplate; 
+	String startTime;String dateinput; String duration; String licenseplate; String expiryTime;
 	String prc; double price; String paymentStat;
 	private JTextField creditcardinput;
 	private JLabel priceTag;
@@ -158,9 +160,8 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String pks = parkingspotinput.getText();
 				
-				Booking kp = new Booking();
 				System.out.println(pks);
-				if (!kp.checkParkingSpace(pks)) {
+				if (!booking.checkParkingSpace(pks) && !peo.checkParkingSpace(pks)) {
 					slabel.setText("This spot is free");
 				} else {
 					slabel.setText("This spot is occupied Please try another spot");
@@ -246,6 +247,8 @@ public class HomePage extends JFrame {
 				price = payment.price(Double.parseDouble(duration));
 				prc = Double.toString(price);
 				paymentStat = "Paid at: " + payment.timeStamp(); 
+				
+				expiryTime = payment.counter(Integer.parseInt(startTime));
 				
 				// dump the data to booking.csv later -> add exceptions for null input or in valid input
 				try {

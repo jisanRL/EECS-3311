@@ -47,11 +47,16 @@ public class Payment {
 	
 	/*  4.6.3-REQ-5 
 	 *  STARTS EXECUTING WHEN THE PAY BUTTON IS CLICKED
-	 *  LIKE A TIMER
+	 *  Add time to the current time 
+	 *  This calculates the expire time 
 	 * */
-	public void counter(int duration) {
-//		Timestamp ts = new Timestamp(System.currentTimeMillis());
-//		System.out.println(new Date(ts.getTime()));
+	public String counter(int duration) {
+		Calendar calendar = Calendar.getInstance();
+//	    System.out.println("Current Date = " + calendar.getTime());
+	    calendar.add(Calendar.HOUR_OF_DAY, +duration);
+	    System.out.println("Updated Date = " + calendar.getTime());
+		
+	    return calendar.toString();
 	}
 	
 	/* 4.6.3-REQ-7: */
