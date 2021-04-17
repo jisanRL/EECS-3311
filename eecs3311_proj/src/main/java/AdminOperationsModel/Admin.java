@@ -22,7 +22,7 @@ import java.util.Scanner;
  */
 public class Admin {
 	
-	private static String userPath = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/database.csv";		// fix this later -> turn to relative path
+	private static String userPath = "../eecs3311_proj/CSVs/database.csv";	
 	private static Scanner x;
 	
 	

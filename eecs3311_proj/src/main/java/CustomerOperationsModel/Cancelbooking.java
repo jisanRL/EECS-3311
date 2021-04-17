@@ -16,7 +16,7 @@ import Interfaces.Customer;
  */
 public class Cancelbooking {
 	
-	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/booking.csv";		// fix this later -> turn to relative path
+	private static String path = "../eecs3311_proj/CSVs/booking.csv";
 	private static Scanner x;
 	
 	/* 4.5.3-REQ-2 

@@ -23,7 +23,7 @@ import java.util.Scanner;
  */
 public class PEO {
 	
-	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/bookingpeo.csv";				// fix this later -> turn to relative path
+	private static String path = "../eecs3311_proj/CSVs/bookingpeo.csv";				
 	private static List<String> parkingspot = Arrays.asList(new String[1500]);
 	private final int spotPerLocation = 50;
 	private static Scanner x;

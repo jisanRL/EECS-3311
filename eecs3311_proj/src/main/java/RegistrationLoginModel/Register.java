@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Register {
 	
 	private static User user;  			// composition 
-	private static String userPath = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/database.csv";		// fix this later -> turn to relative path
+	private static String userPath = "../eecs3311_proj/CSVs/database.csv";
 	
 	/*
 	 * writes the user details to the database file

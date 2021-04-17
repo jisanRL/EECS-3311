@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ViewBooking {
 	
-	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/booking.csv";		// fix this later -> turn to relative path
+	private static String path = "../eecs3311_proj/CSVs/booking.csv";	
 
 	/*
 	 * 4.7.3-REQ-1

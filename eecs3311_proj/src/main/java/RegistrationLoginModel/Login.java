@@ -24,7 +24,7 @@ public class Login {
 	private ArrayList<String> userType;
 	private ArrayList<String> password;
 	
-	private static String userPath = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/database.csv";		// fix this later -> turn to relative path
+	private static String userPath = "../eecs3311_proj/CSVs/database.csv";	
 	
 	
 	/*

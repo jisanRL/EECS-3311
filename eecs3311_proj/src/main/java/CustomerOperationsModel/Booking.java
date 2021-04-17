@@ -32,7 +32,7 @@ import Interfaces.Customer;
  */
 public class Booking {
 	
-	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/booking.csv";		// fix this later -> turn to relative path
+	private static String path = "../eecs3311_proj/CSVs/booking.csv";	
 
 	/* 4.4.3-REQ-2 
 	 * READS THHROUGH BOOKING.CSV INDEX 5 AND SEES IF THE ENTERED SPOT IS THERE OR NOT
