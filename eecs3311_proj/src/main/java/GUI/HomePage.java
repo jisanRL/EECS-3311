@@ -247,27 +247,20 @@ public class HomePage extends JFrame {
 				price = payment.price(Double.parseDouble(duration));
 				prc = Double.toString(price);
 				paymentStat = "Paid at: " + payment.timeStamp(); 
-				
 //				expiryTime = payment.counter(Integer.parseInt(startTime));
 				
 				// dump the data to booking.csv later -> add exceptions for null input or in valid input
-				try {
-					if (booking.userCount(userName) > 3) {
-						slabel.setText("You can't have more then 3 bookings");
-					}
-				} catch (FileNotFoundException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-				
 				if (userName.equals(null) || spotName.equals(null) || currentDate.equals(null) || currentTime.equals(null) ||
 						duration.equals(null) || licenseplate.equals(null)) {
 					slabel.setText("Leave no field empty");
 				} else {
-					Booking bk = new Booking();
 					try {
-						bk.bookparkingSpace(userName,bookingID,dateinput,startTime,duration,spotName,prc,paymentStat,licenseplate);
-						slabel.setText("Space Reserved, complete payment to book the spot");
+						if (booking.userCount(userName) > 3) {
+							slabel.setText("You can't have more then 3 bookings");
+						} else {
+							booking.bookparkingSpace(userName, bookingID, dateinput, startTime, duration, spotName, prc, paymentStat, licenseplate);
+							slabel.setText("Space Reserved, complete payment to book the spot");
+						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

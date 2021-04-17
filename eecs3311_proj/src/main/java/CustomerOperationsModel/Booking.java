@@ -100,40 +100,24 @@ public class Booking {
 		
 	}
 	
-	
 	 // 4.4.3-REQ-5:
-	public int userCount(String userName) throws FileNotFoundException {
+	public int userCount(String userName) {
 		String line = "";
 		String[] val = null;
-		boolean isExists = false;
+		List<String> lst = new ArrayList<String>();
 		int count = 0;
 		
  		try {
 			BufferedReader bfr = new BufferedReader(new FileReader(path));
 			while ((line = bfr.readLine())!= null) {
 				val = line.split(",");
-//				System.out.println("userName:" + val[3] + ",  "+ "userType:" + val[1] + ", " +  "password:" + val[6]);
 				
-				// convert the array into list and put the val into the arraylists
-				List<String> lst = Arrays.asList(val);
-				System.out.println(lst);
-				System.out.println("userName:" + lst.get(0));
-				
-				List<String> pp = new ArrayList<String>();
-				pp.add(lst.get(0));
-				System.out.println(("PP = " + pp));
-				count = Collections.frequency(pp, userName);
-				System.out.println(count);
-
-//				// check if the list contains index 4(spotName) and index 7(password) contains the input
-//				if (lst.get(0).contains(userName)) {
-//					isExists = true;
-//					
-//					break;
-//				} else {
-//					isExists = false;
-//					
-//				}
+				if (val[0].contains(userName)) {
+					String pp = val[0];
+					lst.add(pp);
+					count = Collections.frequency(lst, userName);
+					System.out.println("usercount: " + lst);
+				}
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -141,6 +125,7 @@ public class Booking {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+ 		System.out.println("count: " + count);
 		return count;
 	}
 	
@@ -154,7 +139,6 @@ public class Booking {
 		for (int i = 0; i < len; i++) {
 			str.append(chr.charAt(rn.nextInt(chr.length())));
 		}
-			
 		return str.toString();
 	}
 
