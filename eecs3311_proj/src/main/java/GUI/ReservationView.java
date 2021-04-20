@@ -128,31 +128,9 @@ public class ReservationView extends JFrame {
 	    String userName = LoginView.user;
 	    ArrayList<String> mx = new ArrayList<String>();
 	    ViewBooking vb = new ViewBooking();
-//		mx.addAll();
-//	    String userName = LoginView.user;
 	    list = new JList(vb.viewBooking(userName).toArray());
 	    list.setBounds(25, 46, 423, 172);
 	    contentPane.add(list);
-	    
-//	    JButton viewBookingbtn = new JButton("Bookings");
-//	    viewBookingbtn.addActionListener(new ActionListener() {
-//	    	public void actionPerformed(ActionEvent e) {
-////	    		DefaultListModel dl = new DefaultListModel();
-////	    		ViewBooking vb = new ViewBooking();
-////	    		
-////	    		ArrayList<String> mx = new ArrayList<String>();
-////	    		mx.addAll(vb.viewBooking());
-////	    		dl.addElement(mx);
-//////	    		dl.addElement("Name");
-//////	    		dl.addElement("Name");
-//////	    		dl.addElement("Name");
-//////	    		dl.addElement("Name");
-//////	    		dl.addElement("Name");
-////	    		list.setModel(dl);
-//	    	}
-//	    });
-//	    viewBookingbtn.setBounds(458, 43, 86, 25);
-//	    contentPane.add(viewBookingbtn);
 	    
 	    JScrollPane scrollPane = new JScrollPane();
 	    scrollPane.setBounds(25, 46, 423, 172);

@@ -150,9 +150,43 @@ public class PEO {
 		return spotPerLocation - cnt;
 	}
 	
+	/*
+	 * views the booking by the PEO
+	 */
+	public List<String> viewBooking(String userName) {
+		String line = "";
+		String[] val = null;
+		List<String> lst = new ArrayList<String>();
+		
+		// FIX THIS
+		try {
+			BufferedReader bfr = new BufferedReader(new FileReader(path));
+			while ((line = bfr.readLine()) != null) {
+				val = line.split(",");
+
+				String pp = val[0];
+				lst.add(pp);
+				System.out.println(lst);
+
+				val = new String[20];
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return lst;
+	}
+	
+	
+	
 	public static void main(String[] args) throws IOException {
 		System.out.println("PEO");
 //		addSpaces("york75");
 //		removeSpaces("york75");
+		PEO peo = new PEO();
+		
+		System.out.println(peo.viewBooking("adrian11"));
 	}
 }

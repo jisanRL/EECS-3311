@@ -6,11 +6,13 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -18,13 +20,12 @@ import javax.swing.border.EmptyBorder;
 import PEOoperationsModel.PEO;
 
 import javax.swing.JTextField;
+import javax.swing.JScrollPane;
 
 public class ParkingOfficerView extends JFrame{
 	
 	private JPanel contentPane;
 	private JLabel thisLabel;
-	private JLabel parkingSpaceCount;
-	private JLabel availableparkingSpaceCount;
 	private JButton addButton;
 	private JButton removeButton;
 	private JLabel addLabel;
@@ -33,8 +34,12 @@ public class ParkingOfficerView extends JFrame{
 	private JTextField addInput;
 	private JTextField removeInput;
 	private JComboBox lst;
+	private JList list;
 	private String selLoc;
 	private JLabel locationCode;
+	private JScrollPane scrollPane;
+	String userName;
+	PEO peo = new PEO();
 	
 	public static void main(String[] args) {
 		System.out.println("This is the Parking Officer pane");
@@ -111,16 +116,7 @@ public class ParkingOfficerView extends JFrame{
 
 		locationCode = new JLabel();
 		locationCode.setBounds(89, 105, 73, 25);
-//				contentPane.add(locationCode);
-		
-		// later -> this part will be connected in the backend with the customer's part where they see the number of available spaces 
-		parkingSpaceCount = new JLabel();
-		int count = 1500;									// later fix the number make it realtime
-		parkingSpaceCount.setText("Total Number of Parking Spaces per location: 50");
-		parkingSpaceCount.setBounds(10, 100, 500, 25);
-		contentPane.add(parkingSpaceCount);
-		
-		availableparkingSpaceCount = new JLabel();
+		int count = 1500;
 		PEO p = new PEO();
 		int availableCount = 0;
 		try {
@@ -128,17 +124,14 @@ public class ParkingOfficerView extends JFrame{
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}									// later fix the number make it realtime
-		availableparkingSpaceCount.setText("Total Number of Available Parking Spaces in selected locations: " + availableCount);
-		availableparkingSpaceCount.setBounds(10, 130, 500, 25);
-		contentPane.add(availableparkingSpaceCount);
+		}
 		
 		
 		// buttons
 		// add parking space
 		addLabel = new JLabel();
 		addLabel.setText("Add Parking Space: ");
-		addLabel.setBounds(19, 178, 500, 25);
+		addLabel.setBounds(10, 244, 500, 25);
 		contentPane.add(addLabel);
 		
 		// add button
@@ -154,6 +147,8 @@ public class ParkingOfficerView extends JFrame{
 				try {
 					PEO peo = new PEO();
 					peo.addSpaces(spotName);
+					list = new JList(peo.viewBooking(userName).toArray());
+					scrollPane.setViewportView(list);
 					addRemoveMessage.setText("Successfully Added Parking Space");		
 				} catch (Exception e2) {
 					// TODO: handle exception
@@ -161,13 +156,13 @@ public class ParkingOfficerView extends JFrame{
 				}
 			}
 		});
-		addButton.setBounds(348, 179, 90, 25);
+		addButton.setBounds(348, 245, 90, 25);
 		contentPane.add(addButton);
 
 		// Remove parking space
 		removeLabel = new JLabel();
 		removeLabel.setText("Remove Parking space: ");
-		removeLabel.setBounds(20, 214, 500, 25);
+		removeLabel.setBounds(10, 281, 500, 25);
 		contentPane.add(removeLabel);
 
 		// remove button
@@ -183,6 +178,8 @@ public class ParkingOfficerView extends JFrame{
 				try {
 					PEO peo = new PEO();
 					peo.removeSpaces(spotName);
+					list = new JList(peo.viewBooking(userName).toArray());
+					scrollPane.setViewportView(list);
 					addRemoveMessage.setText("Successfully Removed Parking Space");		
 				} catch (Exception e2) {
 					// TODO: handle exception
@@ -190,12 +187,12 @@ public class ParkingOfficerView extends JFrame{
 				}
 			}
 		});
-		removeButton.setBounds(349, 214, 90, 25);
+		removeButton.setBounds(348, 282, 90, 25);
 		contentPane.add(removeButton);
 		
 		//addRemoveMessage [later fix the add remove message]
 	    addRemoveMessage = new JLabel("");  					//Successfully Added/Removed  Parking Space
-	    addRemoveMessage.setBounds(178,251,303,25);
+	    addRemoveMessage.setBounds(178,310,303,25);
 	    contentPane.add(addRemoveMessage);
 			    
 	    JButton logout = new JButton("Logout");
@@ -211,13 +208,22 @@ public class ParkingOfficerView extends JFrame{
 		
 		// parking spot number 
 		addInput = new JTextField();
-		addInput.setBounds(178, 178, 170, 26);
+		addInput.setBounds(178, 243, 170, 26);
 		contentPane.add(addInput);
 		addInput.setColumns(10);
 		
 		removeInput = new JTextField();
 		removeInput.setColumns(10);
-		removeInput.setBounds(178, 211, 170, 26);
+		removeInput.setBounds(178, 280, 170, 26);
 		contentPane.add(removeInput);
+		
+		userName = LoginView.user;
+	    ArrayList<String> mx = new ArrayList<String>();
+	    
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 97, 418, 131);
+		contentPane.add(scrollPane);
+		list = new JList(peo.viewBooking(userName).toArray());
+		scrollPane.setViewportView(list);
 	}
 }
