@@ -136,7 +136,7 @@ public class PaymentStateView extends JFrame {
 	    paymentreceivedMessage = new JLabel();
 	    paymentreceivedMessage.setBounds(18,39,300,25);
 	    double amount = 0.0;
-	    paymentreceivedMessage.setText("Payment Amount received:  $" + amount);
+//	    paymentreceivedMessage.setText("Payment Amount received:  $" + amount);
 	    contentPane.add(paymentreceivedMessage);
 	    
 	    // clicking this button will dump the username, email and parkingspace# to the adminbooking.csv where all the booking records are kept

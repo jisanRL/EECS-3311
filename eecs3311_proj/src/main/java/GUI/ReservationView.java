@@ -33,7 +33,9 @@ public class ReservationView extends JFrame {
 	private JTextField spotName;
 	private JLabel lblBookingCancelled;
 	private JList list;
+	private JScrollPane scrollPane;
 	HomePage hp = new HomePage();
+	ViewBooking vb = new ViewBooking();
 
 	/**
 	 * Launch the application.
@@ -106,7 +108,9 @@ public class ReservationView extends JFrame {
 	    		}
 	    		Cancelbooking cn = new Cancelbooking();
 	    		cn.cancelBooking(userName,bookginID,currentDate,currentTime,duration,spot,price,paymentstatus,licenseplate);
-	    	    lblBookingCancelled.setText("Booking cancelled ");
+	    		list = new JList(vb.viewBooking(userName).toArray());
+	    		scrollPane.setViewportView(list);
+	    		lblBookingCancelled.setText("Booking cancelled ");
 	    	}
 	    });
 	    btnCancellations.setBounds(125, 256, 199, 25);
@@ -127,12 +131,11 @@ public class ReservationView extends JFrame {
 	    
 	    String userName = LoginView.user;
 	    ArrayList<String> mx = new ArrayList<String>();
-	    ViewBooking vb = new ViewBooking();
 	    list = new JList(vb.viewBooking(userName).toArray());
 	    list.setBounds(25, 46, 423, 172);
 	    contentPane.add(list);
 	    
-	    JScrollPane scrollPane = new JScrollPane();
+	    scrollPane = new JScrollPane();
 	    scrollPane.setBounds(25, 46, 423, 172);
 	    scrollPane.setViewportView(list);
 	    list.setLayoutOrientation(JList.VERTICAL);
