@@ -87,21 +87,12 @@ public class PaymentStatus {
 				val = line.split(",");
 				
 				// fix this
-				String pp = val[0] + " " + val[1] + " " + val[2] + " " + val[5];
+//				String pp = val[0] + " " + val[1] + " " + val[2] + " " + val[5];
+				String pp = val[0] + "," + val[1] + "," + val[2]+ "," + val[3] + "," + val[4] + "hrs" + ",  " + val[5] + ",  " + "$"+ val[6] + "," +val[7];
+
 				//+  val[3] + " " + val[4] + " " + val[5] + " " + val[6] + " " + val[7] + " " + val[8];
 				
-//				String username = val[0];
-//				String bookingID = val[1];
-//				String date = val[2];
-//				String bookingtime = val[3];
-//				String duration = val[4];
-//				String bookingspot =val[5];
-//				String price = val[6];
-//				String paystat = val[7];
-//				String lcNum = val[8];
-				
-				// convert the array into list and put the val into the arraylists
-//				lst = Arrays.asList(val);
+
 				lst.add(pp);
 				System.out.println(lst);
 				

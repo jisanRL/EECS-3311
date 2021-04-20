@@ -44,7 +44,7 @@ public class PaymentStateView extends JFrame {
 	private static JTextField psnInput;
 	private JButton backButton;
 	private JList list;
-	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/booking.csv";				// fix this later -> turn to relative path
+//	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/booking.csv";				// fix this later -> turn to relative path
 	
 	/**
 	 * Launch the application.
@@ -177,15 +177,15 @@ public class PaymentStateView extends JFrame {
 	    String data[][] = {{},{}};
 	    
 	    // clicking this button will display the contents of booking.csv
-	    JButton viewBookingbtn = new JButton("Bookings");
-	    viewBookingbtn.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    		
-	    		
-	    	}
-	    });
-	    viewBookingbtn.setBounds(458, 38, 86, 25);
-	    contentPane.add(viewBookingbtn);
+//	    JButton viewBookingbtn = new JButton("Bookings");
+//	    viewBookingbtn.addActionListener(new ActionListener() {
+//	    	public void actionPerformed(ActionEvent e) {
+//	    		
+//	    		
+//	    	}
+//	    });
+//	    viewBookingbtn.setBounds(458, 38, 86, 25);
+//	    contentPane.add(viewBookingbtn);
 	    
 	    JScrollPane scrollPane = new JScrollPane();
 	    scrollPane.setBounds(28, 62, 499, 131);

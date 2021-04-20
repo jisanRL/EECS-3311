@@ -29,7 +29,7 @@ public class Cancelbooking {
 		
 		String tmpFile = "tmp.csv";
 		String target1 = ""; String target2 = ""; String target3 = ""; String target4 = ""; 
-		String target5 = "";String target6 = "";String target7 = "";String target8 = "";String target9 = "";
+		String target5 = "";String target6 = "";String target7 = "";String target8 = "";String target9 = "";String target10 = "";
 //		String target = "";
 		File oldFile = new File(path);
 		File newFile = new File(tmpFile);
@@ -54,9 +54,10 @@ public class Cancelbooking {
 				target8 = x.next();		// paymentStat
 				target9 = x.next();		// licenceNum
 				
+				
 				//FIX THIS PART SO THAT ONLY THE UNIQUE PARKING SPOT IS DELETED
 				// if the target is not equals the input credentials then write all the other lines accept for the line that mathches the inputs  
-				if (!target2.equals(bookingID) && !target3.equals(date) && !target4.equals(time) && !target5.equals(duration) && !target6.equals(spotName)&& !target7.equals(price) && !target8.equals(paymentStat) && !target9.equals(licenceNum)) {
+				if (!target2.equals(bookingID) && !target3.equals(date) && !target4.equals(time) && !target5.equals(duration) && !target6.equals(spotName)&& !target7.equals(price) && !target8.equals(paymentStat) && !target9.equals(licenceNum)){
 					pw.println(target1 + ","+ target2 + "," + target3 + ","+ target4 + "," + target5 + ","+ target6 + "," + target7 + ","+ target8 + "," + target9);
 				}		
 			}

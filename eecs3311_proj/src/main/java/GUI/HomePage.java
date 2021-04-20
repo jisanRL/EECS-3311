@@ -246,7 +246,7 @@ public class HomePage extends JFrame {
 				bookingID = booking.bookingID();  
 				price = payment.price(Double.parseDouble(duration));
 				prc = Double.toString(price);
-				paymentStat = "Paid at: " + payment.timeStamp(); 
+				paymentStat = "Paid at:" + payment.timeStamp(); 
 //				expiryTime = payment.counter(Integer.parseInt(startTime));
 				
 				// dump the data to booking.csv later -> add exceptions for null input or in valid input

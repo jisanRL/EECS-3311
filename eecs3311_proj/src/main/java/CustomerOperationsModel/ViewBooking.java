@@ -21,7 +21,7 @@ public class ViewBooking {
 	/*
 	 * 4.7.3-REQ-1
 	 * both customer and PEO has access to this method
-	 * display 
+	 * display parking space booking information, including expiry time
 	 */
 	public List<String> viewBooking(String userName) {
 		String line = "";
@@ -35,26 +35,10 @@ public class ViewBooking {
 				val = line.split(",");
 				
 				if (val[0].contains(userName)) {
-					
-					String pp = val[0] + "  " + val[3] + "  " + val[4] + "  " + val[5] ;
-					// convert the array into list and put the val into the arraylists
-					// val[0] + " Booking Time: " + val[3] + "  Duration: " + val[4]+ " Spot: " + val[5] + " Price: " + val[6];
-	//				lst = Arrays.asList(val);
+					String pp = val[0] + "  ,  " + val[3] + "  ,  " + val[4] + "hrs" + "  ,  " + val[5] + "  ,  " + "$"+ val[6];
 					lst.add(pp);
 					System.out.println(lst);
 				}
-				
-//				// check if the list index 4(username) and index 7(password) contains the input  [&& lst.get(6).contains(password)]
-//				if (lst.get(3).contains(userName) ) {
-//					isExists = true;
-//					String msg = "User exists";
-//					System.out.println("is exists = " + isExists + " " + msg);
-//					break;
-//				} else {
-//					String msg = "User doesn't exist";
-//					System.out.println("is exists = " + isExists + " " + msg);
-//					isExists = false;
-//				}
 				val = new String[20];
 			}
 		} catch (FileNotFoundException e) {
