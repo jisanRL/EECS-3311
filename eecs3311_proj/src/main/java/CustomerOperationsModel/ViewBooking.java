@@ -28,7 +28,6 @@ public class ViewBooking {
 		String[] val = null;
 		List<String> lst = new ArrayList<String>();
 		
-		// FIX THIS
  		try {
 			BufferedReader bfr = new BufferedReader(new FileReader(path));
 			while ((line = bfr.readLine()) != null) {

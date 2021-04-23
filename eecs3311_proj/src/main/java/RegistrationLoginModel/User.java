@@ -5,7 +5,6 @@ package RegistrationLoginModel;
  * this class defines the user. ie, who/what makes the user the user
  * REQ: User  = customers + parking enforcement officer
  * 
- * https://www.youtube.com/watch?v=XrktMbcoeis
  */
 public class User {
 	

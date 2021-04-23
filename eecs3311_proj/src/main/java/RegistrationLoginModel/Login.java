@@ -10,12 +10,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import Interfaces.Security;
+
 /*
  * Class reads and authenticates the user from the csv files
  * PEO reads from database.csv
  * REMOVE ALL THE STATICS BEFORE FINAL SUBMISSION
  */
-public class Login {
+public class Login implements Security{
 	
 	private User user;			// composition 
 	
@@ -30,12 +32,10 @@ public class Login {
 	/*
 	 * Authenticates and verifies the users existance 
 	 */
-	// for testing turn is to static void
-	public void authenticate(String userName, String password) {
+	public boolean authenticate(String userName, String password) {
 		String line = "";
 		String[] val = null;
 		boolean isExists = false;
-		ArrayList<String> user = null;		// the final output of name, usertype and password
 		
  		try {
 			BufferedReader bfr = new BufferedReader(new FileReader(userPath));
@@ -65,6 +65,7 @@ public class Login {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+ 		return isExists;
 	}
 	
 	/*

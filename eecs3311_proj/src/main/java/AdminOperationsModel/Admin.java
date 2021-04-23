@@ -13,6 +13,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import Interfaces.CSVOps;
+import Interfaces.Security;
+
 /*
  * REQ: 4.1
  * 		4.1.3-REQ-1: The system must assign a unique ID to each new parking enforcement officer added  [this is the username the user puts in]
@@ -20,7 +23,7 @@ import java.util.Scanner;
  * 		4.1.3-REQ-3: The system must verify a new parking enforcement officer’s ID does not exist in the system already
  * 		4.1.3-REQ-4: The system must store a new parking enforcement officer’s registration information
  */
-public class Admin {
+public class Admin implements Security, CSVOps {
 	
 	private static String userPath = "../eecs3311_proj/CSVs/database.csv";	
 	private static Scanner x;
@@ -33,7 +36,7 @@ public class Admin {
 	 * 		BASICSLLY -> CHECK THE USERNAME COLUMN
 	 * 		Authenticates and verifies the users existance in database.csv
 	 */
-	public void authenticate(String userName, String password) {
+	public boolean authenticate(String userName, String password) {
 		String line = "";
 		String[] val = null;
 		boolean isExists = false;
@@ -42,7 +45,6 @@ public class Admin {
 			BufferedReader bfr = new BufferedReader(new FileReader(userPath));
 			while ((line = bfr.readLine())!= null) {
 				val = line.split(",");
-//				System.out.println("userName:" + val[3] + ",  "+ "userType:" + val[1] + ", " +  "password:" + val[6]);
 				
 				// convert the array into list and put the val into the arraylists
 				List<String> lst = Arrays.asList(val);
@@ -67,6 +69,7 @@ public class Admin {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return isExists;
 	}
 	
 	
@@ -147,9 +150,19 @@ public class Admin {
 		}
 	}
 	
+	public void bookparkingSpace(String userName, String bookingID, String date, String time, String duration,
+			String spotName, String price, String paymentStat, String licenceNum, String paymentType) {
+		// TODO Auto-generated method stub
+	}
+
+
+	public void cancelBooking(String userName, String bookingID, String date, String time, String duration,
+			String spotName, String price, String paymentStat, String licenceNum) {
+		// TODO Auto-generated method stub
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Admin");
 	}
-
 }

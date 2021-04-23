@@ -87,7 +87,6 @@ public class ReservationView extends JFrame {
 		backButton.setBounds(458, 17, 86, 25);
 	    contentPane.add(backButton);
 	    
-	    // later -> customer clicks on a button, a jPane opens up and enters their booking number
 	    // removes the entire booking column of the user logged in
 	    JButton btnCancellations = new JButton("Cancel Booking");
 	    btnCancellations.addActionListener(new ActionListener() {

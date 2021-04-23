@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-import Interfaces.Customer;
+import Interfaces.CSVOps;
 
 /*
  * REQ 4.4 Booking a parking space
@@ -30,13 +30,12 @@ import Interfaces.Customer;
  * 		4.4.3-REQ-6: Each booked parking space receives a unique booking ID  [DONE]
  * 		4.4.3-REQ-7: The system must display an error message if the parking space the customer booked is occupied in the system [DONE]
  */
-public class Booking {
+public class Booking implements CSVOps {
 	
 	private static String path = "../eecs3311_proj/CSVs/booking.csv";	
 
 	/* 4.4.3-REQ-2 
 	 * READS THHROUGH BOOKING.CSV INDEX 5 AND SEES IF THE ENTERED SPOT IS THERE OR NOT
-	 * REMOVE STATIC AFTER TESTING
 	 */
 	public boolean checkParkingSpace(String spotName) {
 		String line = "";
@@ -142,6 +141,26 @@ public class Booking {
 		return str.toString();
 	}
 
+	public void writeUser(String name, String userType, String email, String userName, String phoneNumber,
+			String address, String password) throws IOException {
+		// TODO Auto-generated method stub	
+	}
+
+	public void removeUser(String name, String userType, String email, String userName, String phoneNumber,
+			String address, String password) {
+		// TODO Auto-generated method stub	
+	}
+
+	public void bookparkingSpace(String userName, String bookingID, String date, String time, String duration,
+			String spotName, String price, String paymentStat, String licenceNum, String paymentType) {
+		// TODO Auto-generated method stub	
+	}
+
+	public void cancelBooking(String userName, String bookingID, String date, String time, String duration,
+			String spotName, String price, String paymentStat, String licenceNum) {
+		// TODO Auto-generated method stub	
+	}
+	
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		System.out.println("Booking Backend");
@@ -153,7 +172,6 @@ public class Booking {
 		System.out.println(bk.bookingID());
 		
 		String user = "farhan95";
-		bk.userCount(user);
-		
+		bk.userCount(user);	
 	}
 }

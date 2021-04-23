@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import Interfaces.CSVOps;
+
 /*
  * Class writes the user to the csv file
  * PEO goes to database.csv
  *
- *  REMOVE ALL THE STATICS BEFORE FINAL SUBMISSION
- *  https://www.youtube.com/watch?v=v-qCbMRkk-s
  */
-public class Register {
+public class Register implements CSVOps {
 	
 	private static User user;  			// composition 
 	private static String userPath = "../eecs3311_proj/CSVs/database.csv";
@@ -45,7 +45,11 @@ public class Register {
 		pw.close();		//close file
 	}
 	
-	
+	// do nothing 
+	public void removeUser(String name, String userType, String email, String userName, String phoneNumber,
+			String address, String password) {
+		// TODO Auto-generated method stub
+	}
 	
 	public static void main(String[] args) throws IOException {
 		System.out.println("register");
@@ -59,4 +63,8 @@ public class Register {
 		String password = "peo54";
 //		writeUser(name, userType,email,userName,phoneNumber,address,password);
 	}
+
+
+
+	
 }

@@ -82,8 +82,6 @@ public class ParkingOfficerView extends JFrame{
 		contentPane.add(tag1);
 		
 		// location options
-		// [https://docs.oracle.com/javase/tutorial/uiswing/components/combobox.html]
-		// later -> implement this option button fully
 		String[] locOptions = { "Downtown", "Yorkdale", "Square one", "York University", "St George" };
 		lst = new JComboBox(locOptions);
 		lst.setSelectedIndex(4);
@@ -125,8 +123,7 @@ public class ParkingOfficerView extends JFrame{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
+
 		// buttons
 		// add parking space
 		addLabel = new JLabel();
@@ -190,7 +187,7 @@ public class ParkingOfficerView extends JFrame{
 		removeButton.setBounds(348, 282, 90, 25);
 		contentPane.add(removeButton);
 		
-		//addRemoveMessage [later fix the add remove message]
+		//addRemoveMessage
 	    addRemoveMessage = new JLabel("");  					//Successfully Added/Removed  Parking Space
 	    addRemoveMessage.setBounds(178,310,303,25);
 	    contentPane.add(addRemoveMessage);

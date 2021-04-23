@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 import RegistrationLoginModel.Login;
 
 
-// refurbish later this if possible
+
 public class LoginView extends JFrame {
 	
 	private static JLabel userlabel;
@@ -111,6 +111,9 @@ public class LoginView extends JFrame {
 				        slabel.setText("Please leave no field empty");
 						throw new RuntimeException();
 				    }
+					if (login.authenticate(user, pswd) == false) {
+						slabel.setText("User Not found");
+					}
 					
 					// set the path
 					if (login.checkUserType(user, pswd).equalsIgnoreCase("customer")) {
@@ -132,7 +135,6 @@ public class LoginView extends JFrame {
 	     loginButton.setBounds(10, 100, 120, 25);
 	     contentPane.add(loginButton);
 	     
-	     // temporary (later -> upon authentication take from login page to booking space / main dashboard)
 	     slabel = new JLabel("");
 	     slabel.setBounds(20, 129, 250, 25);
 	     contentPane.add(slabel);

@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import Interfaces.Security;
+
 /*
  * REQ: 4.9
  * 		4.9.3-REQ-1: The user must be an systems administrator. [Done in the login part]
@@ -20,7 +22,7 @@ import java.util.Scanner;
  * 		4.9.3-REQ-3: The system must verify the customer’s occupancy of the parking space before changing their payment status
  * 		4.9.3-REQ-4: The system must verify the customer’s payment of the parking space before changing their payment status
  */
-public class PaymentStatus {
+public class PaymentStatus implements Security {
 	
 	private static String path = "../eecs3311_proj/CSVs/booking.csv";				
 	private static String path2 = "../eecs3311_proj/CSVs/admindatabase.csv";
@@ -32,12 +34,11 @@ public class PaymentStatus {
 	 * 4.9.3-REQ-3:
 	 * BASICALLY -> check the 6th index of the csv array for booking status and 4th index for bookingspot
 	 */
-	public void authenticate(String userName, String password) {
+	public boolean authenticate(String userName, String password) {
 		String line = "";
 		String[] val = null;
 		boolean isExists = false;
-		ArrayList<String> user = null;		// the final output of name, usertype and password
-		
+				
  		try {
 			BufferedReader bfr = new BufferedReader(new FileReader(path));
 			while ((line = bfr.readLine())!= null) {
@@ -67,10 +68,12 @@ public class PaymentStatus {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return isExists;
 	}
 	
 	/*
 	 * Displays the booking.csv
+	 * USERNAME,BOOKINGID,DATE,TIME OF BOOKING,DURATION ,BOOKING SPOT,PRICE,PAYMENT STATUS , LICENSE NUMBER
 	 */
 	public List<String> viewBooking() {
 		String line = "";
@@ -78,24 +81,13 @@ public class PaymentStatus {
 		List<String> lst = new ArrayList<String>();
 		List<String> lst2 = new ArrayList<String>();
 		
-		// FIX THIS
-		//USERNAME,BOOKINGID,DATE,TIME OF BOOKING,DURATION ,BOOKING SPOT,PRICE,PAYMENT STATUS , LICENSE NUMBER
-		
  		try {
 			BufferedReader bfr = new BufferedReader(new FileReader(path));
 			while ((line = bfr.readLine()) != null) {
 				val = line.split(",");
-				
-				// fix this
-//				String pp = val[0] + " " + val[1] + " " + val[2] + " " + val[5];
 				String pp = val[0] + "," + val[1] + "," + val[2]+ "," + val[3] + "," + val[4] + "hrs" + ",  " + val[5] + ",  " + "$"+ val[6] + "," +val[7];
-
-				//+  val[3] + " " + val[4] + " " + val[5] + " " + val[6] + " " + val[7] + " " + val[8];
-				
-
 				lst.add(pp);
 				System.out.println(lst);
-				
 				val = new String[20];
 			}
 		} catch (FileNotFoundException e) {

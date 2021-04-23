@@ -55,7 +55,6 @@ public class Payment {
 //	    System.out.println("Current Date = " + calendar.getTime());
 	    calendar.add(Calendar.HOUR_OF_DAY, +duration);
 	    System.out.println("Updated Date = " + calendar.getTime());
-		
 	    return calendar.toString();
 	}
 	

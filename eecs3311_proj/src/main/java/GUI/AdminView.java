@@ -180,7 +180,6 @@ public class AdminView extends JFrame {
 				Admin adm = new Admin();
 				
 				// write into database.csv by calling writeUser method
-				// later -> add exceptions for null input or in valid input
 				if (name==null || email == null || phoneNumber== null || 
 						address == null || userName == null || userType == null || 
 						password.isEmpty()) {
@@ -210,7 +209,6 @@ public class AdminView extends JFrame {
 
 		// remove button
 		removeButton = new JButton("- Remove PEO");
-		// later -> removes the specific PEO officer from the database
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// get the data [later make sure inputs are regular expressions no numbers or random input]
@@ -224,7 +222,6 @@ public class AdminView extends JFrame {
 				Admin adm = new Admin();
 				
 				// write into database.csv by calling writeUser method
-				// later -> add exceptions for null input or in valid input
 				if (name==null || email == null || phoneNumber== null || address == null || userName == null || userType == null || password.isEmpty()) {
 					addRemoveMessage.setText("Please leave no field empty");
 					throw new RuntimeException();
@@ -263,8 +260,6 @@ public class AdminView extends JFrame {
 		confirmPaymentButton.setBounds(354,51,190,25);
 	    contentPane.add(confirmPaymentButton);
 	    
-	   
-	    
 	    JButton logout = new JButton("Logout");
 		logout.setBounds(444, 15, 100, 25);
 		logout.addActionListener(new ActionListener() {
@@ -275,7 +270,5 @@ public class AdminView extends JFrame {
 			}
 		});
 		contentPane.add(logout);
-	    
 	}
-	
 }

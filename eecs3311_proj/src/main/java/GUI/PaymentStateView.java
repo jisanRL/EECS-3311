@@ -44,7 +44,6 @@ public class PaymentStateView extends JFrame {
 	private static JTextField psnInput;
 	private JButton backButton;
 	private JList list;
-//	private static String path = "/Users/jisanreza/Documents/3311/eecs3311_proj/CSVs/booking.csv";				// fix this later -> turn to relative path
 	
 	/**
 	 * Launch the application.
@@ -82,8 +81,8 @@ public class PaymentStateView extends JFrame {
 		thisLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		thisLabel.setFont(new Font("Sans-serif", Font.PLAIN, 16));
 		thisLabel.setBackground(Color.WHITE);
-		thisLabel.setBounds(168, 6, 200, 25); // set the position of the component
-		contentPane.add(thisLabel); // add to the content
+		thisLabel.setBounds(168, 6, 200, 25);   // set the position of the component
+		contentPane.add(thisLabel); 			// add to the content
 		
 		// back button takes back to homePage
 		backButton = new JButton("Back");
@@ -158,13 +157,7 @@ public class PaymentStateView extends JFrame {
 	    	}
 	    });
 	    btnNewButton.setBounds(117, 300, 200, 29);
-	    contentPane.add(btnNewButton);
-	    
-//	    JLabel lblTotalAmount = new JLabel();
-//	    lblTotalAmount.setText("here we will have a table to view entire booking.csv");
-//	    lblTotalAmount.setBounds(135, 197, 414, 25);
-//	    contentPane.add(lblTotalAmount);
-	  
+	    contentPane.add(btnNewButton);  
 	    
 	    ArrayList<String> mx = new ArrayList<String>();
 	    PaymentStatus ps = new PaymentStatus();
@@ -175,17 +168,6 @@ public class PaymentStateView extends JFrame {
 	    
 	    String col[] = {"USERNAME","BOOKINGID","DATE","BOOKING TIME","DURATION" ,"BOOKING SPOT","PRICE","PAYMENT STATUS" , "LICENSE NUMBER"};
 	    String data[][] = {{},{}};
-	    
-	    // clicking this button will display the contents of booking.csv
-//	    JButton viewBookingbtn = new JButton("Bookings");
-//	    viewBookingbtn.addActionListener(new ActionListener() {
-//	    	public void actionPerformed(ActionEvent e) {
-//	    		
-//	    		
-//	    	}
-//	    });
-//	    viewBookingbtn.setBounds(458, 38, 86, 25);
-//	    contentPane.add(viewBookingbtn);
 	    
 	    JScrollPane scrollPane = new JScrollPane();
 	    scrollPane.setBounds(28, 62, 499, 131);

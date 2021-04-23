@@ -99,8 +99,7 @@ public class HomePage extends JFrame {
 		location.setBounds(10, 52, 170, 25);
 		contentPane.add(location);
 		
-		// location options [https://docs.oracle.com/javase/tutorial/uiswing/components/combobox.html]
-		//later -> implement this option button fully 
+		// location options
 		String[] locOptions = {"Downtown", "Yorkdale", "Square one", "York University", "St George"};
 		lst = new JComboBox(locOptions);
 //		lst.setSelectedIndex(4);

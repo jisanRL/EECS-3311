@@ -36,7 +36,6 @@ public class PEO {
 	 */
 	public void addSpaces(String spotName) throws IOException {
 		String downtown = ""; String yorkdale = ""; String square1 = ""; String yorku = ""; String stGeorge = "";
-		//FIX THIS
 		File fw = new File(path);							// path to the file
 		FileWriter fwt = new FileWriter(fw, true);
 		BufferedWriter bfw = new BufferedWriter(fwt);
@@ -48,9 +47,6 @@ public class PEO {
 		} else {
 			System.out.println("File doesn't exist");
 		}
-		
-//		x = new Scanner(new File(path));
-//		x.useDelimiter("[,\n]");
 		pw.printf("%s\n", spotName);		// writes to the file
 		pw.flush();							// flushes the data into the csv
 		pw.close();							//close file
@@ -61,7 +57,6 @@ public class PEO {
 	 * Remove parking spot from bookingpeo.csv
 	 */
 	public void removeSpaces(String spotName) {
-		// FIX THIS
 		String tmpFile = "tmp.csv";
 		String target = "";
 		File oldFile = new File(path);
@@ -158,16 +153,13 @@ public class PEO {
 		String[] val = null;
 		List<String> lst = new ArrayList<String>();
 		
-		// FIX THIS
 		try {
 			BufferedReader bfr = new BufferedReader(new FileReader(path));
 			while ((line = bfr.readLine()) != null) {
 				val = line.split(",");
-
 				String pp = val[0];
 				lst.add(pp);
 				System.out.println(lst);
-
 				val = new String[20];
 			}
 		} catch (FileNotFoundException e) {
