@@ -22,8 +22,7 @@ public class Register implements CSVOps {
 	
 	/*
 	 * writes the user details to the database file
-	 * table schema: 
-	 * Name | usertype | email | username | Phone number | Address | password
+	 * table schema:  Name | usertype | email | username | Phone number | Address | password
 	 */
 	public void writeUser(String name,
 			String userType,String email,String userName,String phoneNumber,
@@ -50,21 +49,26 @@ public class Register implements CSVOps {
 			String address, String password) {
 		// TODO Auto-generated method stub
 	}
-	
-	public static void main(String[] args) throws IOException {
-		System.out.println("register");
-		
-		String name = "tom car";
-		String userType = "PEO";
-		String email = "tom@yorku.ca";
-		String phoneNumber = "2133141413";
-		String address = "17 apple st";
-		String userName = "cat12";
-		String password = "peo54";
-//		writeUser(name, userType,email,userName,phoneNumber,address,password);
+	public void bookparkingSpace(String userName, String bookingID, String date, String time, String duration,
+			String spotName, String price, String paymentStat, String licenceNum, String paymentType) {
+		// TODO Auto-generated method stub
 	}
 
-
-
+	public void cancelBooking(String userName, String bookingID, String date, String time, String duration,
+			String spotName, String price, String paymentStat, String licenceNum) {
+		// TODO Auto-generated method stub
+	}
 	
+	public static void main(String[] args) throws IOException {
+			System.out.println("register");
+			
+			String name = "tom car";
+			String userType = "PEO";
+			String email = "tom@yorku.ca";
+			String phoneNumber = "2133141413";
+			String address = "17 apple st";
+			String userName = "cat12";
+			String password = "peo54";
+	//		writeUser(name, userType,email,userName,phoneNumber,address,password);
+		}
 }

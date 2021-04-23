@@ -60,7 +60,6 @@ public class Payment {
 	
 	/* 4.6.3-REQ-7: */
 	public void authenticate() {
-		
 	}
 	
 	public static void main(String[] args) {
