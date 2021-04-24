@@ -107,7 +107,6 @@ public class HomePage extends JFrame {
 		lst.setBounds(120, 52, 170, 25);
 		contentPane.add(lst);
 		
-		
 		/* view of all the available spot of the choosen location */
 		//available slot
 		JLabel tag1 = new JLabel();
@@ -150,7 +149,6 @@ public class HomePage extends JFrame {
 		// parking spot input
 		parkingspotinput = new JTextField(20);
 		parkingspotinput.setBounds(120, 104, 126, 25);
-		
 		contentPane.add(parkingspotinput);
 		
 		// after clicking this button the system will check if parkingspot is taken or not, by checking booking.csv index4
@@ -179,7 +177,6 @@ public class HomePage extends JFrame {
 		dateInput = new JTextField(20);
 		dateInput.setBounds(120, 153, 100, 25);
 		contentPane.add(dateInput);
-		
 		
 		// gets the current date
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -279,21 +276,7 @@ public class HomePage extends JFrame {
 	    slabel = new JLabel();
 	    slabel.setBounds(120,336,344,25);
 	    contentPane.add(slabel);
-	    
-	    // pay button  [later add action listener]
-//		payButton = new JButton("Pay");
-//		payButton.setBounds(73, 279, 370, 25);
-//		payButton.addActionListener(new ActionListener() {
-//			// takes to payView
-//			public void actionPerformed(ActionEvent e) {
-//				PayView pv = new PayView();
-//				price = payment.price(Double.parseDouble(duration));
-//				prc = Double.toString(price);
-//				pv.setVisible(true);
-//			}
-//		});
-//	    contentPane.add(payButton);
-	    
+
 	    // view booking button  [later add action listener]
 		viewBookingButton = new JButton("View Bookings");
 		viewBookingButton.addActionListener(new ActionListener() {
@@ -373,6 +356,5 @@ public class HomePage extends JFrame {
 		lblThisWillDisplay = new JLabel();
 		lblThisWillDisplay.setBounds(120, 253, 405, 25);
 		contentPane.add(lblThisWillDisplay);
-		
 	}
 }

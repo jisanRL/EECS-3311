@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import RegistrationLoginModel.Register;
 
-//refurbish later this if possible
+
 public class RegistrationView extends JFrame {
 
 	private static JLabel userlabel;
@@ -134,7 +134,7 @@ public class RegistrationView extends JFrame {
 		usertype.setBounds(10, 175, 80, 25);
 		contentPane.add(usertype);
 		
-		String[] userOptions = { "customer", "parking officer" };
+		String[] userOptions = { "customer"};
 		final JComboBox lst = new JComboBox(userOptions);
 		lst.setSelectedIndex(0);
 //		lst.addActionListener(this);
@@ -179,6 +179,7 @@ public class RegistrationView extends JFrame {
 					Register rg = new Register();
 					try {
 						rg.writeUser(name, userType, email, userName, phoneNumber, address, password);
+						success.setText("You are Successfully registered!!");
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -198,7 +199,7 @@ public class RegistrationView extends JFrame {
 		contentPane.add(registerButton);
 		
 		
-		// Creating login button , Later -> once the success message is given click this button and take to the login page 
+		// Creating login button 
 		loginButton = new JButton("Login Page");
 		loginButton.setBounds(110, 260, 190, 25);
 		loginButton.addActionListener(new ActionListener() {
@@ -211,7 +212,6 @@ public class RegistrationView extends JFrame {
 		});
 		contentPane.add(loginButton);
 
-		// temporary (later -> upon authentication take from login page to booking space / main dashboard)
 		success = new JLabel("");
 		success.setBounds(109, 297, 224, 25);
 		contentPane.add(success);

@@ -139,7 +139,5 @@ public class ReservationView extends JFrame {
 	    scrollPane.setViewportView(list);
 	    list.setLayoutOrientation(JList.VERTICAL);
 	    contentPane.add(scrollPane);
-		
-		
 	}
 }

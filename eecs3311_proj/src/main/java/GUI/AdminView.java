@@ -85,7 +85,7 @@ public class AdminView extends JFrame {
 		
 		PEOCount = new JLabel();
 		int count = 0;			// later fix the number make it realtime
-		PEOCount.setText("Number of Parking Enforcement Officer: " + count);
+//		PEOCount.setText("Number of Parking Enforcement Officer: " + count);
 		PEOCount.setBounds(10, 292, 500, 25);
 		contentPane.add(PEOCount);
 		
@@ -144,7 +144,7 @@ public class AdminView extends JFrame {
 		usertype.setBounds(10, 175, 80, 25);
 		contentPane.add(usertype);
 
-		String[] userOptions = {"parking officer" };
+		String[] userOptions = {"parking officer"};
 		final JComboBox lst = new JComboBox(userOptions);
 		lst.setSelectedIndex(0);
 //				lst.addActionListener(this);
@@ -163,8 +163,6 @@ public class AdminView extends JFrame {
 
 		// adds PEO to database.csv
 		// add button, takes to the registration page,
-		// later, enter user information and once that is done put the info in the csv
-		// file of user table and
 		addButton = new JButton("+ Add PEO");
 		// write the user input to the database.csv
 		addButton.addActionListener(new ActionListener() {
@@ -203,7 +201,6 @@ public class AdminView extends JFrame {
 				System.out.println(password);
 			}
 		});
-
 		addButton.setBounds(43, 226, 190, 25);
 		contentPane.add(addButton);
 
@@ -211,7 +208,7 @@ public class AdminView extends JFrame {
 		removeButton = new JButton("- Remove PEO");
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// get the data [later make sure inputs are regular expressions no numbers or random input]
+				// get the data
 				String name = nameInput.getText();
 				String email = emailInput.getText();
 				String phoneNumber = phoneInput.getText();
@@ -243,11 +240,10 @@ public class AdminView extends JFrame {
 		removeButton.setBounds(222, 226, 190, 25);
 		contentPane.add(removeButton);
 
-		// addRemoveMessage [later fix the add remove message]
+		// addRemoveMessage
 		addRemoveMessage = new JLabel("");
 		addRemoveMessage.setBounds(101, 255, 269, 25);
 		contentPane.add(addRemoveMessage);
-
 		
 		confirmPaymentButton = new JButton("Change Payment Status");
 		confirmPaymentButton.addActionListener(new ActionListener() {
