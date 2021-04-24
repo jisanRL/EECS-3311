@@ -15,17 +15,10 @@ import Interfaces.Security;
 /*
  * Class reads and authenticates the user from the csv files
  * PEO reads from database.csv
- * REMOVE ALL THE STATICS BEFORE FINAL SUBMISSION
  */
 public class Login implements Security{
 	
 	private User user;			// composition 
-	
-	/*push the username, userType and password into the AL and verify from here */
-	private ArrayList<String> userName;
-	private ArrayList<String> userType;
-	private ArrayList<String> password;
-	
 	private static String userPath = "../eecs3311_proj/CSVs/database.csv";	
 	
 	

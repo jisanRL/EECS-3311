@@ -74,7 +74,7 @@ public class Admin implements Security, CSVOps {
 	
 	
 	/*
-	 * REQ:4.1 writes the user details to the database file
+	 * REQ:4.1 writes the user(PEO) details to the database file
 	 * table schema: 
 	 * Name | usertype | email | username | Phone number | Address | password
 	 */

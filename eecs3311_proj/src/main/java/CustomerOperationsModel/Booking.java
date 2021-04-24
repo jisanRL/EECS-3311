@@ -130,7 +130,6 @@ public class Booking implements CSVOps {
 	
 	/* 4.4.3-REQ-6  */
 	public String bookingID() {
-		//FIX THIS
 		int len = 4;
 		String chr = "abcdefghijk0123456789";
 		Random rn = new Random();
