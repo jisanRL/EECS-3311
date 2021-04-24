@@ -125,7 +125,6 @@ public class PaymentStateView extends JFrame {
 		psnInput.setBounds(135, 275, 165, 25);
 		contentPane.add(psnInput);
 		
-		 // later -> move this to the new paymentView GUI once confirmPaymentButton is clicked this message will appear, implement this
 		paymentconfirmedMessage = new JLabel();
 		paymentconfirmedMessage.setBounds(156,329,200,25);
 	    contentPane.add(paymentconfirmedMessage);
